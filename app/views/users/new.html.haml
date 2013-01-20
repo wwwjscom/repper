@@ -1,6 +1,7 @@
-%h1 Users#new
+.page-header
+	%h1 Register
 
-= form_for @user do |f|
+= form_for @user, :html => { :class => 'form-horizontal' } do |f|
 	= if @user.errors.any?
 		.error_message
 			%h2 Form is invalid
@@ -16,5 +17,6 @@
 	.field
 		= f.label :password_confirmation
 		= f.password_field :password_confirmation
-	.actions
-		= f.submit
+	.form-actions
+		= f.submit nil, :class => 'btn btn-primary'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
