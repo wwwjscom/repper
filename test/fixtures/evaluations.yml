@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  chest_weight: 1
+  chest_reps: 1
+  shoulder_weight: 1
+  should_reps: 1
+  arms_weight: 1
+  arms_reps: 1
+  legs_weight: 1
+  legs_reps: 1
+  back_weight: 1
+  back_reps: 1
+  crunch_reps: 1
+
+two:
+  user_id: 1
+  chest_weight: 1
+  chest_reps: 1
+  shoulder_weight: 1
+  should_reps: 1
+  arms_weight: 1
+  arms_reps: 1
+  legs_weight: 1
+  legs_reps: 1
+  back_weight: 1
+  back_reps: 1
+  crunch_reps: 1

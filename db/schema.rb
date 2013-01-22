@@ -11,7 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120080511) do
+ActiveRecord::Schema.define(:version => 20130122045329) do
+
+  create_table "evaluations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "chest_weight"
+    t.integer  "chest_reps"
+    t.integer  "shoulder_weight"
+    t.integer  "should_reps"
+    t.integer  "arms_weight"
+    t.integer  "arms_reps"
+    t.integer  "legs_weight"
+    t.integer  "legs_reps"
+    t.integer  "back_weight"
+    t.integer  "back_reps"
+    t.integer  "crunch_reps"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"

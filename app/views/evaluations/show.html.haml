@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @evaluation.user_id
+%p
+  %b Chest weight:
+  = @evaluation.chest_weight
+%p
+  %b Chest reps:
+  = @evaluation.chest_reps
+%p
+  %b Shoulder weight:
+  = @evaluation.shoulder_weight
+%p
+  %b Should reps:
+  = @evaluation.should_reps
+%p
+  %b Arms weight:
+  = @evaluation.arms_weight
+%p
+  %b Arms reps:
+  = @evaluation.arms_reps
+%p
+  %b Legs weight:
+  = @evaluation.legs_weight
+%p
+  %b Legs reps:
+  = @evaluation.legs_reps
+%p
+  %b Back weight:
+  = @evaluation.back_weight
+%p
+  %b Back reps:
+  = @evaluation.back_reps
+%p
+  %b Crunch reps:
+  = @evaluation.crunch_reps
+
+= link_to 'Edit', edit_evaluation_path(@evaluation)
+\|
+= link_to 'Back', evaluations_path

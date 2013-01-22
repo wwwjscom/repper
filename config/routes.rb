@@ -1,5 +1,8 @@
 Repper::Application.routes.draw do
 
+  resources :evaluations
+
+
   resources :workouts
 
   get "logout" => "sessions#destroy", :as => "logout"

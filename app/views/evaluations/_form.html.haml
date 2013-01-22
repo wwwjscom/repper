@@ -1,0 +1,46 @@
+= form_for @evaluation do |f|
+  - if @evaluation.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@evaluation.errors.count, "error")} prohibited this evaluation from being saved:"
+      %ul
+        - @evaluation.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :chest_weight
+    = f.number_field :chest_weight
+  .field
+    = f.label :chest_reps
+    = f.number_field :chest_reps
+  .field
+    = f.label :shoulder_weight
+    = f.number_field :shoulder_weight
+  .field
+    = f.label :should_reps
+    = f.number_field :should_reps
+  .field
+    = f.label :arms_weight
+    = f.number_field :arms_weight
+  .field
+    = f.label :arms_reps
+    = f.number_field :arms_reps
+  .field
+    = f.label :legs_weight
+    = f.number_field :legs_weight
+  .field
+    = f.label :legs_reps
+    = f.number_field :legs_reps
+  .field
+    = f.label :back_weight
+    = f.number_field :back_weight
+  .field
+    = f.label :back_reps
+    = f.number_field :back_reps
+  .field
+    = f.label :crunch_reps
+    = f.number_field :crunch_reps
+  .actions
+    = f.submit 'Save'

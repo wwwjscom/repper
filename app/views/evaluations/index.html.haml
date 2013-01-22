@@ -1,0 +1,41 @@
+%h1 Listing evaluations
+
+%table
+  %tr
+    %th User
+    %th Chest weight
+    %th Chest reps
+    %th Shoulder weight
+    %th Should reps
+    %th Arms weight
+    %th Arms reps
+    %th Legs weight
+    %th Legs reps
+    %th Back weight
+    %th Back reps
+    %th Crunch reps
+    %th
+    %th
+    %th
+
+  - @evaluations.each do |evaluation|
+    %tr
+      %td= evaluation.user_id
+      %td= evaluation.chest_weight
+      %td= evaluation.chest_reps
+      %td= evaluation.shoulder_weight
+      %td= evaluation.should_reps
+      %td= evaluation.arms_weight
+      %td= evaluation.arms_reps
+      %td= evaluation.legs_weight
+      %td= evaluation.legs_reps
+      %td= evaluation.back_weight
+      %td= evaluation.back_reps
+      %td= evaluation.crunch_reps
+      %td= link_to 'Show', evaluation
+      %td= link_to 'Edit', edit_evaluation_path(evaluation)
+      %td= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Evaluation', new_evaluation_path
