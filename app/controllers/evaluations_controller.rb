@@ -1,8 +1,11 @@
 class EvaluationsController < ApplicationController
+  
+  before_filter :require_login
+  
   # GET /evaluations
   # GET /evaluations.json
   def index
-    @evaluations = Evaluation.all
+    @evaluations = current_user.evaluations
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +16,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show
-    @evaluation = Evaluation.find(params[:id])
+    @evaluation = current_user.evaluation.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,13 +37,14 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/1/edit
   def edit
-    @evaluation = Evaluation.find(params[:id])
+    @evaluation = current_user.evaluation.find(params[:id])
   end
 
   # POST /evaluations
   # POST /evaluations.json
   def create
     @evaluation = Evaluation.new(params[:evaluation])
+    @evaluation.user_id = current_user.id
 
     respond_to do |format|
       if @evaluation.save
@@ -56,7 +60,7 @@ class EvaluationsController < ApplicationController
   # PUT /evaluations/1
   # PUT /evaluations/1.json
   def update
-    @evaluation = Evaluation.find(params[:id])
+    @evaluation = current_user.evaluation.find(params[:id])
 
     respond_to do |format|
       if @evaluation.update_attributes(params[:evaluation])
@@ -72,7 +76,7 @@ class EvaluationsController < ApplicationController
   # DELETE /evaluations/1
   # DELETE /evaluations/1.json
   def destroy
-    @evaluation = Evaluation.find(params[:id])
+    @evaluation = current_user.evaluation.find(params[:id])
     @evaluation.destroy
 
     respond_to do |format|

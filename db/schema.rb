@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20130122045329) do
     t.integer  "chest_weight"
     t.integer  "chest_reps"
     t.integer  "shoulder_weight"
-    t.integer  "should_reps"
+    t.integer  "shoulder_reps"
     t.integer  "bicep_weight"
     t.integer  "bicep_reps"
     t.integer  "tricep_weight"
