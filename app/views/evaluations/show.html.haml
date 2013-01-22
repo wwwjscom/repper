@@ -1,42 +1,57 @@
-%p#notice= notice
+- model_class = Evaluation
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
 
 %p
-  %b User:
+  %strong= model_class.human_attribute_name(:user_id) + ':'
+  %br
   = @evaluation.user_id
 %p
-  %b Chest weight:
+  %strong= model_class.human_attribute_name(:chest_weight) + ':'
+  %br
   = @evaluation.chest_weight
 %p
-  %b Chest reps:
+  %strong= model_class.human_attribute_name(:chest_reps) + ':'
+  %br
   = @evaluation.chest_reps
 %p
-  %b Shoulder weight:
+  %strong= model_class.human_attribute_name(:shoulder_weight) + ':'
+  %br
   = @evaluation.shoulder_weight
 %p
-  %b Should reps:
+  %strong= model_class.human_attribute_name(:should_reps) + ':'
+  %br
   = @evaluation.should_reps
 %p
-  %b Arms weight:
+  %strong= model_class.human_attribute_name(:arms_weight) + ':'
+  %br
   = @evaluation.arms_weight
 %p
-  %b Arms reps:
+  %strong= model_class.human_attribute_name(:arms_reps) + ':'
+  %br
   = @evaluation.arms_reps
 %p
-  %b Legs weight:
+  %strong= model_class.human_attribute_name(:legs_weight) + ':'
+  %br
   = @evaluation.legs_weight
 %p
-  %b Legs reps:
+  %strong= model_class.human_attribute_name(:legs_reps) + ':'
+  %br
   = @evaluation.legs_reps
 %p
-  %b Back weight:
+  %strong= model_class.human_attribute_name(:back_weight) + ':'
+  %br
   = @evaluation.back_weight
 %p
-  %b Back reps:
+  %strong= model_class.human_attribute_name(:back_reps) + ':'
+  %br
   = @evaluation.back_reps
 %p
-  %b Crunch reps:
+  %strong= model_class.human_attribute_name(:crunch_reps) + ':'
+  %br
   = @evaluation.crunch_reps
 
-= link_to 'Edit', edit_evaluation_path(@evaluation)
-\|
-= link_to 'Back', evaluations_path
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), evaluations_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_evaluation_path(@evaluation), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), evaluation_path(@evaluation), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
