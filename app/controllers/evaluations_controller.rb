@@ -16,7 +16,7 @@ class EvaluationsController < ApplicationController
   # GET /evaluations/1
   # GET /evaluations/1.json
   def show
-    @evaluation = current_user.evaluation.find(params[:id])
+    @evaluation = current_user.evaluations.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +37,7 @@ class EvaluationsController < ApplicationController
 
   # GET /evaluations/1/edit
   def edit
-    @evaluation = current_user.evaluation.find(params[:id])
+    @evaluation = current_user.evaluations.find(params[:id])
   end
 
   # POST /evaluations
@@ -60,7 +60,7 @@ class EvaluationsController < ApplicationController
   # PUT /evaluations/1
   # PUT /evaluations/1.json
   def update
-    @evaluation = current_user.evaluation.find(params[:id])
+    @evaluation = current_user.evaluations.find(params[:id])
 
     respond_to do |format|
       if @evaluation.update_attributes(params[:evaluation])
@@ -76,7 +76,7 @@ class EvaluationsController < ApplicationController
   # DELETE /evaluations/1
   # DELETE /evaluations/1.json
   def destroy
-    @evaluation = current_user.evaluation.find(params[:id])
+    @evaluation = current_user.evaluations.find(params[:id])
     @evaluation.destroy
 
     respond_to do |format|
