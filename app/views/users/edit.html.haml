@@ -1,10 +1,18 @@
 %h3 Muscle Groups
 = form_for @user, :html => { :class => 'form-horizontal' } do |f|
+
+  .control-group
+    = f.label :goal, :class => 'control-label'
+    .controls
+      = f.select(:goal, ["Weight loss", "Muscle Tone", "Muscle Gain"])
+
+
   = f.fields_for :muscle_group_ids do |builder|
     - MuscleGroup.all.each do |g|
       .control-group
         = f.label "muscle_group_ids_#{g.name}", g.name, :class => 'control-label'
         .controls
           = builder.check_box g.name, { :class => 'check_box', :checked =>@user.muscle_groups.include?(MuscleGroup.find(g.id)) }
+
   = f.submit nil, :class => 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'

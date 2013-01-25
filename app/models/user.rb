@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  attr_accessible :email, :password, :password_confirmation, :muscle_group_ids
+  attr_accessible :email, :password, :password_confirmation, :muscle_group_ids, :goal
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
