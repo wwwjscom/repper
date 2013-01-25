@@ -34,7 +34,7 @@
               - if current_user
                 %li= link_to "Evaluations", evaluations_path
                 %li= link_to "Log out", logout_path
-                %li= "Logged in as #{current_user.email}"
+                %li= link_to "Account", user_path(current_user)
               - else
                 %li= link_to "Sign up", signup_path
                 %li= link_to "Log in", login_path
