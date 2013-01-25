@@ -2,7 +2,7 @@ class CreateExercises < ActiveRecord::Migration
   def change
     create_table :exercises do |t|
       t.string :name
-      t.string :muscle_group
+      t.string :muscle_group_id
       t.integer :skill_level
       t.boolean :machine
       t.boolean :weights_required
@@ -13,7 +13,7 @@ class CreateExercises < ActiveRecord::Migration
     
     Exercise.create(
       :name => "row machine",
-      :muscle_group => "back",
+      :muscle_group_id => MuscleGroup.find_by_name("back").id,
       :skill_level => 1,
       :machine => 1,
       :weights_required => 1,
@@ -22,7 +22,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "v-bar push down",
-      :muscle_group => "tricep",
+      :muscle_group_id => MuscleGroup.find_by_name("tricep").id,
       :skill_level => 2,
       :machine => 1,
       :weights_required => 1,
@@ -31,7 +31,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "over head pull down",
-      :muscle_group => "back",
+      :muscle_group_id => MuscleGroup.find_by_name("back").id,
       :skill_level => 1,
       :machine => 1,
       :weights_required => 1,
@@ -40,7 +40,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "rope push down",
-      :muscle_group => "tricep",
+      :muscle_group_id => MuscleGroup.find_by_name("tricep").id,
       :skill_level => 2,
       :machine => 1,
       :weights_required => 1,
@@ -49,7 +49,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "sitting behind head lifts",
-      :muscle_group => "tricep",
+      :muscle_group_id => MuscleGroup.find_by_name("tricep").id,
       :skill_level => 2,
       :machine => 0,
       :weights_required => 1,
@@ -58,7 +58,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "shoulder press",
-      :muscle_group => "shoulder",
+      :muscle_group_id => MuscleGroup.find_by_name("shoulder").id,
       :skill_level => 2,
       :machine => 0,
       :weights_required => 1,
@@ -67,7 +67,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "curls",
-      :muscle_group => "bicep",
+      :muscle_group_id => MuscleGroup.find_by_name("bicep").id,
       :skill_level => 1,
       :machine => 0,
       :weights_required => 1,
@@ -76,7 +76,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "reverse crunch w/weight",
-      :muscle_group => "lower back",
+      :muscle_group_id => MuscleGroup.find_by_name("lower back").id,
       :skill_level => 2,
       :machine => 0,
       :weights_required => 1,
@@ -85,7 +85,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "pector pulldown",
-      :muscle_group => "chest",
+      :muscle_group_id => MuscleGroup.find_by_name("chest").id,
       :skill_level => 1,
       :machine => 1,
       :weights_required => 1,
@@ -94,7 +94,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "bench knee arm lifts",
-      :muscle_group => "back",
+      :muscle_group_id => MuscleGroup.find_by_name("back").id,
       :skill_level => 2,
       :machine => 0,
       :weights_required => 1,
@@ -103,7 +103,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "gravitor",
-      :muscle_group => "bicep",
+      :muscle_group_id => MuscleGroup.find_by_name("bicep").id,
       :skill_level => 1,
       :machine => 1,
       :weights_required => 1,
@@ -112,7 +112,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "straight bar curl",
-      :muscle_group => "bicep",
+      :muscle_group_id => MuscleGroup.find_by_name("bicep").id,
       :skill_level => 2,
       :machine => 1,
       :weights_required => 1,
@@ -121,7 +121,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "standing front row",
-      :muscle_group => "shoulder",
+      :muscle_group_id => MuscleGroup.find_by_name("shoulder").id,
       :skill_level => 1,
       :machine => 0,
       :weights_required => 1,
@@ -130,7 +130,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "incline bench",
-      :muscle_group => "chest",
+      :muscle_group_id => MuscleGroup.find_by_name("chest").id,
       :skill_level => 2,
       :machine => 0,
       :weights_required => 1,
@@ -139,7 +139,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "shrugs",
-      :muscle_group => "shoulder",
+      :muscle_group_id => MuscleGroup.find_by_name("shoulder").id,
       :skill_level => 2,
       :machine => 0,
       :weights_required => 1,
@@ -148,7 +148,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "sitting bench machine",
-      :muscle_group => "chest",
+      :muscle_group_id => MuscleGroup.find_by_name("chest").id,
       :skill_level => 1,
       :machine => 1,
       :weights_required => 1,
@@ -157,7 +157,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "standing pully straight arm lift",
-      :muscle_group => "shoulder",
+      :muscle_group_id => MuscleGroup.find_by_name("shoulder").id,
       :skill_level => 2,
       :machine => 1,
       :weights_required => 1,
@@ -166,7 +166,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "heurclies",
-      :muscle_group => "chest",
+      :muscle_group_id => MuscleGroup.find_by_name("chest").id,
       :skill_level => 2,
       :machine => 1,
       :weights_required => 1,
@@ -175,7 +175,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "90 deg crunch",
-      :muscle_group => "abs",
+      :muscle_group_id => MuscleGroup.find_by_name("abs").id,
       :skill_level => 1,
       :machine => 0,
       :weights_required => 0,
@@ -184,7 +184,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "crunch",
-      :muscle_group => "abs",
+      :muscle_group_id => MuscleGroup.find_by_name("abs").id,
       :skill_level => 1,
       :machine => 0,
       :weights_required => 0,
@@ -193,7 +193,7 @@ class CreateExercises < ActiveRecord::Migration
 
     Exercise.create(
       :name => "reverse crunch",
-      :muscle_group => "abs",
+      :muscle_group_id => MuscleGroup.find_by_name("abs").id,
       :skill_level => 1,
       :machine => 0,
       :weights_required => 0,

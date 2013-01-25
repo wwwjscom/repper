@@ -6,7 +6,7 @@
     %tr
       %th= model_class.human_attribute_name(:id)
       %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:muscle_group)
+      %th= model_class.human_attribute_name(:muscle_group_name)
       %th= model_class.human_attribute_name(:skill_level)
       %th= model_class.human_attribute_name(:machine)
       %th= model_class.human_attribute_name(:weights_required)
@@ -18,7 +18,7 @@
       %tr
         %td= link_to exercise.id, exercise_path(exercise)
         %td= exercise.name
-        %td= exercise.muscle_group
+        %td= exercise.muscle_group.name
         %td= exercise.skill_level
         %td= exercise.machine
         %td= exercise.weights_required

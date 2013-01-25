@@ -4,9 +4,10 @@
     .controls
       = f.text_field :name, :class => 'text_field'
   .control-group
-    = f.label :muscle_group, :class => 'control-label'
+    = f.label :muscle_group_id, :class => 'control-label'
     .controls
-      = f.text_field :muscle_group, :class => 'text_field'
+      = f.select(:muscle_group_id, options_from_collection_for_select(MuscleGroup.all,"id", "name"))
+
   .control-group
     = f.label :skill_level, :class => 'control-label'
     .controls

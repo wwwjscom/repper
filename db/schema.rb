@@ -36,13 +36,19 @@ ActiveRecord::Schema.define(:version => 20130125054057) do
 
   create_table "exercises", :force => true do |t|
     t.string   "name"
-    t.string   "muscle_group"
+    t.string   "muscle_group_id"
     t.integer  "skill_level"
     t.boolean  "machine"
     t.boolean  "weights_required"
     t.integer  "weight_adjustment"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "muscle_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
