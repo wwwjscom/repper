@@ -9,50 +9,77 @@
     %thead
       %tr
         %th Area
-        %th Light weight
-        %th Medium weight
-        %th Heavy weight
+        %th 60%
+        %th 65%
+        %th 70%
+        %th 75%
+        %th 80%
+        %th Max
     %tbody
       %tr
         %td chest  
-        %td= number_with_precision( current_user.evaluations.last.light_weight(:chest), :precision => 0) 
-        %td= number_with_precision( current_user.evaluations.last.med_weight(:chest), :precision => 0) 
-        %td= number_with_precision( current_user.evaluations.last.heavy_weight(:chest), :precision => 0) 
+        %td= number_with_precision( current_user.evaluations.last._60_weight(:chest), :precision => 0) 
+        %td= number_with_precision( current_user.evaluations.last._65_weight(:chest), :precision => 0)         
+        %td= number_with_precision( current_user.evaluations.last._70_weight(:chest), :precision => 0) 
+        %td= number_with_precision( current_user.evaluations.last._75_weight(:chest), :precision => 0) 
+        %td= number_with_precision( current_user.evaluations.last._80_weight(:chest), :precision => 0) 
+        %td= number_with_precision( current_user.evaluations.last.one_rep_max(:chest), :precision => 0) 
       %tr  
         %td shoulder
-        %td= number_with_precision( current_user.evaluations.last.light_weight(:shoulder), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.med_weight(:shoulder), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.heavy_weight(:shoulder), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._60_weight(:shoulder), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._65_weight(:shoulder), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._70_weight(:shoulder), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._75_weight(:shoulder), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._80_weight(:shoulder), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last.one_rep_max(:shoulder), :precision => 0)
       %tr
         %td bicep
-        %td= number_with_precision( current_user.evaluations.last.light_weight(:bicep), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.med_weight(:bicep), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.heavy_weight(:bicep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._60_weight(:bicep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._65_weight(:bicep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._70_weight(:bicep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._75_weight(:bicep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._80_weight(:bicep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last.one_rep_max(:bicep), :precision => 0)
       %tr
         %td tricep
-        %td= number_with_precision( current_user.evaluations.last.light_weight(:tricep), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.med_weight(:tricep), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.heavy_weight(:tricep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._60_weight(:tricep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._65_weight(:tricep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._70_weight(:tricep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._75_weight(:tricep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._80_weight(:tricep), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last.one_rep_max(:tricep), :precision => 0)
       %tr
         %td legs
-        %td= number_with_precision( current_user.evaluations.last.light_weight(:legs), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.med_weight(:legs), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.heavy_weight(:legs), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._60_weight(:legs), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._65_weight(:legs), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._70_weight(:legs), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._75_weight(:legs), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._80_weight(:legs), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last.one_rep_max(:legs), :precision => 0)
       %tr
         %td back
-        %td= number_with_precision( current_user.evaluations.last.light_weight(:back), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.med_weight(:back), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.heavy_weight(:back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._60_weight(:back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._65_weight(:back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._70_weight(:back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._75_weight(:back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._80_weight(:back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last.one_rep_max(:back), :precision => 0)
       %tr
         %td lower_back
-        %td= number_with_precision( current_user.evaluations.last.light_weight(:lower_back), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.med_weight(:lower_back), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.heavy_weight(:lower_back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._60_weight(:lower_back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._65_weight(:lower_back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._70_weight(:lower_back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._75_weight(:lower_back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._80_weight(:lower_back), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last.one_rep_max(:lower_back), :precision => 0)
       %tr
         %td crunch
-        %td= number_with_precision( current_user.evaluations.last.light_weight(:crunch), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.med_weight(:crunch), :precision => 0)
-        %td= number_with_precision( current_user.evaluations.last.heavy_weight(:crunch), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._60_weight(:crunch), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._65_weight(:crunch), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._70_weight(:crunch), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._75_weight(:crunch), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last._80_weight(:crunch), :precision => 0)
+        %td= number_with_precision( current_user.evaluations.last.one_rep_max(:crunch), :precision => 0)
   
 
   %table.table.table-striped
