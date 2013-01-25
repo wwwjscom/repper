@@ -10,7 +10,6 @@
   %thead
     %tr
       %th Workout Name
-      %th Muscle Group
       %th Rep 1
       %th Weight 1
       %th Rep 2
@@ -20,13 +19,27 @@
   %tbody
     - @workout.workout_units.each do |u|
       %tr
-        %td= u.exercise.name
-        %td= u.exercise.muscle_group.name
-        %td= u.rep_1
+        %td
+          = u.exercise.name
+          %br
+          = "(#{u.exercise.muscle_group.name})"
+        %td
+          = u.rep_1
+          %br
+          = u.diff_1
+          
         %td= u.weight_1
-        %td= u.rep_2
+        %td
+          = u.rep_2
+          %br
+          = u.diff_2
+          
         %td= u.weight_2
-        %td= u.rep_3
+        %td
+          = u.rep_3
+          %br
+          = u.diff_3
+          
         %td= u.weight_3
 
 
