@@ -9,7 +9,7 @@
       %th= model_class.human_attribute_name(:muscle_group)
       %th= model_class.human_attribute_name(:skill_level)
       %th= model_class.human_attribute_name(:machine)
-      %th= model_class.human_attribute_name(:gym_required)
+      %th= model_class.human_attribute_name(:weights_required)
       %th= model_class.human_attribute_name(:weight_adjustment)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
@@ -21,7 +21,7 @@
         %td= exercise.muscle_group
         %td= exercise.skill_level
         %td= exercise.machine
-        %td= exercise.gym_required
+        %td= exercise.weights_required
         %td= exercise.weight_adjustment
         %td=l exercise.created_at
         %td

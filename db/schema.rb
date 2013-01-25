@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20130125054057) do
     t.string   "muscle_group"
     t.integer  "skill_level"
     t.boolean  "machine"
-    t.boolean  "gym_required"
+    t.boolean  "weights_required"
     t.integer  "weight_adjustment"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
