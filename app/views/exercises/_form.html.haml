@@ -1,0 +1,28 @@
+= form_for @exercise, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :muscle_group, :class => 'control-label'
+    .controls
+      = f.text_field :muscle_group, :class => 'text_field'
+  .control-group
+    = f.label :skill_level, :class => 'control-label'
+    .controls
+      = f.number_field :skill_level, :class => 'number_field'
+  .control-group
+    = f.label :machine, :class => 'control-label'
+    .controls
+      = f.check_box :machine, :class => 'check_box'
+  .control-group
+    = f.label :gym_required, :class => 'control-label'
+    .controls
+      = f.check_box :gym_required, :class => 'check_box'
+  .control-group
+    = f.label :weight_adjustment, :class => 'control-label'
+    .controls
+      = f.number_field :weight_adjustment, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), exercises_path, :class => 'btn'

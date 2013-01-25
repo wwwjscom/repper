@@ -1,5 +1,8 @@
 Repper::Application.routes.draw do
 
+  resources :exercises
+
+
   resources :evaluations
 
 

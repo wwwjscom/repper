@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122045329) do
+ActiveRecord::Schema.define(:version => 20130125054057) do
 
   create_table "evaluations", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(:version => 20130122045329) do
     t.integer  "lower_back_weight"
     t.integer  "lower_back_reps"
     t.integer  "crunch_reps"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "exercises", :force => true do |t|
+    t.string   "name"
+    t.string   "muscle_group"
+    t.integer  "skill_level"
+    t.boolean  "machine"
+    t.boolean  "gym_required"
+    t.integer  "weight_adjustment"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
