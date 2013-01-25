@@ -13,7 +13,7 @@ class WorkoutsController < ApplicationController
   # GET /workouts/1
   # GET /workouts/1.json
   def show
-    @workout = Workout.find(params[:id])
+    @workout = current_user.workouts.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,12 +24,7 @@ class WorkoutsController < ApplicationController
   # GET /workouts/new
   # GET /workouts/new.json
   def new
-    @workout = Workout.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @workout }
-    end
+    redirect_to workout_path(Workout.generate(current_user))
   end
 
   # GET /workouts/1/edit

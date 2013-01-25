@@ -8,5 +8,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_many :evaluations
+  has_many :workouts
   has_and_belongs_to_many :muscle_groups
 end

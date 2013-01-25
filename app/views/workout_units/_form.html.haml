@@ -1,0 +1,36 @@
+= form_for @workout_unit, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :workout_id, :class => 'control-label'
+    .controls
+      = f.number_field :workout_id, :class => 'number_field'
+  .control-group
+    = f.label :exercise_id, :class => 'control-label'
+    .controls
+      = f.number_field :exercise_id, :class => 'number_field'
+  .control-group
+    = f.label :rep_1, :class => 'control-label'
+    .controls
+      = f.number_field :rep_1, :class => 'number_field'
+  .control-group
+    = f.label :weight_1, :class => 'control-label'
+    .controls
+      = f.number_field :weight_1, :class => 'number_field'
+  .control-group
+    = f.label :rep_2, :class => 'control-label'
+    .controls
+      = f.number_field :rep_2, :class => 'number_field'
+  .control-group
+    = f.label :weight_2, :class => 'control-label'
+    .controls
+      = f.number_field :weight_2, :class => 'number_field'
+  .control-group
+    = f.label :rep_3, :class => 'control-label'
+    .controls
+      = f.number_field :rep_3, :class => 'number_field'
+  .control-group
+    = f.label :weight_3, :class => 'control-label'
+    .controls
+      = f.number_field :weight_3, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), workout_units_path, :class => 'btn'

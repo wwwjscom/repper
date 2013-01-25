@@ -2,10 +2,33 @@
 .page-header
   %h1=t '.title', :default => model_class.model_name.human
 
-%p
-  %strong= model_class.human_attribute_name(:user_id) + ':'
-  %br
-  = @workout.user_id
+= "Working out these areas:"
+= MuscleGroup.find(@workout.muscle_group_1_id).name
+= MuscleGroup.find(@workout.muscle_group_2_id).name
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Workout Name
+      %th Muscle Group
+      %th Rep 1
+      %th Weight 1
+      %th Rep 2
+      %th Weight 2
+      %th Rep 3
+      %th Weight 3      
+  %tbody
+    - @workout.workout_units.each do |u|
+      %tr
+        %td= u.exercise.name
+        %td= u.exercise.muscle_group.name
+        %td= u.rep_1
+        %td= u.weight_1
+        %td= u.rep_2
+        %td= u.weight_2
+        %td= u.rep_3
+        %td= u.weight_3
+
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), workouts_path, :class => 'btn'

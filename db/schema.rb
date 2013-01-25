@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125082713) do
+ActiveRecord::Schema.define(:version => 20130125090911) do
 
   create_table "evaluations", :force => true do |t|
     t.integer  "user_id"
@@ -73,10 +73,28 @@ ActiveRecord::Schema.define(:version => 20130125082713) do
   add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
+  create_table "workout_units", :force => true do |t|
+    t.integer  "workout_id"
+    t.integer  "exercise_id"
+    t.integer  "rep_1"
+    t.integer  "weight_1"
+    t.integer  "rep_2"
+    t.integer  "weight_2"
+    t.integer  "rep_3"
+    t.integer  "weight_3"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "diff_1"
+    t.string   "diff_2"
+    t.string   "diff_3"
+  end
+
   create_table "workouts", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "muscle_group_1_id"
+    t.integer  "muscle_group_2_id"
   end
 
 end

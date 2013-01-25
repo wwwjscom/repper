@@ -1,5 +1,8 @@
 Repper::Application.routes.draw do
 
+  resources :workout_units
+
+
   resources :muscle_groups
 
 
