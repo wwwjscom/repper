@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125225019) do
+ActiveRecord::Schema.define(:version => 20130125225910) do
 
   create_table "evaluations", :force => true do |t|
     t.integer  "user_id"
@@ -82,11 +82,14 @@ ActiveRecord::Schema.define(:version => 20130125225019) do
     t.integer  "weight_2"
     t.string   "rep_3"
     t.integer  "weight_3"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "diff_1"
     t.string   "diff_2"
     t.string   "diff_3"
+    t.integer  "actual_reps_1"
+    t.integer  "actual_reps_2"
+    t.integer  "actual_reps_3"
   end
 
   create_table "workouts", :force => true do |t|

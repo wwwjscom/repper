@@ -2,7 +2,7 @@ class WorkoutsController < ApplicationController
   # GET /workouts
   # GET /workouts.json
   def index
-    @workouts = Workout.all
+    @workouts = current_user.workouts.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,8 @@ class WorkoutsController < ApplicationController
   # GET /workouts/1.json
   def show
     @workout = current_user.workouts.find(params[:id])
-
+    @workout_units = @workout.workout_units
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @workout }
@@ -29,13 +30,13 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/1/edit
   def edit
-    @workout = Workout.find(params[:id])
+    @workout = current_user.workouts.find(params[:id])
   end
 
   # POST /workouts
   # POST /workouts.json
   def create
-    @workout = Workout.new(params[:workout])
+    @workout = current_user.workouts.new(params[:workout])
 
     respond_to do |format|
       if @workout.save
@@ -51,8 +52,9 @@ class WorkoutsController < ApplicationController
   # PUT /workouts/1
   # PUT /workouts/1.json
   def update
-    @workout = Workout.find(params[:id])
+    @workout = current_user.workouts.find(params[:id])
 
+    
     respond_to do |format|
       if @workout.update_attributes(params[:workout])
         format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
@@ -67,7 +69,7 @@ class WorkoutsController < ApplicationController
   # DELETE /workouts/1
   # DELETE /workouts/1.json
   def destroy
-    @workout = Workout.find(params[:id])
+    @workout = current_user.workouts.find(params[:id])
     @workout.destroy
 
     respond_to do |format|
