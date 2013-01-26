@@ -1,6 +1,6 @@
 class Workout < ActiveRecord::Base
   attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes
-  has_many :workout_units
+  has_many :workout_units, :dependent => :destroy
   accepts_nested_attributes_for :workout_units
   belongs_to :user
   
