@@ -4,6 +4,10 @@ class Workout < ActiveRecord::Base
   accepts_nested_attributes_for :workout_units
   belongs_to :user
   
+  def workout_units
+    WorkoutUnit.where(:workout_id => self.id).order("id DESC")
+  end
+  
   def self.generate(user)
     target_groups = determine_muscle_groups_to_workout(user)
     logger.debug "tg: #{target_groups.inspect}"
