@@ -27,7 +27,7 @@ class Evaluation < ActiveRecord::Base
     (((reps.to_f/30)+1)*weight.to_f)
   end
   
-  def one_rep_max(muscle_group, rep_percent = 100.0)
+  def one_rep_max(muscle_group, rep_percent = 0.100)
     case muscle_group
     when :chest then calc_one_rep_max(chest_reps, chest_weight) * rep_percent
     when :bicep then calc_one_rep_max(bicep_reps, bicep_weight) * rep_percent
