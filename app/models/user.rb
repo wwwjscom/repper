@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :evaluations, :dependent => :destroy
   has_many :workouts, :dependent => :destroy
+  has_many :workout_units, :dependent => :destroy
   has_and_belongs_to_many :muscle_groups
 end

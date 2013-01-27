@@ -22,20 +22,20 @@ class Evaluation < ActiveRecord::Base
   def _80_weight(workout)
     (one_rep_max(workout) || 0) *0.80
   end
-  
+    
   def calc_one_rep_max(reps, weight)
     (((reps.to_f/30)+1)*weight.to_f)
   end
   
-  def one_rep_max(workout)
-    case workout
-    when :chest then calc_one_rep_max(chest_reps, chest_weight)
-    when :bicep then calc_one_rep_max(bicep_reps, bicep_weight)
-    when :tricep then calc_one_rep_max(tricep_reps, tricep_weight)
-    when :crunch then calc_one_rep_max(crunch_reps, 10) # FIXME: How do we calc this?
-    when :shoulder then calc_one_rep_max(shoulder_reps, shoulder_weight)
-    when :back then calc_one_rep_max(back_reps, back_weight)
-    when :lower_back then calc_one_rep_max(lower_back_reps, lower_back_weight)
+  def one_rep_max(muscle_group, rep_percent = 100.0)
+    case muscle_group
+    when :chest then calc_one_rep_max(chest_reps, chest_weight) * rep_percent
+    when :bicep then calc_one_rep_max(bicep_reps, bicep_weight) * rep_percent
+    when :tricep then calc_one_rep_max(tricep_reps, tricep_weight)* rep_percent
+    when :abs then calc_one_rep_max(crunch_reps, 10) * rep_percent # FIXME: How do we calc this?
+    when :shoulder then calc_one_rep_max(shoulder_reps, shoulder_weight) * rep_percent
+    when :back then calc_one_rep_max(back_reps, back_weight) * rep_percent
+    when :lower_back then calc_one_rep_max(lower_back_reps, lower_back_weight) * rep_percent
     end
   end
 end
