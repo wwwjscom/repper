@@ -2,10 +2,24 @@
 = form_for @user, :html => { :class => 'form-horizontal' } do |f|
 
   .control-group
-    = f.label :goal, :class => 'control-label'
+    = f.label :age, :class => 'control-label'
     .controls
-      = f.select(:goal, ["Weight loss", "Muscle Tone", "Muscle Gain"])
-
+      = f.number_field :age, :class => 'number_field'
+      
+  .control-group
+    = f.label :sex, :class => 'control-label'
+    .controls
+      = f.select(:sex, ["Male", "Female"])
+      
+  .control-group
+    = f.label :experience, :class => 'control-label'
+    .controls
+      = f.select(:experience, [["Novice",1], ["Intermediate",2], ["Advanced",3]])
+      
+  .control-group
+    = f.label :goal, "Primary goal", :class => 'control-label'
+    .controls
+      = f.select(:goal, ["Strength Gain", "Muscle Gain"])
 
   = f.fields_for :muscle_group_ids do |builder|
     - MuscleGroup.all.each do |g|
