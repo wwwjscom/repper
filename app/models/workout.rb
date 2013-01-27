@@ -48,13 +48,6 @@ class Workout < ActiveRecord::Base
                           }
     end    
     
-#    reps_and_weight = {target_groups[0] => [], target_groups[1] => []}
-#
-#    logger.debug "tg: #{target_groups.inspect}"
-#    reps_and_weight[target_groups[0]] = get_reps_and_weight(user, target_groups[0])
-#    reps_and_weight[target_groups[1]] = get_reps_and_weight(user, target_groups[1])
-
-
     # Now create the workout    
     w = Workout.create(
       :user_id => user.id, 
@@ -150,31 +143,6 @@ class Workout < ActiveRecord::Base
     return [reps_and_weights, difficulity]
   end
   
-  def self.get_reps_and_weight(user, muscle_group)
-    logger.debug "mg: #{muscle_group}"
-    
-    case user.goal.downcase
-    when "weight loss" then
-      [
-        {:weight => user.evaluations.last._60_weight(muscle_group.name.to_sym), :reps => "15-20", :difficulity => "easy"}, 
-        {:weight => user.evaluations.last._60_weight(muscle_group.name.to_sym), :reps => "15-20", :difficulity => "easy"}, 
-        {:weight => user.evaluations.last._60_weight(muscle_group.name.to_sym), :reps => "15-20", :difficulity => "easy"}
-      ]
-    when "muscle tone" then
-      [
-        {:weight => user.evaluations.last._65_weight(muscle_group.name.to_sym), :reps => "15-20", :difficulity => "easy"}, 
-        {:weight => user.evaluations.last._65_weight(muscle_group.name.to_sym), :reps => "15-20", :difficulity => "easy"}, 
-        {:weight => user.evaluations.last._70_weight(muscle_group.name.to_sym), :reps => "10-15", :difficulity => "medium"}
-      ]
-    when "muscle gain" then
-      [
-        {:weight => user.evaluations.last._65_weight(muscle_group.name.to_sym), :reps => "15-20", :difficulity => "easy"}, 
-        {:weight => user.evaluations.last._70_weight(muscle_group.name.to_sym), :reps => "10-15", :difficulity => "medium"}, 
-        {:weight => user.evaluations.last._75_weight(muscle_group.name.to_sym), :reps => "8-12", :difficulity => "hard"}
-      ]
-    end
-  end
-
   def self.get_exercises_for_target_groups(target_groups, skill_level_range, num_from_each_group = 3)
     exercises = []
     target_groups.each do |muscle_group_id|
