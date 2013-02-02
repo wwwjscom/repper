@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :user_muscle_groups, :goal, :age, :sex, :experience
 
   validates_presence_of :password, :on => :create
-  validates_presence_of :password_confirmation
   validates_confirmation_of :password
   
   validates_presence_of :email

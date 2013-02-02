@@ -27,25 +27,12 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(current_user)
-    # Initialize
-    params[:user][:muscle_group_ids] ||= []
-    # Backup for later assignment
-    active_groups = params[:user][:muscle_group_ids]
-    # Reset so mass attr update doesn't bomb
-    params[:user][:muscle_group_ids] = []
+    @user = User.find(current_user)    
     
-    
-    if @user.update_attributes(params[:user])      
-      # Setup new muscle groups
-      active_groups.each do |id, checked|
-        @user.muscle_groups << MuscleGroup.find_by_name(id) if checked == "1"      
-      end
-      @user.save
-      
+    if @user.update_attributes(params[:user])
       redirect_to @user, notice: 'User was successfully updated.'
     else
-      format.html { render action: "edit" }
+      render action: "edit"
     end
     
   end
