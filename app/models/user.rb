@@ -2,11 +2,17 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   attr_accessible :email, :password, :password_confirmation, :user_muscle_groups, :goal, :age, :sex, :experience
 
-  validates_confirmation_of :password
   validates_presence_of :password, :on => :create
+  validates_presence_of :password_confirmation
+  validates_confirmation_of :password
+  
   validates_presence_of :email
   validates_uniqueness_of :email
-
+  
+  validates :sex, :inclusion => { :in => %w(Male Female) }
+  validates :experience, :exclusion => { :in => [-1], :message => "must be selected" }
+  validates :goal, :exclusion => { :in => ["Select One"], :message => "must be selected" }
+  
   has_many :evaluations, :dependent => :destroy
   has_many :workouts, :dependent => :destroy
   has_many :workout_units, :dependent => :destroy
