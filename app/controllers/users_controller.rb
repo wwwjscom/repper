@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  
+  def waiver  
+  end
+  
   def new
     @user = User.new
   end
