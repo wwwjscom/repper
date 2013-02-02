@@ -6,7 +6,14 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(:email => "wwwjscom@gmail.com", :password => "temp4now", :password_confirmation => "temp4now")
+User.create(:email => "wwwjscom@gmail.com", 
+            :password => "temp4now", 
+            :password_confirmation => "temp4now", 
+            :age => 26,
+            :sex => "Male",
+            :experience => "1",
+            :goal => "Strength Gain"
+            )
 Evaluation.create(
   :bicep_reps => 20, 
   :bicep_weight => 40, 

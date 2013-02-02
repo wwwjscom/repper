@@ -30,6 +30,9 @@ class Workout < ActiveRecord::Base
     
     # Next we determine the weight, reps, sets, rest and velocity.  
     # This depends on the users exp, goal, exercise, 
+    target_groups.each do |tg|
+      user.workout_
+    end
     last_perodize_phase = (user.workouts.empty?) ? 1 : user.workouts.last.perodize_phase
     
     if last_perodize_phase > Perodization::MAX_PHASE

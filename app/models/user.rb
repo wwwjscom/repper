@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
   has_many :evaluations, :dependent => :destroy
   has_many :workouts, :dependent => :destroy
   has_many :workout_units, :dependent => :destroy
-  has_and_belongs_to_many :muscle_groups
+
+  has_many :muscle_groups_users
+  has_many :muscle_groups, :through => :muscle_groups_users
   
   def user_muscle_groups=(attributes)
     self.muscle_groups = []

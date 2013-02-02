@@ -2,5 +2,7 @@ class MuscleGroup < ActiveRecord::Base
   attr_accessible :name
   
   has_many :exercises
-  has_and_belongs_to_many :users
+  has_many :muscle_groups_users
+  has_many :users, :through => :muscle_groups_users
+
 end
