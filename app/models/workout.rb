@@ -42,34 +42,36 @@ class Workout < ActiveRecord::Base
     perodize_workout = []
     exercises.each do |e|
       reps_and_weight, difficulity, target_volume = perodize_exercise_info(e, user, last_perodize_phase) 
-      perodize_workout << { :exercise => e, 
+      perodize_workout << { :exercise        => e, 
                             :reps_and_weight => reps_and_weight,
-                            :difficulity => difficulity
+                            :difficulity     => difficulity
                           }
     end    
     
     # Now create the workout    
     w = Workout.create(
-      :user_id => user.id, 
+      :user_id           => user.id, 
       :muscle_group_1_id => target_groups[0].id, 
       :muscle_group_2_id => target_groups[1].id,
-      :perodize_phase => last_perodize_phase + 1)
+      :perodize_phase    => last_perodize_phase + 1)
+
     perodize_workout.each do |pw|
       logger.debug "T: #{pw[:exercise].inspect}"
       WorkoutUnit.create(
-      :workout_id => w.id, 
+      :workout_id     => w.id, 
       :perodize_phase => last_perodize_phase + 1,
-      :exercise_id => pw[:exercise].id, 
-      :rep_1 => pw[:reps_and_weight][0][:reps],
-      :weight_1 => pw[:reps_and_weight][0][:weight],
-      :diff_1 => pw[:difficulity],
-      :rep_2 => pw[:reps_and_weight][1][:reps],
-      :weight_2 => pw[:reps_and_weight][1][:weight],
-      :diff_2 => pw[:difficulity],
-      :rep_3 => pw[:reps_and_weight][2][:reps],
-      :weight_3 => pw[:reps_and_weight][2][:weight],
-      :diff_3 => pw[:difficulity],
-      :target_volume => pw[:target_volume]
+      :exercise_id    => pw[:exercise].id, 
+      :rep_1          => pw[:reps_and_weight][0][:reps],
+      :weight_1       => pw[:reps_and_weight][0][:weight],
+      :diff_1         => pw[:difficulity],
+      :rep_2          => pw[:reps_and_weight][1][:reps],
+      :weight_2       => pw[:reps_and_weight][1][:weight],
+      :diff_2         => pw[:difficulity],
+      :rep_3          => pw[:reps_and_weight][2][:reps],
+      :weight_3       => pw[:reps_and_weight][2][:weight],
+      :diff_3         => pw[:difficulity],
+      :target_volume  => pw[:target_volume]
+
       )
     end
     return w
