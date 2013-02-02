@@ -41,7 +41,7 @@ class Workout < ActiveRecord::Base
     
     perodize_workout = []
     exercises.each do |e|
-      reps_and_weight, difficulity = perodize_exercise_info(e, user, last_perodize_phase) 
+      reps_and_weight, difficulity, target_volume = perodize_exercise_info(e, user, last_perodize_phase) 
       perodize_workout << { :exercise => e, 
                             :reps_and_weight => reps_and_weight,
                             :difficulity => difficulity
@@ -68,13 +68,22 @@ class Workout < ActiveRecord::Base
       :diff_2 => pw[:difficulity],
       :rep_3 => pw[:reps_and_weight][2][:reps],
       :weight_3 => pw[:reps_and_weight][2][:weight],
-      :diff_3 => pw[:difficulity]
+      :diff_3 => pw[:difficulity],
+      :target_volume => pw[:target_volume]
       )
     end
     return w
   end
   
   private
+  
+  def self.calc_volume(reps_and_weights)
+    volume = 0
+    3.times do |i|
+      volume += (reps_and_weights[i][:reps] || 0) * (reps_and_weights[i][:weight] || 0)
+    end
+    volume
+  end
   
   def self.perodize_exercise_info(exercise, user, last_perodize_phase)
 
@@ -86,25 +95,26 @@ class Workout < ActiveRecord::Base
     case user_experience
       when 0 then
         case user_goal.downcase
-          when "muscle gain" then info = { :reps => 8..12, :load => 0.50..0.60, :sets => 1..3, :rest => 2..3, :velocity => "slow" }
+          when "muscle gain" then info   = { :reps => 8..12, :load => 0.50..0.60, :sets => 1..3, :rest => 2..3, :velocity => "slow" }
           when "strength gain" then info = { :reps => 8..12, :load => 0.50..0.60, :sets => 1..3, :rest => 2..3, :velocity => "slow" }
         end
       when 1 then
         case user_goal.downcase
-          when "muscle gain" then info = { :reps => 8..12, :load => 0.65..0.75, :sets => 1..3, :rest => 1..2, :velocity => "slow and moderate" }
+          when "muscle gain" then info   = { :reps => 8..12, :load => 0.65..0.75, :sets => 1..3, :rest => 1..2, :velocity => "slow and moderate" }
           when "strength gain" then info = { :reps => 8..12, :load => 0.60..0.70, :sets => 1..3, :rest => 2..3, :velocity => "slow" }
         end
       when 2 then
         case user_goal.downcase
-          when "muscle gain" then info = { :reps => 8..12, :load => 0.70..0.85, :sets => 1..3, :rest => 2..3, :velocity => "slow and moderate" }
+          when "muscle gain" then info   = { :reps => 8..12, :load => 0.70..0.85, :sets => 1..3, :rest => 2..3, :velocity => "slow and moderate" }
           when "strength gain" then info = { :reps => 1..12, :load => 0.70..0.85, :sets => 1..3, :rest => 2..3, :velocity => "slow and moderate" }
         end
       when 3 then
         case user_goal.downcase
-          when "muscle gain" then info = { :reps => 8..12, :load => 0.70..0.100, :sets => 3..6, :rest => 2..3, :velocity => "all varying" }
+          when "muscle gain" then info   = { :reps => 8..12, :load => 0.70..0.100, :sets => 3..6, :rest => 2..3, :velocity => "all varying" }
           when "strength gain" then info = { :reps => 8..12, :load => 0.70..0.100, :sets => 3..6, :rest => 2..3, :velocity => "slow" }
         end
     end
+
 
     if user_past_workout_units.where(:exercise_id => exercise.id)
       # They've done this before -- no probationary period.
@@ -134,14 +144,80 @@ class Workout < ActiveRecord::Base
     all_weights = [weight_max-10, weight_max-5, weight_max]
     
     # Setup the final array of reps and weight
-    reps_and_weights = []  
+    reps_and_weights = []
     3.times do |i|
       reps_and_weights << {:reps => all_reps[i], :weight =>  all_weights[i]}
     end
+    
+    # Adjust the reps and weights so that they are doable for the exercise
+    # For example, you can't bench press 63 pounds.  So what we do instead
+    # is calculate the target volume based on the reps and weight we want
+    # to do.  Then, we find a combination that is close to, but less than,
+    # that volume with a combination of weights and reps such that they are
+    # actually doable on this exercise.  For example, now we'll bench 60
+    # punds, but we'll do it an additional 2 times to make up for the lower
+    # weight.
+    target_volume = calc_volume(reps_and_weights)
+    reps_and_weights = select_doable_reps_and_weight_for_exercise_with_similar_volume(target_volume, exercise, reps_and_weights)
 
     # And go!
-    return [reps_and_weights, difficulity]
+    return [reps_and_weights, difficulity, target_volume]
   end
+  
+  def self.select_doable_reps_and_weight_for_exercise_with_similar_volume(target_volume, exercise, reps_and_weights)
+    wi = exercise.weight_interval
+    min_diff = Float::INFINITY
+
+    logger.debug "Original reps and weights: #{reps_and_weights}"
+    logger.debug "Weight Interval for this #{exercise.name} is #{wi}"
+    3.times do |i|
+      weight = reps_and_weights[i][:weight]
+      if weight % wi > 0
+        # Round down the weight to the nearest doable weight
+        reps_and_weights[i][:weight] =  ((weight-(wi/2))/wi.to_f).round*wi
+      end
+    end
+    logger.debug "New reps and weights: #{reps_and_weights.inspect}"
+    logger.debug "Adjusted volume to: #{calc_volume(reps_and_weights)}"     
+    
+    10.times do |i|
+      new_volume = calc_volume(reps_and_weights)  
+      diff = new_volume - target_volume
+      
+      if ((1.0-(new_volume/target_volume.to_f))*100).abs <= 2
+        # New volume is within 5% of the original volume, accept this workout
+        logger.debug "Breaking, because percentage diff between new volume and only volume is <= 2%"
+        break
+      end
+      
+      if calc_volume(reps_and_weights) < target_volume
+        logger.info "Raising volume"
+        # we're doing less work than the original target, so raise the reps
+        case i
+          when 0 then reps_and_weights[2][:reps] += 1
+          when 1 then reps_and_weights[1][:reps] += 1
+          else reps_and_weights[0][:reps] += 1
+        end
+      else
+        # We're doing more work than the original target, so lower the reps
+        logger.info "Lowering volume"
+        case i
+          when 0 then reps_and_weights[2][:reps] -= 1
+          when 1 then reps_and_weights[1][:reps] -= 1
+          else reps_and_weights[0][:reps] -= 1
+        end
+      end
+      logger.debug "Adjusted reps and weights to: #{reps_and_weights.inspect}"   
+      logger.debug "Adjusted volume to: #{calc_volume(reps_and_weights)}"     
+      logger.debug "Target volume: #{target_volume}"
+    end
+    logger.debug "Final reps and weights: #{reps_and_weights.inspect}"        
+    logger.debug "Final volume: #{calc_volume(reps_and_weights)}"     
+    logger.debug "Target volume: #{target_volume}"
+    
+    reps_and_weights
+  end
+  
   
   def self.get_exercises_for_target_groups(target_groups, skill_level_range, num_from_each_group = 3)
     exercises = []

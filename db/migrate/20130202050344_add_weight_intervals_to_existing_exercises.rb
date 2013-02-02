@@ -1,0 +1,25 @@
+class AddWeightIntervalsToExistingExercises < ActiveRecord::Migration
+  def change    
+    Exercise.find_by_name("row machine").update_attribute(:weight_interval, 10)
+    Exercise.find_by_name("v-bar push down").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("over head pull down").update_attribute(:weight_interval, 10)
+    Exercise.find_by_name("rope push down").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("sitting behind head lifts").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("shoulder press").update_attribute(:weight_interval, 10)
+    Exercise.find_by_name("curls").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("reverse crunch w/weight").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("pector pulldown").update_attribute(:weight_interval, 10)
+    Exercise.find_by_name("bench knee arm lifts").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("gravitor").update_attribute(:weight_interval, 10)
+    Exercise.find_by_name("straight bar curl").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("standing front row").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("incline bench").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("shrugs").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("sitting bench machine").update_attribute(:weight_interval, 10)
+    Exercise.find_by_name("standing pully straight arm lift").update_attribute(:weight_interval, 5)
+    Exercise.find_by_name("heurclies").update_attribute(:weight_interval, 10)
+    Exercise.find_by_name("90 deg crunch").update_attribute(:weight_interval, -1)
+    Exercise.find_by_name("crunch").update_attribute(:weight_interval, -1)
+    Exercise.find_by_name("reverse crunch").update_attribute(:weight_interval, -1)
+  end
+end
