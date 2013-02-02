@@ -30,30 +30,21 @@
           %a.brand(href=root_path) Repper
           .container.nav-collapse
             %ul.nav
-              %li= link_to "Workouts", workouts_path
               - if current_user
+                %li= link_to "Workouts", workouts_path
                 %li= link_to "Evaluations", evaluations_path
-                %li= link_to "Log out", logout_path
                 %li= link_to "Account", user_path(current_user)
+                %li= link_to "Log out", logout_path
               - else
-                %li= link_to "Sign up", signup_path
                 %li= link_to "Log in", login_path
+                %li= link_to "Become a beta tester", waiver_path
 
     .container
 
       .row
-        /.span9
         .span12
           = bootstrap_flash
           = yield
-        /.span3
-        /  .well.sidebar-nav
-        /    %h3 Sidebar
-        /    %ul.nav.nav-list
-        /      %li.nav-header Sidebar
-        /      %li= link_to "Link 1", "/path1"
-        /      %li= link_to "Link 2", "/path2"
-
     
       %footer
         %p &copy; Repper, LLC. 2013
