@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20130202071114) do
   create_table "muscle_groups_users", :force => true do |t|
     t.integer "muscle_group_id"
     t.integer "user_id"
-    t.integer "perodize_phase"
+    t.integer "perodize_phase",  :default => 1
   end
 
   create_table "perodizations", :force => true do |t|

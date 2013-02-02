@@ -10,7 +10,11 @@ class Workout < ActiveRecord::Base
   
   def self.generate(user)
     # First, we need to know what areas the user is targeting
-    target_groups = determine_muscle_groups_to_workout(user)
+    target_groups = []
+    determine_muscle_groups_to_workout(user).each do |mg|
+      target_groups << {:muscle_group => mg}
+    end
+    
     logger.debug "tg: #{target_groups.inspect}"
     
     # Next we need to get the exercises for that area, and 
@@ -23,46 +27,51 @@ class Workout < ActiveRecord::Base
                           when 1 then 1
                           when 2 then 1..2
                           when 3 then 2..3          
-                        end             
-    exercises = get_exercises_for_target_groups(target_groups, skill_level_range)
+                        end
+                        
+    target_groups.each do |tg|
+      tg[:exercises] = get_exercises_for_target_group(tg[:muscle_group].id, skill_level_range)
+    end
     logger.debug "tg: #{target_groups.inspect}"
     
     
     # Next we determine the weight, reps, sets, rest and velocity.  
     # This depends on the users exp, goal, exercise, 
     target_groups.each do |tg|
-      user.workout_
-    end
-    last_perodize_phase = (user.workouts.empty?) ? 1 : user.workouts.last.perodize_phase
-    
-    if last_perodize_phase > Perodization::MAX_PHASE
-      # FIXME: This user needs to graduate to a large weight
-      # since they finished a perodization cycle.  Add that logic!!!
-      # For now, just set them back to phase 1 with no weight increase
-      last_perodize_phase = 1
+      tg[:last_perodize_phase] = user.muscle_groups_users.where(:muscle_group_id => tg[:muscle_group].id).limit(1).first.perodize_phase
+      
+      if tg[:last_perodize_phase] >= Perodization::MAX_PHASE
+        # FIXME: This user needs to graduate to a large weight
+        # since they finished a perodization cycle.  Add that logic!!!
+        # For now, just set them back to phase 1 with no weight increase
+        tg[:last_perodize_phase] = 1
+      end
     end
     
     perodize_workout = []
-    exercises.each do |e|
-      reps_and_weight, difficulity, target_volume = perodize_exercise_info(e, user, last_perodize_phase) 
-      perodize_workout << { :exercise        => e, 
-                            :reps_and_weight => reps_and_weight,
-                            :difficulity     => difficulity
-                          }
-    end    
+    target_groups.each do |tg|
+      tg[:exercises].each do |e|
+        reps_and_weight, difficulity, target_volume = perodize_exercise_info(e, user, tg[:last_perodize_phase])
+        perodize_workout << { :exercise            => e, 
+                              :reps_and_weight     => reps_and_weight,
+                              :difficulity         => difficulity,
+                              :last_perodize_phase => tg[:last_perodize_phase],
+                              :target_volume       => target_volume
+                            }
+      end    
+    end
     
     # Now create the workout    
     w = Workout.create(
       :user_id           => user.id, 
-      :muscle_group_1_id => target_groups[0].id, 
-      :muscle_group_2_id => target_groups[1].id,
-      :perodize_phase    => last_perodize_phase + 1)
+      :muscle_group_1_id => target_groups[0][:muscle_group].id, 
+      :muscle_group_2_id => target_groups[1][:muscle_group].id)
 
     perodize_workout.each do |pw|
-      logger.debug "T: #{pw[:exercise].inspect}"
+      logger.debug "Creating a new perodize workout: #{pw.inspect}"
       WorkoutUnit.create(
       :workout_id     => w.id, 
-      :perodize_phase => last_perodize_phase + 1,
+      :perodize_phase => pw[:last_perodize_phase] + 1,
       :exercise_id    => pw[:exercise].id, 
       :rep_1          => pw[:reps_and_weight][0][:reps],
       :weight_1       => pw[:reps_and_weight][0][:weight],
@@ -74,7 +83,6 @@ class Workout < ActiveRecord::Base
       :weight_3       => pw[:reps_and_weight][2][:weight],
       :diff_3         => pw[:difficulity],
       :target_volume  => pw[:target_volume]
-
       )
     end
     return w
@@ -224,12 +232,8 @@ class Workout < ActiveRecord::Base
   end
   
   
-  def self.get_exercises_for_target_groups(target_groups, skill_level_range, num_from_each_group = 3)
-    exercises = []
-    target_groups.each do |muscle_group_id|
-      exercises << Exercise.where(:muscle_group_id => muscle_group_id).where(:skill_level => skill_level_range).limit(num_from_each_group)
-    end
-    exercises.flatten
+  def self.get_exercises_for_target_group(muscle_group_id, skill_level_range, num_from_each_group = 3)
+    Exercise.where(:muscle_group_id => muscle_group_id).where(:skill_level => skill_level_range).limit(num_from_each_group)
   end
 
   # Determines which muscle groups should be worked out
