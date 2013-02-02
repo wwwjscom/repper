@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202071114) do
+ActiveRecord::Schema.define(:version => 20130202081601) do
 
   create_table "evaluations", :force => true do |t|
     t.integer  "user_id"
@@ -114,7 +114,6 @@ ActiveRecord::Schema.define(:version => 20130202071114) do
     t.datetime "updated_at",        :null => false
     t.integer  "muscle_group_1_id"
     t.integer  "muscle_group_2_id"
-    t.integer  "perodize_phase"
   end
 
 end

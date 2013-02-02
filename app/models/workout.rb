@@ -65,7 +65,8 @@ class Workout < ActiveRecord::Base
     w = Workout.create(
       :user_id           => user.id, 
       :muscle_group_1_id => target_groups[0][:muscle_group].id, 
-      :muscle_group_2_id => target_groups[1][:muscle_group].id)
+      :muscle_group_2_id => target_groups[1][:muscle_group].id
+    )
 
     perodize_workout.each do |pw|
       logger.debug "Creating a new perodize workout: #{pw.inspect}"
