@@ -44,12 +44,12 @@
     .controls
       = f.select(:goal, ["Select One", "Strength Gain", "Muscle Gain"])
 
-  = f.fields_for :muscle_group_ids do |builder|
+  = f.fields_for :user_muscle_groups do |builder|
     - MuscleGroup.all.each do |g|
       .control-group
-        = f.label "muscle_group_ids_#{g.name}", g.name, :class => 'control-label'
+        = builder.label g.id, g.name, :class => 'control-label'
         .controls
-          = builder.check_box g.name, { :class => 'check_box', :checked =>@user.muscle_groups.include?(MuscleGroup.find(g.id)) }
+          = builder.check_box g.id, { :class => 'check_box', :checked =>@user.muscle_groups.include?(MuscleGroup.find(g.id)) }
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

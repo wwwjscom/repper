@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       UserMailer.welcome_email(@user).deliver
+      login(params[:user][:email], params[:user][:password])
       redirect_to root_url, :notice => "Signed up!"
     else
       render :new

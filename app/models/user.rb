@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  attr_accessible :email, :password, :password_confirmation, :muscle_group_ids, :goal, :age, :sex, :experience
+  attr_accessible :email, :password, :password_confirmation, :user_muscle_groups, :goal, :age, :sex, :experience
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
   has_many :workouts, :dependent => :destroy
   has_many :workout_units, :dependent => :destroy
   has_and_belongs_to_many :muscle_groups
+  
+  def user_muscle_groups=(attributes)
+    self.muscle_groups = []
+    attributes.each do |mg_id, checked|
+      next unless checked == "1"
+      self.muscle_groups << MuscleGroup.find(mg_id)
+    end
+  end
 end
