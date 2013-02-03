@@ -1,6 +1,15 @@
 - model_class = Workout
+
+- if current_user.evaluations.blank?
+  .jumbotron
+    %p.lead.text-error You need to do an evaluation before you can workout!
+    =link_to "I long to be judged", new_evaluation_path, :class => "btn btn-large btn-success"
+    
+
+
 .page-header
   %h1=t '.title', :default => model_class.model_name.human.pluralize
+  
 %table.table.table-striped
   %thead
     %tr
