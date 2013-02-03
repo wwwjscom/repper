@@ -53,10 +53,11 @@ class WorkoutsController < ApplicationController
   # PUT /workouts/1.json
   def update
     @workout = current_user.workouts.find(params[:id])
-
     
     respond_to do |format|
       if @workout.update_attributes(params[:workout])
+        @workout.check_if_goals_achieved
+        
         format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
         format.json { head :no_content }
       else

@@ -38,24 +38,43 @@ class Workout < ActiveRecord::Base
     # Next we determine the weight, reps, sets, rest and velocity.  
     # This depends on the users exp, goal, exercise, 
     target_groups.each do |tg|
+      # Grab the last perodize phase for this muscle group
       tg[:last_perodize_phase] = user.muscle_groups_users.where(:muscle_group_id => tg[:muscle_group].id).limit(1).first.perodize_phase
+      tg[:next_perodize_phase] = tg[:last_perodize_phase]
       
-      if tg[:last_perodize_phase] >= Perodization::MAX_PHASE
-        # FIXME: This user needs to graduate to a large weight
-        # since they finished a perodization cycle.  Add that logic!!!
-        # For now, just set them back to phase 1 with no weight increase
-        tg[:last_perodize_phase] = 1
+      # Grab the last workout where this user worked this muscle group
+      workout = user.workouts.where("muscle_group_1_id = ? OR muscle_group_2_id = ?", tg[:muscle_group].id, tg[:muscle_group].id).order("id DESC").limit(1).first
+      # Was the workout goal achieved for this muscle group?
+      if !workout.blank? && workout.goal_achieved?(tg[:muscle_group].id)
+          tg[:next_perodize_phase] += 1
+          
+          if tg[:next_perodize_phase] > Perodization::MAX_PHASE
+            # FIXME: This user needs to graduate to a large weight
+            # since they finished a perodization cycle.  Add that logic!!!
+            # For now, just set them back to phase 1 with no weight increase
+            tg[:next_perodize_phase] = 1
+          end
+          
+          # FIXME: Known bug: If the user generates a workout, then deletes it immediately
+          # and generates another workout with that same muscle group, their perodize phase
+          # will keep incrementing, so long as their last workout for that muscle group had
+          # goals that were achieved.  i.e. the user could keep progressing without ever
+          # doing any work...
+          #
+          # This line is to increment the perodize phase if the previous workout for this
+          # muscle group was successful
+          MuscleGroupsUser.find(user.muscle_groups_users.where(:muscle_group_id => tg[:muscle_group].id).limit(1).first.id).update_attribute(:perodize_phase, tg[:next_perodize_phase])
       end
     end
     
     perodize_workout = []
     target_groups.each do |tg|
       tg[:exercises].each do |e|
-        reps_and_weight, difficulity, target_volume = perodize_exercise_info(e, user, tg[:last_perodize_phase])
+        reps_and_weight, difficulity, target_volume = perodize_exercise_info(e, user, tg[:next_perodize_phase])
         perodize_workout << { :exercise            => e, 
                               :reps_and_weight     => reps_and_weight,
                               :difficulity         => difficulity,
-                              :last_perodize_phase => tg[:last_perodize_phase],
+                              :next_perodize_phase => tg[:next_perodize_phase],
                               :target_volume       => target_volume
                             }
       end    
@@ -72,7 +91,7 @@ class Workout < ActiveRecord::Base
       logger.debug "Creating a new perodize workout: #{pw.inspect}"
       WorkoutUnit.create(
       :workout_id     => w.id, 
-      :perodize_phase => pw[:last_perodize_phase] + 1,
+      :perodize_phase => pw[:next_perodize_phase],
       :exercise_id    => pw[:exercise].id, 
       :rep_1          => pw[:reps_and_weight][0][:reps],
       :weight_1       => pw[:reps_and_weight][0][:weight],
@@ -89,6 +108,41 @@ class Workout < ActiveRecord::Base
     return w
   end
   
+  # Check to see if the goal was achieved for this particular
+  # muscle group
+  def goal_achieved?(muscle_group_id)
+    achieved = false
+    if muscle_group_1_id == muscle_group_id
+      achieved = true if muscle_group_1_goal_achieved == 1
+    elsif muscle_group_2_id == muscle_group_id
+      achieved = true if muscle_group_2_goal_achieved == 1      
+    end
+    achieved
+  end
+  
+  # Check that all exercises from each mg had the desired reps  
+  def check_if_goals_achieved
+    # Mark these as true to start.  If we find any reps that were
+    # less than the target, mark it as false.
+    mg1_achieved = 1
+    mg2_achieved = 1
+    
+    workout_units.each do |wu|
+      logger.debug "Checking #{wu.exercise.name}"
+      if wu.exercise.muscle_group.id == muscle_group_1_id && (wu.rep_1.to_i > wu.actual_reps_1.to_i || wu.rep_2.to_i > wu.actual_reps_2.to_i || wu.rep_3.to_i > wu.actual_reps_3.to_i)
+        logger.debug "Failed 1: #{wu.exercise.name}"
+        mg1_achieved = 0
+      elsif wu.exercise.muscle_group.id == muscle_group_2_id && (wu.rep_1.to_i > wu.actual_reps_1.to_i || wu.rep_2.to_i > wu.actual_reps_2.to_i || wu.rep_3.to_i > wu.actual_reps_3.to_i)
+        logger.debug "Failed 2: #{wu.exercise.name}"
+        mg2_achieved = 0
+      end
+    end
+    self.update_attribute(:muscle_group_1_goal_achieved, mg1_achieved)
+    self.update_attribute(:muscle_group_2_goal_achieved, mg2_achieved)
+  end
+  
+  
+  
   private
   
   def self.calc_volume(reps_and_weights)
@@ -99,7 +153,7 @@ class Workout < ActiveRecord::Base
     volume
   end
   
-  def self.perodize_exercise_info(exercise, user, last_perodize_phase)
+  def self.perodize_exercise_info(exercise, user, next_perodize_phase)
 
     user_experience = user.experience
     user_past_workout_units = user.workout_units
@@ -134,14 +188,14 @@ class Workout < ActiveRecord::Base
       # They've done this before -- no probationary period.
       # Determine the max rep percent based on their period
       # phase and their max rep percentages
-      logger.debug "last_perodize_phase: #{last_perodize_phase}"
-      logger.debug "weight_class_for_final_rep: #{Perodization.weight_class_for_final_rep(last_perodize_phase)}"
-      max_rep_percent, difficulity = case Perodization.weight_class_for_final_rep(last_perodize_phase)
+      logger.debug "next_perodize_phase: #{next_perodize_phase}"
+      logger.debug "weight_class_for_final_rep: #{Perodization.weight_class_for_final_rep(next_perodize_phase)}"
+      max_rep_percent, difficulity = case Perodization.weight_class_for_final_rep(next_perodize_phase)
         when :low then [info[:load].min, "light"]
         when :mean then [(info[:load].min + info[:load].max)/2, "medium"]
         when :high then [info[:load].max, "heavy"]
       end
-      all_reps = Perodization.reps(last_perodize_phase)
+      all_reps = Perodization.reps(next_perodize_phase)
     else
         # New exercise for them...let's break them in easy
         all_reps = [12, 12, 12]
@@ -293,4 +347,5 @@ class Workout < ActiveRecord::Base
     
     next_muscle_groups
   end
+  
 end
