@@ -24,7 +24,7 @@
       = f.fields_for :workout_units do |u|
         %tr
           %td
-            = u.object.exercise.name
+            = u.object.exercise.name.humanize
             %br
             = "(#{u.object.exercise.muscle_group.name})"
           %td
@@ -62,7 +62,7 @@
         = f.fields_for :workout_unit_abs do |u|
           %tr
             %td
-              = u.object.exercise.name
+              = u.object.exercise.name.humanize
             %td
               = u.object.reps
             %td
