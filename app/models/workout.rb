@@ -6,8 +6,37 @@ class Workout < ActiveRecord::Base
   accepts_nested_attributes_for :workout_unit_abs
   belongs_to :user
   
+  # Reorders the workout units so that the same muscle group isn't
+  # in a row (if possible)
+  # 
+  # Returns
+  #   An array of Workout Units
   def workout_units
-    WorkoutUnit.where(:workout_id => self.id).order("id DESC")
+    wus = WorkoutUnit.where(:workout_id => self.id).order("id DESC")
+
+    # No reordering to be done -- onyl one muscle group being worked
+    return wus if muscle_group_2_id == nil
+
+    # Track the last workout unit muscle group id
+    reordered_wus = Array.new(wus.size, nil)
+    i = 0
+    
+    wus.each do |wu|
+      next unless wu.exercise.muscle_group_id == muscle_group_1_id
+      reordered_wus[i] = wu
+      i += 2
+    end
+
+    i = 1
+    wus.each do |wu|
+      next unless wu.exercise.muscle_group_id == muscle_group_2_id
+      reordered_wus[i] = wu
+      i += 2
+    end
+
+    # Nils can make their way in if there is an unequal number of
+    # exercises from each muscle group.  So, squash them.
+    reordered_wus.delete_if { |x| x == nil }
   end
   
   def self.generate(user)
@@ -94,6 +123,7 @@ class Workout < ActiveRecord::Base
     perodize_workout.each do |pw|
       logger.debug "Creating a new perodize workout: #{pw.inspect}"
       WorkoutUnit.create(
+      :user_id        => user.id,
       :workout_id     => w.id, 
       :perodize_phase => pw[:next_perodize_phase],
       :exercise_id    => pw[:exercise].id, 
