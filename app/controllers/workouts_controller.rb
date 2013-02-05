@@ -14,7 +14,6 @@ class WorkoutsController < ApplicationController
   # GET /workouts/1.json
   def show
     @workout = current_user.workouts.find(params[:id])
-    @workout_units = @workout.workout_units
     
     respond_to do |format|
       format.html # show.html.erb
