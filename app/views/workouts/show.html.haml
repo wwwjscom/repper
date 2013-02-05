@@ -22,7 +22,6 @@
         %th Weight 3      
     %tbody
       = f.fields_for :workout_units do |u|
-        /- @workout.workout_units.each do |u|
         %tr
           %td
             = u.object.exercise.name
@@ -49,6 +48,27 @@
             %td
               = u.number_field :actual_reps_3, :class => 'number_field'
           %td= u.object.weight_3
+
+  - unless @workout.workout_unit_abs.empty?
+    %hr
+    %p.lead Abdominal Workout
+    %table.table.table-striped
+      %thead
+        %tr
+          %th Workout Name
+          %th Reps
+          %th Actual Reps
+      %tbody
+        = f.fields_for :workout_unit_abs do |u|
+          %tr
+            %td
+              = u.object.exercise.name
+              %br
+              = "(#{u.object.exercise.muscle_group.name})"
+            %td
+              = u.object.reps
+            %td
+              = u.number_field :actual_reps, :class => 'number_field'
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
