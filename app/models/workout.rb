@@ -1,7 +1,9 @@
 class Workout < ActiveRecord::Base
-  attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :perodize_phase
-  has_many :workout_units, :dependent => :destroy
+  attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :perodize_phase, :workout_unit_abs_attributes
+  has_many :workout_units, :dependent    => :destroy
+  has_many :workout_unit_abs, :dependent => :destroy
   accepts_nested_attributes_for :workout_units
+  accepts_nested_attributes_for :workout_unit_abs
   belongs_to :user
   
   def workout_units
@@ -11,7 +13,9 @@ class Workout < ActiveRecord::Base
   def self.generate(user)
     # First, we need to know what areas the user is targeting
     target_groups = []
-    determine_muscle_groups_to_workout(user).each do |mg|
+    _muscle_groups, construct_an_abs_workout = determine_muscle_groups_to_workout(user)
+    logger.debug "User wants to workout abs: #{construct_an_abs_workout}"
+    _muscle_groups.each do |mg|
       target_groups << {:muscle_group => mg}
     end
     
@@ -105,6 +109,21 @@ class Workout < ActiveRecord::Base
       :target_volume  => pw[:target_volume]
       )
     end
+    
+    # Workout the abs?
+    if construct_an_abs_workout
+      logger.debug "Constructing abs workout"
+      generate_abs_workout(user).each do |exercise_and_reps_hash|
+        logger.debug "Adding #{exercise_and_reps_hash.inspect}"
+        WorkoutUnitAb.create(
+          :user_id     => user.id,
+          :exercise_id => exercise_and_reps_hash[:exercise].id,
+          :reps        => exercise_and_reps_hash[:reps],
+          :workout_id  => w.id 
+        )
+      end
+    end
+    
     return w
   end
   
@@ -295,6 +314,16 @@ class Workout < ActiveRecord::Base
   def self.determine_muscle_groups_to_workout(user)
     muscle_groups = user.muscle_groups
     target_groups = []
+    construct_an_abs_workout = false
+    
+    if muscle_groups.map(&:name).include?("abs")
+      # User wants to work the abs.  Since we treat these different from
+      # other muscle groups, delete it from this array, and note it. We'll
+      # construct a special abs workout later.
+      muscle_groups.delete_if { |mg| mg.name == "abs" }
+      construct_an_abs_workout = true
+    end
+    
     if user.workouts.empty?
       # user have no workout history
       target_groups << muscle_groups[0]
@@ -322,7 +351,7 @@ class Workout < ActiveRecord::Base
         target_groups = get_next_muscle_group(last_secondary_group_index, muscle_groups, 2)
       end
     end    
-    return target_groups
+    return [target_groups, construct_an_abs_workout]
   end
 
   # Iterates over the muscle groups selecting the next ones in line
@@ -346,6 +375,60 @@ class Workout < ActiveRecord::Base
     end
     
     next_muscle_groups
+  end
+  
+  # Generate the abs portion of the workout.
+  # Parameters
+  #   user - The user obj of the current user
+  #
+  # Returns
+  #   A array of hashes, where each hash has an Exercise obj
+  #     and an associated number of reps.
+  def self.generate_abs_workout(user)
+    exercises          = pick_abs_exercises
+    exercises_and_reps = pick_abs_reps(exercises, user)
+    exercises_and_reps
+  end
+  
+  # Randomly selects _count_ number of abs exercises
+  # and returns them in an array of Exercise objects.
+  #
+  # Parameters
+  #   count - number of abs exercises to return
+  #
+  # Returns
+  #   An array of Exercises objects.
+  def self.pick_abs_exercises(count = 4)
+    chosen_exercises = []
+    abs_exercises = MuscleGroup.find_by_name("abs").exercises
+    count.times do
+      rand_index = rand(abs_exercises.size)
+      chosen_exercises << abs_exercises[rand_index]
+    end    
+    chosen_exercises
+  end
+  
+  # Decides how many reps of each abs exercises should be
+  # done for the user.  This should be based on their previous
+  # ability to complete the given number of abs reps.
+  #
+  # Parameters
+  #   exercises - An array of abs Exercises objects
+  #   user - The user who owns the workout
+  #
+  # Returns
+  #   A array of hashes, where each hash has an Exercise obj
+  #     and an associated number of reps.
+  def self.pick_abs_reps(exercises, user)
+    exercises_and_reps = []
+    # TODO: Add the logic here to intelligently generate abs reps
+    exercises.each do |e|
+      exercises_and_reps << { 
+        :exercise => e,
+        :reps     => 12 
+      }
+    end
+    exercises_and_reps
   end
   
 end
