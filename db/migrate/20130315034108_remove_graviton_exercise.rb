@@ -1,6 +1,8 @@
 class RemoveGravitonExercise < ActiveRecord::Migration
   def up
-    Exercise.delete(Exercise.find_by_name("gravitor"))
+    id = Exercise.find_by_name("gravitor").id
+    Exercise.delete(id)
+    WorkoutUnit.delete_all(:exercise_id => id)
   end
 
   def down
