@@ -1,11 +1,11 @@
 class Workout < ActiveRecord::Base
   attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :perodize_phase, :workout_unit_abs_attributes, :mg1_phase_attempt_counter, :mg2_phase_attempt_counter, :mg1_perodize_phase, :mg2_perodize_phase
-  has_many :workout_units, :dependent    => :destroy
+  has_many :workout_units, :dependent    => :delete_all
   has_many :workout_unit_abs, :dependent => :destroy
   accepts_nested_attributes_for :workout_units
   accepts_nested_attributes_for :workout_unit_abs
   belongs_to :user
-  
+    
   # Reorders the workout units so that the same muscle group isn't
   # in a row (if possible)
   # 
