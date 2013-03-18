@@ -308,21 +308,13 @@ class Workout < ActiveRecord::Base
       end
       
       if calc_volume(reps_and_weights) < target_volume
-        logger.info "Raising volume"
         # we're doing less work than the original target, so raise the reps
-        case i
-          when 0 then reps_and_weights[2][:reps] += 1
-          when 1 then reps_and_weights[1][:reps] += 1
-          else reps_and_weights[0][:reps] += 1
-        end
+        logger.info "Raising volume"
+        reps_and_weights.first[:reps] += 1
       else
         # We're doing more work than the original target, so lower the reps
         logger.info "Lowering volume"
-        case i
-          when 0 then reps_and_weights[2][:reps] -= 1
-          when 1 then reps_and_weights[1][:reps] -= 1
-          else reps_and_weights[0][:reps] -= 1
-        end
+        reps_and_weights.last[:reps] -= 1
       end
       logger.debug "Adjusted reps and weights to: #{reps_and_weights.inspect}"   
       logger.debug "Adjusted volume to: #{calc_volume(reps_and_weights)}"     
