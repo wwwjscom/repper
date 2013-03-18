@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317001716) do
+ActiveRecord::Schema.define(:version => 20130318035220) do
 
   create_table "evaluations", :force => true do |t|
     t.integer  "user_id"
@@ -55,7 +55,8 @@ ActiveRecord::Schema.define(:version => 20130317001716) do
   create_table "muscle_groups_users", :force => true do |t|
     t.integer "muscle_group_id"
     t.integer "user_id"
-    t.integer "perodize_phase",  :default => 1
+    t.integer "perodize_phase",        :default => 1
+    t.integer "phase_attempt_counter", :default => 1
   end
 
   create_table "users", :force => true do |t|
@@ -118,6 +119,10 @@ ActiveRecord::Schema.define(:version => 20130317001716) do
     t.integer  "muscle_group_2_id"
     t.integer  "muscle_group_1_goal_achieved", :default => 0
     t.integer  "muscle_group_2_goal_achieved", :default => 0
+    t.integer  "mg1_phase_attempt_counter",    :default => 1
+    t.integer  "mg2_phase_attempt_counter",    :default => 1
+    t.integer  "mg1_perodize_phase",           :default => 1
+    t.integer  "mg2_perodize_phase",           :default => 1
   end
 
 end

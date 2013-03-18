@@ -4,7 +4,12 @@
 
 = "Working out these areas:"
 = MuscleGroup.find(@workout.muscle_group_1_id).name
+= "(phase #{@workout.mg1_perodize_phase}; attempt #{@workout.mg1_phase_attempt_counter} )"
+
+= ","
 = MuscleGroup.find(@workout.muscle_group_2_id).name
+= "(phase #{@workout.mg2_perodize_phase}; attempt #{@workout.mg2_phase_attempt_counter} )"
+
 
 = form_for @workout, :html => { :class => 'form-horizontal' } do |f|
   %table.table.table-striped

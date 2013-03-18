@@ -1,5 +1,5 @@
 class Workout < ActiveRecord::Base
-  attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :perodize_phase, :workout_unit_abs_attributes
+  attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :perodize_phase, :workout_unit_abs_attributes, :mg1_phase_attempt_counter, :mg2_phase_attempt_counter, :mg1_perodize_phase, :mg2_perodize_phase
   has_many :workout_units, :dependent    => :destroy
   has_many :workout_unit_abs, :dependent => :destroy
   accepts_nested_attributes_for :workout_units
@@ -97,6 +97,13 @@ class Workout < ActiveRecord::Base
           # This line is to increment the perodize phase if the previous workout for this
           # muscle group was successful
           MuscleGroupsUser.find(user.muscle_groups_users.where(:muscle_group_id => tg[:muscle_group].id).limit(1).first.id).update_attribute(:perodize_phase, tg[:next_perodize_phase])
+          
+          # Since the goal was achieved reset the phase attempt counter to 1
+          user.muscle_groups_users.find_by_muscle_group_id(tg[:muscle_group].id).update_attribute(:phase_attempt_counter, 1)
+          
+        elsif !workout.blank? && !workout.goal_achieved?(tg[:muscle_group].id)
+          # If the workout goal was not achieved, incrememnt the phase attempt counter
+          user.muscle_groups_users.find_by_muscle_group_id(tg[:muscle_group].id).increment!(:phase_attempt_counter)
       end
     end
     
@@ -117,7 +124,11 @@ class Workout < ActiveRecord::Base
     w = Workout.create(
       :user_id           => user.id, 
       :muscle_group_1_id => target_groups[0][:muscle_group].id, 
-      :muscle_group_2_id => target_groups[1][:muscle_group].id
+      :muscle_group_2_id => target_groups[1][:muscle_group].id,
+      :mg1_phase_attempt_counter => user.muscle_groups_users.find_by_muscle_group_id(target_groups[0][:muscle_group].id).phase_attempt_counter,
+      :mg2_phase_attempt_counter => user.muscle_groups_users.find_by_muscle_group_id(target_groups[1][:muscle_group].id).phase_attempt_counter,
+      :mg1_perodize_phase => user.muscle_groups_users.find_by_muscle_group_id(target_groups[0][:muscle_group].id).perodize_phase,
+      :mg2_perodize_phase => user.muscle_groups_users.find_by_muscle_group_id(target_groups[1][:muscle_group].id).perodize_phase
     )
 
     perodize_workout.each do |pw|
