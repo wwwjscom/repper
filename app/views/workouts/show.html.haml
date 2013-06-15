@@ -31,7 +31,11 @@
           %td
             = u.object.exercise.name.humanize
             %br
-            = "(#{u.object.exercise.muscle_group.name})"
+            - v1 = u.object.rep_1.to_f * u.object.weight_1.to_f
+            - v2 = u.object.rep_2.to_f * u.object.weight_2.to_f
+            - v3 = u.object.rep_3.to_f * u.object.weight_3.to_f
+            - volumes = [v1,v2,v3]
+            = "(#{u.object.exercise.muscle_group.name}). PS: #{WorkoutUnit.achieved_at_target_volume(volumes, u.object.exercise.id, @workout.user_id, @workout.id)}"
           %td
             = u.object.rep_1
             %br

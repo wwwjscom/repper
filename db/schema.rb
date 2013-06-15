@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(:version => 20130615052701) do
     t.integer "phase_attempt_counter", :default => 1
   end
 
+  create_table "perodizations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "muscle_group_id"
+    t.integer  "perodization_phase"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "crypted_password"
