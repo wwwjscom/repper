@@ -47,23 +47,12 @@ class Workout < ActiveRecord::Base
     _muscle_groups.each do |mg|
       target_groups << {:muscle_group => mg}
     end
-    
+        
     logger.debug "tg: #{target_groups.inspect}"
     
-    # Next we need to get the exercises for that area, and 
-    # the users expereince level
-    
-    # Make sure we never select an exercise that's too hard
-    # or too easy for the user
-    skill_level_range = case user.experience
-                          when 0 then 1
-                          when 1 then 1
-                          when 2 then 1..2
-                          when 3 then 2..3          
-                        end
-                        
+    # Next we need to get the exercises for that area
     target_groups.each do |tg|
-      tg[:exercises] = get_exercises_for_target_group(tg[:muscle_group].id, skill_level_range)
+      tg[:exercises] = get_exercises_for_target_group(tg[:muscle_group].id)
     end
     logger.debug "tg: #{target_groups.inspect}"
     
@@ -339,8 +328,8 @@ class Workout < ActiveRecord::Base
   end
   
   
-  def self.get_exercises_for_target_group(muscle_group_id, skill_level_range, num_from_each_group = 3)
-    Exercise.where(:muscle_group_id => muscle_group_id).where(:skill_level => skill_level_range).limit(num_from_each_group)
+  def self.get_exercises_for_target_group(muscle_group_id, num_from_each_group = 3)
+    Exercise.where(:muscle_group_id => muscle_group_id).limit(num_from_each_group)
   end
 
   # Determines which muscle groups should be worked out
