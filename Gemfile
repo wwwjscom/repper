@@ -13,6 +13,11 @@ end
 group :development do
   gem 'sqlite3'
   gem 'haml-rails'
+  gem 'guard'
+  gem 'guard-test'
+  gem 'terminal-notifier-guard'
+  gem 'guard-yard'
+  gem 'redcarpet'
 end
 
 gem "haml"
