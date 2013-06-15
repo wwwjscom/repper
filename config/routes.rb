@@ -1,8 +1,5 @@
 Repper::Application.routes.draw do
 
-  resources :perodizations
-
-
   resources :workout_units
 
 

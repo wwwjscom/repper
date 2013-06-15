@@ -23,5 +23,5 @@
     - @workouts.each do |workout|
       %tr
         %td= link_to "Workout from #{workout.created_at.strftime('%A %b %d')}", workout_path(workout)
-        %td= "#{MuscleGroup.find(workout.muscle_group_1_id).name.titleize} (#{workout.mg1_perodize_phase}/#{workout.mg1_phase_attempt_counter})"
-        %td= "#{MuscleGroup.find(workout.muscle_group_2_id).name.titleize} (#{workout.mg2_perodize_phase}/#{workout.mg2_phase_attempt_counter})"
+        %td= "#{MuscleGroup.find(workout.muscle_group_1_id).name.titleize} (#{workout.mg1_phase_attempt_counter})"
+        %td= "#{MuscleGroup.find(workout.muscle_group_2_id).name.titleize} (#{workout.mg2_phase_attempt_counter})"
