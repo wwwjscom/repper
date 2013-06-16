@@ -23,15 +23,17 @@ class UpdateProgressionModel < ActiveRecord::Migration
     rename_column :workout_units, :actual_reps_2, :actual_reps_set_2
     rename_column :workout_units, :actual_reps_3, :actual_reps_set_3
     
-    rename_column :workout_units, :rep_1, :max_reps_set_1
-    rename_column :workout_units, :rep_2, :max_reps_set_2
-    rename_column :workout_units, :rep_3, :max_reps_set_3
-    
-    change_column :workout_units, :max_reps_set_1, :integer
-    change_column :workout_units, :max_reps_set_2, :integer
-    change_column :workout_units, :max_reps_set_3, :integer
+    add_column :workout_units, :max_reps_set_1, :integer
+    add_column :workout_units, :max_reps_set_2, :integer
+    add_column :workout_units, :max_reps_set_3, :integer
     
     WorkoutUnit.all.each do |wu|      
+      # Copy over rep info to new column so old column can be destroyed
+      wu.max_reps_set_1 = wu.rep_1.to_i
+      wu.max_reps_set_2 = wu.rep_2.to_i
+      wu.max_reps_set_3 = wu.rep_3.to_i
+      
+      # Now set various statistics about previous workouts
       wu.min_reps_set_1 = wu.max_reps_set_1 - 4
       wu.min_reps_set_2 = wu.max_reps_set_2 - 4
       wu.min_reps_set_3 = wu.max_reps_set_3 - 4
@@ -56,16 +58,31 @@ class UpdateProgressionModel < ActiveRecord::Migration
       
       wu.save
     end
+    
+    remove_column :workout_units, :rep_1
+    remove_column :workout_units, :rep_2
+    remove_column :workout_units, :rep_3
   end
 
   def down
+    
+    add_column :workout_units, :rep_1, :string
+    add_column :workout_units, :rep_2, :string
+    add_column :workout_units, :rep_3, :string
+    
+    WorkoutUnit.all.each do |wu|
+      wu.rep_1 = wu.max_reps_set_1.to_s
+      wu.rep_2 = wu.max_reps_set_2.to_s
+      wu.rep_3 = wu.max_reps_set_3.to_s
+    end
+    
+    remove_column :workout_units, :max_reps_set_1
+    remove_column :workout_units, :max_reps_set_2
+    remove_column :workout_units, :max_reps_set_3
+    
     rename_column :workout_units, :actual_reps_set_1, :actual_reps_1
     rename_column :workout_units, :actual_reps_set_2, :actual_reps_2
     rename_column :workout_units, :actual_reps_set_3, :actual_reps_3
-    
-    rename_column :workout_units, :max_reps_set_1, :rep_1
-    rename_column :workout_units, :max_reps_set_2, :rep_2
-    rename_column :workout_units, :max_reps_set_3, :rep_3
     
     remove_column :workout_units, :min_reps_set_1
     remove_column :workout_units, :min_reps_set_2
