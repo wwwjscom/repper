@@ -11,7 +11,7 @@ class UpdateProgressionModel < ActiveRecord::Migration
     
     add_column :workout_units, :recommendation, :string
     
-    add_column :workout_units, :progression_phase, :integer, :default => 0
+    add_column :workout_units, :progression_phase, :integer, :default => 1
     add_column :workout_units, :pass_counter, :integer, :default => 0
     add_column :workout_units, :hold_counter, :integer, :default => 0
     
