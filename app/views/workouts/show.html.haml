@@ -31,31 +31,27 @@
           %td
             = u.object.exercise.name.humanize
             %br
-            - v1 = u.object.rep_1.to_f * u.object.weight_1.to_f
-            - v2 = u.object.rep_2.to_f * u.object.weight_2.to_f
-            - v3 = u.object.rep_3.to_f * u.object.weight_3.to_f
-            - volumes = [v1,v2,v3]
-            = "(#{u.object.exercise.muscle_group.name}). PS: #{WorkoutUnit.achieved_at_target_volume(volumes, u.object.exercise.id, @workout.user_id, @workout.id)}"
+            = "(#{u.object.exercise.muscle_group.name})"
           %td
-            = u.object.rep_1
+            = "%s-%s" % [u.object.min_reps_set_1, u.object.max_reps_set_1]
             %br
             = u.object.diff_1
           %td
-            = u.number_field :actual_reps_1, :class => 'number_field'
+            = u.number_field :actual_reps_set_1, :class => 'number_field'
           %td= u.object.weight_1
           %td
-            = u.object.rep_2
+            = "%s-%s" % [u.object.min_reps_set_2, u.object.max_reps_set_2]
             %br
             = u.object.diff_2
             %td
-              = u.number_field :actual_reps_2, :class => 'number_field'          
+              = u.number_field :actual_reps_set_2, :class => 'number_field'          
           %td= u.object.weight_2
           %td
-            = u.object.rep_3
+            = "%s-%s" % [u.object.min_reps_set_3, u.object.max_reps_set_3]
             %br
             = u.object.diff_3
             %td
-              = u.number_field :actual_reps_3, :class => 'number_field'
+              = u.number_field :actual_reps_set_3, :class => 'number_field'
           %td= u.object.weight_3
 
   - unless @workout.workout_unit_abs.empty?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615052701) do
+ActiveRecord::Schema.define(:version => 20130616034806) do
 
   create_table "evaluations", :force => true do |t|
     t.integer  "user_id"
@@ -57,14 +57,6 @@ ActiveRecord::Schema.define(:version => 20130615052701) do
     t.integer "phase_attempt_counter", :default => 1
   end
 
-  create_table "perodizations", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "muscle_group_id"
-    t.integer  "perodization_phase"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "crypted_password"
@@ -98,22 +90,35 @@ ActiveRecord::Schema.define(:version => 20130615052701) do
   create_table "workout_units", :force => true do |t|
     t.integer  "workout_id"
     t.integer  "exercise_id"
-    t.string   "rep_1"
+    t.integer  "max_reps_set_1",        :limit => 255
     t.integer  "weight_1"
-    t.string   "rep_2"
+    t.integer  "max_reps_set_2",        :limit => 255
     t.integer  "weight_2"
-    t.string   "rep_3"
+    t.integer  "max_reps_set_3",        :limit => 255
     t.integer  "weight_3"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
     t.string   "diff_1"
     t.string   "diff_2"
     t.string   "diff_3"
-    t.integer  "actual_reps_1"
-    t.integer  "actual_reps_2"
-    t.integer  "actual_reps_3"
+    t.integer  "actual_reps_set_1"
+    t.integer  "actual_reps_set_2"
+    t.integer  "actual_reps_set_3"
     t.integer  "user_id"
     t.integer  "target_volume"
+    t.boolean  "lower_bound_met_set_1",                :default => false
+    t.boolean  "maxed_out_set_1",                      :default => false
+    t.boolean  "lower_bound_met_set_2",                :default => false
+    t.boolean  "maxed_out_set_2",                      :default => false
+    t.boolean  "lower_bound_met_set_3",                :default => false
+    t.boolean  "maxed_out_set_3",                      :default => false
+    t.string   "recommendation"
+    t.integer  "progression_phase",                    :default => 0
+    t.integer  "pass_counter",                         :default => 0
+    t.integer  "hold_counter",                         :default => 0
+    t.integer  "min_reps_set_1"
+    t.integer  "min_reps_set_2"
+    t.integer  "min_reps_set_3"
   end
 
   create_table "workouts", :force => true do |t|
