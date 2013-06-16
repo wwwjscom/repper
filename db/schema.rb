@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(:version => 20130616034806) do
     t.integer "phase_attempt_counter", :default => 1
   end
 
+  create_table "perodizations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "muscle_group_id"
+    t.integer  "perodization_phase"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "crypted_password"
@@ -113,7 +121,7 @@ ActiveRecord::Schema.define(:version => 20130616034806) do
     t.boolean  "lower_bound_met_set_3",                :default => false
     t.boolean  "maxed_out_set_3",                      :default => false
     t.string   "recommendation"
-    t.integer  "progression_phase",                    :default => 0
+    t.integer  "progression_phase",                    :default => 1
     t.integer  "pass_counter",                         :default => 0
     t.integer  "hold_counter",                         :default => 0
     t.integer  "min_reps_set_1"
