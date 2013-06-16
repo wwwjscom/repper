@@ -1,5 +1,5 @@
 class Workout < ActiveRecord::Base
-  attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :workout_unit_abs_attributes, :mg1_phase_attempt_counter, :mg2_phase_attempt_counter
+  attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :workout_unit_abs_attributes, :mg1_phase_attempt_counter, :mg2_phase_attempt_counter, :submitted
   has_many :workout_units, :dependent    => :delete_all
   has_many :workout_unit_abs, :dependent => :destroy
   accepts_nested_attributes_for :workout_units
@@ -120,13 +120,14 @@ class Workout < ActiveRecord::Base
   end
   
   def self.create_workout_unit(exercise, user)
-
-    wu = WorkoutUnit.new
-    wu.exercise_id = exercise.id
-    wu.user_id = user.id
-
+    wu                   = WorkoutUnit.new
+    wu.exercise_id       = exercise.id
+    wu.user_id           = user.id
+    wu.progression_phase = (wu.prev || WorkoutUnit.new).progression_phase
+    wu.pass_counter      = (wu.prev || WorkoutUnit.new).pass_counter
+    wu.hold_counter      = (wu.prev || WorkoutUnit.new).hold_counter
+    
     user_experience = user.experience
-    user_past_workout_units = user.workout_units
     user_goal = user.goal
     
     info = {}
@@ -159,19 +160,28 @@ class Workout < ActiveRecord::Base
     wu.diff_2  = "heavy"
     wu.diff_3  = "heavy"
 
-    if user_past_workout_units.where(:exercise_id => exercise.id)
+    if user.workout_units.where(:exercise_id => exercise.id).where(:submitted => true).size > 0
       # They've done this before -- no probationary period.
-      wu.set_weights
+      
+      # When they did this workout unit before, was it eligible for evaluate?  I.e., is it useful
+      # to use for calculating the users weights?
+      if wu.prev != nil && wu.prev.eligible_for_evaluation
+        wu.set_weights
+      else
+        # This is the first time they're doing this workout unit when it's eligible for eval.
+        # Since we have no prior history on the users ability, use their initial weight eval
+        # to determine how much weight they should lift.
+        wu.set_weights_based_on_evaluation(0.8)
+      end
+      
+      # Since we are (by default) lifting a heavy load (we don't lift any other kinds of loads right now...)
+      # go ahead and mark this workout unit as eligble for evluation in the future.
+      wu.eligible_for_evaluation = true
     else
-        # New exercise for them...let's break them in easy
-        max_rep_percent = info[:load].min - 10 # Take 10% off their min
-        
       # Since they haven't done this workout before, use their 1RM to determine
-      # how much weight they should be lifting.
-        weight_max  = user.evaluations.last.one_rep_max(exercise.muscle_group.name.to_sym, max_rep_percent)
-        wu.weight_1 = weight_max-10
-        wu.weight_2 = weight_max-5
-        wu.weight_3 = weight_max
+      # how much weight they should be lifting.  Take 10% off their min.
+      max_rep_percent = info[:load].min - 0.1       
+      wu.set_weights_based_on_evaluation(max_rep_percent)
     end
     
     # Setup the reps 

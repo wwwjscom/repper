@@ -58,6 +58,9 @@ class WorkoutsController < ApplicationController
       if @workout.update_attributes(params[:workout])
         @workout.workout_units.each { |wu| wu.set_recommendation }
         
+        @workout.update_attribute(:submitted, true)
+        @workout.workout_units.each { |wu| wu.update_attribute(:submitted, true) }
+        
         format.html { redirect_to @workout, notice: 'Workout was successfully updated.' }
         format.json { head :no_content }
       else

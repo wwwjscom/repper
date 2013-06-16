@@ -1,0 +1,2 @@
+module ProgressionEventLogsHelper
+end

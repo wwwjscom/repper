@@ -1,0 +1,25 @@
+= form_for @progression_event_log do |f|
+  - if @progression_event_log.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@progression_event_log.errors.count, "error")} prohibited this progression_event_log from being saved:"
+      %ul
+        - @progression_event_log.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :workout_unit_id
+    = f.number_field :workout_unit_id
+  .field
+    = f.label :progression_outcome
+    = f.text_field :progression_outcome
+  .field
+    = f.label :new_1RM
+    = f.number_field :new_1RM
+  .field
+    = f.label :user_id
+    = f.number_field :user_id
+  .field
+    = f.label :exercise_id
+    = f.number_field :exercise_id
+  .actions
+    = f.submit 'Save'
