@@ -7,13 +7,9 @@
   %br
   = MuscleGroup.find(@workout.muscle_group_1_id).name
   = "(attempt #{@workout.mg1_phase_attempt_counter})"
-  - if @workout.submitted
-    = " - #{@workout.muscle_group_1_goal_achieved}"
   %br
   = MuscleGroup.find(@workout.muscle_group_2_id).name
   = "(attempt #{@workout.mg2_phase_attempt_counter})"
-  - if @workout.submitted
-    = " - #{@workout.muscle_group_2_goal_achieved}"
 
 %p
   %i Note: The weights listed below are the total weight to be lifted.  Therefore, if the exercise is a two arm exercise, divide the total weight between both arms.
