@@ -97,18 +97,6 @@ class Workout < ActiveRecord::Base
     return w
   end
   
-  # Check to see if the goal was achieved for this particular
-  # muscle group
-  def goal_achieved?(muscle_group_id)
-    achieved = false
-    if muscle_group_1_id == muscle_group_id
-      achieved = true if muscle_group_1_goal_achieved == 1
-    elsif muscle_group_2_id == muscle_group_id
-      achieved = true if muscle_group_2_goal_achieved == 1      
-    end
-    achieved
-  end  
-  
   private
   
   def self.calc_volume(wu)

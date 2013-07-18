@@ -2,14 +2,21 @@
 .page-header
   %h1=t '.title', :default => model_class.model_name.human
 
-= "Working out these areas:"
-= MuscleGroup.find(@workout.muscle_group_1_id).name
-= "(attempt #{@workout.mg1_phase_attempt_counter} )"
+%p
+  = "Working out these areas:"
+  %br
+  = MuscleGroup.find(@workout.muscle_group_1_id).name
+  = "(attempt #{@workout.mg1_phase_attempt_counter})"
+  - if @workout.submitted
+    = " - #{@workout.muscle_group_1_goal_achieved}"
+  %br
+  = MuscleGroup.find(@workout.muscle_group_2_id).name
+  = "(attempt #{@workout.mg2_phase_attempt_counter})"
+  - if @workout.submitted
+    = " - #{@workout.muscle_group_2_goal_achieved}"
 
-= ","
-= MuscleGroup.find(@workout.muscle_group_2_id).name
-= "(attempt #{@workout.mg2_phase_attempt_counter} )"
-
+%p
+  %i Note: The weights listed below are the total weight to be lifted.  Therefore, if the exercise is a two arm exercise, divide the total weight between both arms.
 
 = form_for @workout, :html => { :class => 'form-horizontal' } do |f|
   %table.table.table-striped
@@ -32,6 +39,8 @@
             = u.object.exercise.name.humanize
             %br
             = "(#{u.object.exercise.muscle_group.name})"
+            - if @workout.submitted
+              = " - #{u.object.recommendation}"
           %td
             = "%s-%s" % [u.object.min_reps_set_1, u.object.max_reps_set_1]
             %br
