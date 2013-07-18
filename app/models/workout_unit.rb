@@ -145,9 +145,7 @@ class WorkoutUnit < ActiveRecord::Base
   #  The number will also be adjusted so that it is doable for the exercise.
   #  Example: 0.8 for 80%
   def set_weights_based_on_evaluation(percent_of_1RM)
-    logger.debug "adjustment: #{self.exercise.weight_adjustment}"
     weight_max        = self.exercise.weight_adjustment * self.user.evaluations.last.one_rep_max(self.exercise.muscle_group.name.to_sym, percent_of_1RM)
-    logger.debug "weight_max: #{weight_max}"
     doable_max_weight = Exercise.round_up_to_doable_weight(exercise.id, weight_max)
     self.weight_1     = doable_max_weight - self.exercise.weight_interval*2
     self.weight_2     = doable_max_weight - self.exercise.weight_interval
