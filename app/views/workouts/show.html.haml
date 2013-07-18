@@ -14,6 +14,8 @@
 %p
   %i Note: The weights listed below are the total weight to be lifted.  Therefore, if the exercise is a two arm exercise, divide the total weight between both arms.
 
+%p
+  * - this is the first time you've seen this workout, so we're doing less weight than normal.
 = form_for @workout, :html => { :class => 'form-horizontal' } do |f|
   %table.table.table-striped
     %thead
@@ -33,9 +35,11 @@
         %tr
           %td
             = u.object.exercise.name.humanize
+            - unless u.object.eligible_for_evaluation
+              = "*"
             %br
             = "(#{u.object.exercise.muscle_group.name})"
-            - if @workout.submitted
+            - if @workout.submitted && u.object.eligible_for_evaluation
               = " - #{u.object.recommendation}"
           %td
             = "%s-%s" % [u.object.min_reps_set_1, u.object.max_reps_set_1]
