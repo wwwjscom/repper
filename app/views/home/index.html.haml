@@ -1,121 +1,111 @@
 / Home Page
 #home.page.color-1
   .inner-page
-    %h2.page-headline.large Tell your projects awesome story.
+    %h2.page-headline.large Personalized workouts, just for you
   .row-fluid.inner-page
-    .span8.pull-right.lazy-container
-      %img.lazy{:alt => "Looks great on every device", "data-original" => "assets/img/home.png", :src => "assets/img/pixel.png"}/
+    /.span8.pull-right.lazy-container
+    .span8.pull-right
+      /%img.lazy{:alt => "Looks great on every device", "data-original" => "assets/img/home.png", :src => "assets/img/pixel.png"}/
+      = image_tag "/assets/img/legos.jpg", { :style => "width: 675px; height: 300px;" }
     .span4.pull-right
       %ul.big-list
         %li
           %i.icon-ok
-          Flat design
+          Simple workouts
         %li
           %i.icon-tablet
-          Responsive
+          Mobile
         %li
           %i.icon-cloud
-          Fast page load
+          Cloud storage
         %li
           %i.icon-cog
-          Built with LESS
+          Data driven
       %br/
       %a.scroll.btn.btn-centered{:href => "#features", :title => "Check out more freatures!"}
         %i.icon-caret-down
-        Learn more
+        Scroll Down
 / Sign up
-.sign-up.color-2.visible-desktop
-  .row-fluid.inner-page
-    .span12
-      %h4.pull-left They say visitors prefer scrolling rather than clicking. We combined both.
-      %a.scroll.btn.pull-right{:href => "#features", :title => "Check out more freatures!"}
-        %i.icon-caret-down
-        Scroll down
+/.sign-up.color-2.visible-desktop
+/  .row-fluid.inner-page
+/    .span12
+/      %h4.pull-left 
+/        Try it out free for 14 days. 
+/        %strong No credit card  
+/        or commitment.
+/      %a.scroll.btn.pull-right{:href => "#features", :title => "Check out more freatures!"}
+/        %i.icon-caret-down
+/        Scroll down
+        
 / Features
-#features.page.color-4
+#features.page.color-3
   .inner-page
-    %h2.page-headline Why should you choose The Story
+    %h2.page-headline Take the guesswork out of exercising
   .inner-page.row-fluid
     %ul.features.list-inline
       %li
         %h3
-          %i.icon-cog
-          Make it your own
-        %p Easily change every color, by changing just few variables. Add or remove pages, and choose from 600+ fonts.
+          %i.icon-heart
+          Personalized
+        %p Repper is personalized to maxmize your workout.  The more you workout, the more accurate and effective it becomes.
       %li
         %h3
-          %i.icon-heart
-          Page speed
-        %p The theme is highly optimized to ensure fast loading time by lazy-loading of images and beeing minimal by design.
+          %i.icon-ok
+          For everyone
+        %p Whether you want to tone up or bulk up, Repper understand and designs the perfect workout.
       %li
         %h3
           %i.icon-tablet
           For every device.
-        %p
-          %strong The Story
-          is built to look great on every device. Custom menu for mobile devices, to ensure the best expierence.
+        %p Repper is compatable with any Internet enable phone, tablet, or computer.  Use it anywhere, anytime.
   .row-fluid.inner-page
     .span6.lazy-container
-      %img.figurette.lazy{:alt => "Zombie ipsum", "data-original" => "assets/img/two-phones.png", :src => "assets/img/pixel.png"}/
+      %img.figurette.lazy{:alt => "Zombie ipsum", "data-original" => "assets/img/ball.jpg", :src => "assets/img/pixel.png"}/
     .span6
-      %h3 All artwork included
-      %p.lead Present your project properly. Create your own art from included templates
+      %h3 Why we're different
+      %p.lead Other apps only give you generic workouts. Repper is 100% personalized, meaning we:
       %ul.list-wide
         %li
           %i.icon-check
-          More than 300 awesome icons from
-          %a{:href => "http://fortawesome.github.io/Font-Awesome/", :title => "awesome font, awesome"} Font-awesome
+          Tell you how much weight to lift
         %li
           %i.icon-check
-          Browser icons
+          Tell you how many reps to do
         %li
           %i.icon-check
-          Phone, tablet, laptop, desktop vectors (SVG)
+          Adjust workouts when you get stronger
         %li
           %i.icon-check
-          5 Layered PSD files.
-  %hr/
-  / Video
-  .row-fluid.inner-page
-    .span6.pull-right
-      .btn-container.figurette
-        %img{:alt => "Play video", :src => "assets/img/video.png"}/
-        %a.lightbox.iframe.btn-play{:href => "http://vimeo.com/61693087", :target => "_blank"}
-          %i.icon-play
-    .span6.pull-right
-      %ul.big-list
-        %li
-          %i.icon-ok
-          Always latest bootstrap
-        %li
-          %i.icon-play
-          Responsive video
-        %li
-          %i.icon-resize-full
-          Adaptive, smart lightbox
-        %li
-          %i.icon-desktop
-          All modern browsers supported
-      %br/
-      %a.scroll.btn.btn-centered{:href => "#download"}
-        %i.icon-plus
-        Even more features
+          Don't let your muscle catch on
 / /Features
 / Assets page
-#assets.page.color-3
+#price.page.color-3
   .inner-page
-    %h2.page-headline Page assets
+    %h2.page-headline One simple price, no contract
   / Vectors
   .row-fluid.inner-page
+    .span6
+      /%h3 $7.99 per month
+      %p.lead For $7.99 a month, you'll get
+      %ul
+        %li
+          %i.icon-play &nbsp; Unlimited workouts
+        %li
+          %i.icon-play &nbsp; Exercises that tell you the exact weight to use
+        %li
+          %i.icon-play &nbsp; Instant feedback on your workout
+        %li
+          %i.icon-play &nbsp; See your strength over time
+        %li
+          %i.icon-play &nbsp; Access from anywhere
+      %p 
+        Cancel anymore, no peanlity or contracts.  
+
+      %a.scroll.btn.btn-centered{:href => "/waiver"}
+        %i.icon-plus
+        Reading to begin?
     .span6.lazy-container
       %img.figurette.lazy{:alt => "Original vectors", "data-original" => "assets/img/responsive-vectors.png", :src => "assets/img/pixel.png"}/
-    .span6
-      %h3 5 vectors included
-      %p.lead
-        Zombie ipsum
-        %abbr.initialism{:title => "HyperText Markup Language"} HTML
-        reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis.
-      %p The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro..
   / /vectors
   %hr/
   / Big laptop
@@ -124,122 +114,3 @@
       .lazy-container.lazy-large.btn-container.loaded
         .btn-container
           %img.figurette.lazy{:alt => "view image in lightbox", "data-original" => "assets/img/laptop-blue@2x.png", :src => "assets/img/laptop-blue@2x.png", :style => "display: inline;"}/
-          %a.lightbox.btn-play{:href => "assets/img/superman.jpg", :target => "_blank"}
-            %i.icon-zoom-in
-  / Clients
-  .clients.color-1
-    .inner-page
-      %h2.page-headline Who's using stories.
-    .inner-page.row-fluid
-      %ul.clients.list-inline
-        %li
-          %i.icon-globe
-          Earth
-        %li
-          %i.icon-heart
-          Love
-        %li
-          %i.icon-leaf
-          Leaves
-        %li
-          %i.icon-cloud
-          Clouds
-/ /Assets page
-/ About page
-#about.page.color-4
-  .inner-page
-    %h2.page-headline Who are we and how it all got started. Our story.
-  .row-fluid.inner-page
-    .span6.lazy-container
-      %img.figurette.lazy{:alt => "Our workspace", "data-original" => "assets/img/green-office.png", :src => "assets/img/pixel.png"}/
-    .span6
-      %h3 Zonbi tattered for solum.
-      %p.lead The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro.
-      %p Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris. Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium.
-  %hr/
-  / Team
-  .row-fluid.inner-page.team
-    .span6
-      %img.pull-left{:alt => "A cookie", :src => "assets/img/cookies2.png"}/
-      %h4 Jane Doe
-      %p Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis.
-      %ul
-        %li
-          %i.icon-home
-          %a{:href => "prettystrap.com"} http://prettystrap.com
-        %li
-          %i.icon-envelope-alt
-          %a{:href => "info@email.com"} info@email.com
-        %li.social
-          %a{:href => "#about"}
-            %i.icon-facebook-sign
-          %a{:href => "#about"}
-            %i.icon-twitter
-          %a{:href => "#about"}
-            %i.icon-github-sign
-    .span6.team2
-      %img.pull-left{:alt => "A cookie", :src => "assets/img/cookies.png"}/
-      %h4 John Doe
-      %p Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis.
-      %ul
-        %li
-          %i.icon-home
-          %a{:href => "prettystrap.com"} http://prettystrap.com
-        %li
-          %i.icon-envelope-alt
-          %a{:href => "info@email.com"} info@email.com
-        %li.social
-          %a{:href => "#about"}
-            %i.icon-facebook-sign
-          %a{:href => "#about"}
-            %i.icon-twitter
-          %a{:href => "#about"}
-            %i.icon-github-sign
-/ Contact Us
-#contact.page.color-2
-  .inner-page
-    %h2.page-headline Get in touch and stay updated
-  .row-fluid.inner-page.contact
-    .span6
-      %h3 What's on your mind?
-      %textarea{:placeholder => "Your story", :rows => "6"}
-      %input{:placeholder => "your@e-mail.com", :type => "text"}/
-      %br/
-      %input{:placeholder => "Name", :type => "text"}/
-      %br/
-      %button.btn.btn-centered Contact us
-    .span6
-      .btn-container.centered.lazy-container.text-center
-        %img.lazy.figurette{:alt => "Open the map", "data-original" => "assets/img/map.png", :src => "assets/img/pixel.png"}/
-        %a.lightbox.iframe.btn-map{:href => "https://maps.google.com/maps?q=Stationsplein,+1012+Centrum,+Amsterdam,+Noord-Holland,+The+Netherlands&amp;hl=en", :target => "blank", :title => "Open google maps"}
-          %i.pull-left.icon-map-marker
-/ Newsletter
-.newsletter.color-1
-  .inner-page.row-fluid
-    .span4
-      %h4
-        %strong> Be cool
-        , subscribe to get our latest news
-    .span6
-      %input.subscribe{:name => "EMAIL", :placeholder => "your@e-mail.com", :type => "email"}/
-    .span2
-      %button.btn.pull-right.subscribe{:type => "submit"} Subscribe
-/ The footer, social media icons, and copyright
-%footer.page.color-5
-  .inner-page.row-fluid
-    .span6.social
-      %a{:href => "#contact"}
-        %i.icon-twitter
-      %a{:href => "#contact"}
-        %i.icon-github-sign
-      %a{:href => "#contact"}
-        %i.icon-facebook-sign
-      %a{:href => "#contact"}
-        %i.icon-google-plus-sign
-    .span6.text-right.copyright
-      \&copy; 2013
-      %a{:href => "http://prettystrap.com", :title => "twitter bootstrap themes"} prettystrap.com
-      | all rights reserved | &nbsp;
-      %a.scroll{:href => "#top", :title => "Got to top"}
-        To top
-        %i.icon-caret-up

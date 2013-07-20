@@ -1,0 +1,40 @@
+- if current_user
+  %li= link_to "Workouts", workouts_path
+  %li= link_to "Evaluations", evaluations_path
+  %li= link_to "Progression Log", progression_event_logs_path
+  %li= link_to "Account", user_path(current_user)
+  %li= link_to "Log out", logout_path
+- else
+  / not logged in and on homepage
+  - if request.path == root_path
+    %li.active
+      %a.scroll.brand-1{:href => "#home", :title => "Check out our awesome services"} Home
+    %li
+      %a.scroll.brand-4{:href => "#features", :title => "Check out our awesome services"} Features
+    %li
+      %a.scroll.brand-2{:href => "#price", :title => "Price"} Price
+    %li
+  - else
+    / not logged in and not on homepage
+    %li
+      = link_to "Home", root_path, :class => "brand-1"
+    %li
+      %a.scroll.brand-4{:href => "/#features"} Features
+    %li
+      %a.scroll.brand-2{:href => "/#price"} Price      
+  %li{:class => ((request.path == waiver_path) ? "active" : nil)}
+    = link_to "Sign up", waiver_path, :class => "brand-4"             
+  %li{:class => ((request.path == login_path) ? "active" : nil)}
+    = link_to "Log in", login_path, :class => "brand-2"
+
+    
+    
+    
+  /%li
+  /  %a.scroll.brand-4{:href => "#features", :title => "Check out our awesome services"} Features
+  /%li
+  /  %a.scroll.brand-3{:href => "#assets", :title => "Themes assets"} Assets
+  /%li
+  /  %a.scroll.fadeto.brand-4{:href => "#about", :title => "Who we are"} About us
+  /%li
+  /  %a.scroll.brand-2{:href => "#contact", :title => "Get in touch!"} Contact

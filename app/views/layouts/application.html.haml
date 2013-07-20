@@ -2,7 +2,7 @@
 %html{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title Repper - Data driven workouts
+    %title Repper - Workouts, designed for you.
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %meta{:content => "Twitter bootstrap theme", :name => "description"}/
     %meta{:content => "prettystrap", :name => "author"}/
@@ -54,31 +54,27 @@
         %h1.logo Repper
         #nav
           %ul.nav
-            - if current_user
-            - else
-              - if request.path == root_path
-                - clas = "active"
-              - else
-                - clas = ""
-              %li{:class => "#{clas}"}
-                = link_to "Home", root_path, :class => "scroll brand-1"
-              %li
-                = link_to "Log in", login_path, :class => "brand-3"
-              %li
-                = link_to "Sign up", waiver_path, :class => "brand-4"                
-              %li
-                %a.scroll.brand-4{:href => "#features", :title => "Check out our awesome services"} Features
-              %li
-                %a.scroll.brand-3{:href => "#assets", :title => "Themes assets"} Assets
-              %li
-                %a.scroll.fadeto.brand-4{:href => "#about", :title => "Who we are"} About us
-              %li
-                %a.scroll.brand-2{:href => "#contact", :title => "Get in touch!"} Contact
-              - if request.path == waiver_path
-                - clas = "active"
-              - else
-                - clas = ""
-              %li{:class => "#{clas}"}
-                %a.brand-4{:href => "waiver", :title => "External page sample"} Sample Page
+            = render "/layouts/nav"
 
     = yield
+    
+    / The footer, social media icons, and copyright
+    %footer.page.color-5
+      .inner-page.row-fluid
+        .span6.social
+          %a{:href => "#contact"}
+            %i.icon-twitter
+          %a{:href => "#contact"}
+            %i.icon-github-sign
+          %a{:href => "#contact"}
+            %i.icon-facebook-sign
+          %a{:href => "#contact"}
+            %i.icon-google-plus-sign
+        .span6.text-right.copyright
+          \&copy; 2013
+          %a{:href => "http://prettystrap.com", :title => "twitter bootstrap themes"} prettystrap.com
+          | all rights reserved | &nbsp;
+          %a.scroll{:href => "#top", :title => "Got to top"}
+            To top
+            %i.icon-caret-up
+    
