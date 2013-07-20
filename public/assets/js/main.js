@@ -1,13 +1,5 @@
 $(document).ready(function() {
 
-// Add spin.js to lazy load container
-
-$('.lazy-container').spin({ color: '#000'});
-
-
-
-
-
 // Responsive menu
 
 var navigation = responsiveNav("#nav", {
@@ -20,26 +12,6 @@ var navigation = responsiveNav("#nav", {
     $('#toggle').removeClass("btn-highlite");
   }
 });
-
-// Lazy loading. 
-$("img.lazy").lazyload({ 
-  // The image starts loading 200 px before it is in viewport
-   threshold : 200,
-   // Remove the line if you don`t need fade effect. 
-   effect : "fadeIn", 
-   // Change this for fade in speed
-    effectspeed: 600,
-   //  Hide spinner when loaded
-   load : function(elements_left, settings) {
- $(".lazy-container").has(this).addClass('loaded');
- $(".loaded .spinner").remove();
-// refresh bootstrap scrollspy, when image is loaded
- $('[data-spy="scroll"]').each(function () {
-  var $spy = $(this).scrollspy('refresh')
-});
-      }
-}); 
-
 
 // Lightbox
 
