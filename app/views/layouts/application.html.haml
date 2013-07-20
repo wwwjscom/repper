@@ -2,7 +2,7 @@
 %html{:lang => "en"}
   %head
     %meta{:charset => "utf-8"}/
-    %title Repper
+    %title Repper - Data driven workouts
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %meta{:content => "Twitter bootstrap theme", :name => "description"}/
     %meta{:content => "prettystrap", :name => "author"}/
@@ -51,19 +51,34 @@
     / Navigation
     %header.navbar.navbar-fixed-top
       .inner-page
-        %h1.logo The Story
+        %h1.logo Repper
         #nav
           %ul.nav
-            %li.active
-              %a.scroll.brand-1{:href => "#home", :title => "Home page"} Home
-            %li
-              %a.scroll.brand-4{:href => "#features", :title => "Check out our awesome services"} Features
-            %li
-              %a.scroll.brand-3{:href => "#assets", :title => "Themes assets"} Assets
-            %li
-              %a.scroll.fadeto.brand-4{:href => "#about", :title => "Who we are"} About us
-            %li
-              %a.scroll.brand-2{:href => "#contact", :title => "Get in touch!"} Contact
-            %li
-              %a.brand-4{:href => "sample-page.html", :title => "External page sample"} Sample Page
+            - if current_user
+            - else
+              - if request.path == root_path
+                - clas = "active"
+              - else
+                - clas = ""
+              %li{:class => "#{clas}"}
+                = link_to "Home", root_path, :class => "scroll brand-1"
+              %li
+                = link_to "Log in", login_path, :class => "brand-3"
+              %li
+                = link_to "Sign up", waiver_path, :class => "brand-4"                
+              %li
+                %a.scroll.brand-4{:href => "#features", :title => "Check out our awesome services"} Features
+              %li
+                %a.scroll.brand-3{:href => "#assets", :title => "Themes assets"} Assets
+              %li
+                %a.scroll.fadeto.brand-4{:href => "#about", :title => "Who we are"} About us
+              %li
+                %a.scroll.brand-2{:href => "#contact", :title => "Get in touch!"} Contact
+              - if request.path == waiver_path
+                - clas = "active"
+              - else
+                - clas = ""
+              %li{:class => "#{clas}"}
+                %a.brand-4{:href => "waiver", :title => "External page sample"} Sample Page
+
     = yield
