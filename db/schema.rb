@@ -100,11 +100,14 @@ ActiveRecord::Schema.define(:version => 20130718051830) do
   create_table "workout_units", :force => true do |t|
     t.integer  "workout_id"
     t.integer  "exercise_id"
+    t.integer  "max_reps_set_1",          :limit => 255
     t.integer  "weight_1"
+    t.integer  "max_reps_set_2",          :limit => 255
     t.integer  "weight_2"
+    t.integer  "max_reps_set_3",          :limit => 255
     t.integer  "weight_3"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
     t.string   "diff_1"
     t.string   "diff_2"
     t.string   "diff_3"
@@ -113,24 +116,21 @@ ActiveRecord::Schema.define(:version => 20130718051830) do
     t.integer  "actual_reps_set_3"
     t.integer  "user_id"
     t.integer  "target_volume"
-    t.boolean  "lower_bound_met_set_1",   :default => false
-    t.boolean  "maxed_out_set_1",         :default => false
-    t.boolean  "lower_bound_met_set_2",   :default => false
-    t.boolean  "maxed_out_set_2",         :default => false
-    t.boolean  "lower_bound_met_set_3",   :default => false
-    t.boolean  "maxed_out_set_3",         :default => false
+    t.boolean  "lower_bound_met_set_1",                  :default => false
+    t.boolean  "maxed_out_set_1",                        :default => false
+    t.boolean  "lower_bound_met_set_2",                  :default => false
+    t.boolean  "maxed_out_set_2",                        :default => false
+    t.boolean  "lower_bound_met_set_3",                  :default => false
+    t.boolean  "maxed_out_set_3",                        :default => false
     t.string   "recommendation"
-    t.integer  "progression_phase",       :default => 0
-    t.integer  "pass_counter",            :default => 0
-    t.integer  "hold_counter",            :default => 0
+    t.integer  "progression_phase",                      :default => 0
+    t.integer  "pass_counter",                           :default => 0
+    t.integer  "hold_counter",                           :default => 0
     t.integer  "min_reps_set_1"
     t.integer  "min_reps_set_2"
     t.integer  "min_reps_set_3"
-    t.integer  "max_reps_set_1"
-    t.integer  "max_reps_set_2"
-    t.integer  "max_reps_set_3"
-    t.boolean  "submitted",               :default => false
-    t.boolean  "eligible_for_evaluation", :default => false
+    t.boolean  "submitted",                              :default => false
+    t.boolean  "eligible_for_evaluation",                :default => false
   end
 
   create_table "workouts", :force => true do |t|
