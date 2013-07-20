@@ -22,8 +22,8 @@
       %a.scroll.brand-4{:href => "/#features"} Features
     %li
       %a.scroll.brand-2{:href => "/#price"} Price      
-  %li{:class => ((request.path == waiver_path) ? "active" : nil)}
-    = link_to "Sign up", waiver_path, :class => "brand-4"             
+  %li{:class => ((request.path == signup_path) ? "active" : nil)}
+    = link_to "Sign up", signup_path, :class => "brand-4"             
   %li{:class => ((request.path == login_path) ? "active" : nil)}
     = link_to "Log in", login_path, :class => "brand-2"
 

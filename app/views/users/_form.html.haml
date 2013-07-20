@@ -1,53 +1,27 @@
-= form_for @user, :html => { :class => 'form-horizontal' } do |f|
-  - if @user.errors.any?
-    .error_message
-      %h2 Form is invalid
-      %ul
-        - for message in @user.errors.full_messages
-          %li= message					
+#signup-form.page.color-2
+  = form_for @user, :html => { :class => 'form-horizontal' } do |f|
+    - if @user.errors.any?
+      .error_message
+        %h2 Form is invalid
+        %ul
+          - for message in @user.errors.full_messages
+            %li= message					
 
-  .control-group
-    = f.label :email, :class => 'control-label'
-    .controls
-      = f.email_field :email, :class => 'text_field'
+    .row-fluid.inner-page.contact
+      .offset3.span6
+        = f.email_field :email, :class => 'text_field', :placeholder => "your@email.com"
+        = f.password_field :password, { :placeholder => "password", :class => 'password_field' }
+        = f.password_field :password_confirmation, { :placeholder => "confirm password", :class => 'password_field' }
+        = f.number_field :age, { :class => 'number_field', :style => "width: 60px;", :placeholder => "age"}
+        %br/
+        = f.select(:sex, ["Sex", "Male", "Female"])
+        = f.select(:experience, [["Experience", -1],["Novice",1], ["Intermediate",2], ["Advanced",3]])
+        = f.select(:goal, ["Goal", "Strength Gain", "Muscle Gain"])
+        %hr/
+        %p Target Muscle Groups
+        = f.fields_for :user_muscle_groups do |builder|
+          - MuscleGroup.all.each do |g|
+            = builder.label g.id, g.name, :class => 'control-label'
+            = builder.check_box g.id, { :class => 'check_box', :checked =>@user.muscle_groups.include?(MuscleGroup.find(g.id)) }
 
-  .control-group
-    = f.label :password, :class => 'control-label'
-    .controls
-      = f.password_field :password, :class => 'password_field'
-
-  .control-group
-    = f.label :password_confirmation, :class => 'control-label'
-    .controls
-      = f.password_field :password_confirmation, :class => 'password_field'
-
-  .control-group
-    = f.label :age, :class => 'control-label'
-    .controls
-      = f.number_field :age, :class => 'number_field'
-			
-  .control-group
-    = f.label :sex, :class => 'control-label'
-    .controls
-      = f.select(:sex, ["Select One", "Male", "Female"])
-
-  .control-group
-    = f.label :experience, :class => 'control-label'
-    .controls
-      = f.select(:experience, [["Select One", -1],["Novice",1], ["Intermediate",2], ["Advanced",3]])
-
-  .control-group
-    = f.label :goal, "Primary goal", :class => 'control-label'
-    .controls
-      = f.select(:goal, ["Select One", "Strength Gain", "Muscle Gain"])
-
-  = f.fields_for :user_muscle_groups do |builder|
-    - MuscleGroup.all.each do |g|
-      .control-group
-        = builder.label g.id, g.name, :class => 'control-label'
-        .controls
-          = builder.check_box g.id, { :class => 'check_box', :checked =>@user.muscle_groups.include?(MuscleGroup.find(g.id)) }
-
-  .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
+        = f.submit "Done", :class => 'btn'
