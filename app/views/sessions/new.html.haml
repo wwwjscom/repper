@@ -15,19 +15,3 @@
         .offset3.span6
           = submit_tag "Log in", :class => 'btn'
         /%button.btn.btn-centered Log in
-    .span3
-
-
-/= form_tag sessions_path do
-/    .field
-/        = label_tag :email
-/        = email_field_tag :email, params[:email]
-/    .field
-/        = label_tag :password
-/        = password_field_tag :password
-/    .field
-/        = check_box_tag :remember_me, 1, params[:remember_me]
-/        = label_tag :remember_me
-/    .form-actions
-/        = submit_tag nil, :class => 'btn btn-primary'
-/        = link_to t('.cancel', :default => t("helpers.links.cancel")), root_path, :class => 'btn'
