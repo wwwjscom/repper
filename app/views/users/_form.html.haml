@@ -1,5 +1,5 @@
 #signup-form.page.color-2
-  = form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  = form_for @user do |f|
     - if @user.errors.any?
       .error_message
         %h2 Form is invalid
@@ -12,16 +12,20 @@
         = f.email_field :email, :class => 'text_field', :placeholder => "your@email.com"
         = f.password_field :password, { :placeholder => "password", :class => 'password_field' }
         = f.password_field :password_confirmation, { :placeholder => "confirm password", :class => 'password_field' }
-        = f.number_field :age, { :class => 'number_field', :style => "width: 60px;", :placeholder => "age"}
+        = f.text_field :age, { :pattern => "[0-9]*", :class => 'number_field', :style => "width: 60px;", :placeholder => "age"}
         %br/
         = f.select(:sex, ["Sex", "Male", "Female"])
+        %br/
         = f.select(:experience, [["Experience", -1],["Novice",1], ["Intermediate",2], ["Advanced",3]])
+        %br/
         = f.select(:goal, ["Goal", "Strength Gain", "Muscle Gain"])
         %hr/
-        %p Target Muscle Groups
+        %p What muscle groups do you want to focus on?
         = f.fields_for :user_muscle_groups do |builder|
-          - MuscleGroup.all.each do |g|
-            = builder.label g.id, g.name, :class => 'control-label'
-            = builder.check_box g.id, { :class => 'check_box', :checked =>@user.muscle_groups.include?(MuscleGroup.find(g.id)) }
+          .muscle_groups
+            - MuscleGroup.all.each do |g|
+              = builder.label g.id, g.name.titleize, { :class => "checkbox_label" }
+              = builder.check_box g.id, { :checked =>@user.muscle_groups.include?(MuscleGroup.find(g.id)), :class => 'checkbox' }
+              .row
 
         = f.submit "Done", :class => 'btn'
