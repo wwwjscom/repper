@@ -27,5 +27,7 @@
               = builder.label g.id, g.name.titleize, { :class => "checkbox_label" }
               = builder.check_box g.id, { :checked =>@user.muscle_groups.include?(MuscleGroup.find(g.id)), :class => 'checkbox' }
               .row
-
-        = f.submit "Done", :class => 'btn'
+        %hr/
+        %p By proceeding you acknowledge and accept the risks both stated above, and those implicitly associated with exercising.  Repper is not responsible for accidents that occur.  Please, always be safe.
+        = f.submit "Register", :class => 'btn'
+  .row
