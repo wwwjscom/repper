@@ -9,6 +9,8 @@
     %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:300,400,600", :rel => "stylesheet", :type => "text/css"}/
     / Le styles
     %link{:href => "/assets/application.css", :rel => "stylesheet"}/
+    /%script{:src => "/assets/application.js", :rel => "javascript"}
+
     / Le HTML5 shim, for IE6-8 support of HTML5 elements
     /[if lt IE 9]
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
@@ -23,15 +25,17 @@
     /
       Has to be in head, to lazy load images.
       Minimize in production.
-    %script{:src => "/assets/js/jRespond.js"}
-    %script{:src => "/assets/js/bootstrap.min.js"}
-    %script{:src => "/assets/js/lightbox.min.js"}
-    %script{:src => "/assets/js/bootstrap.min.js"}
-    %script{:src => "/assets/js/responsive-nav.js"}
+    %script{:src => "/js/lazyload.js"}
+    %script{:src => "/js/jRespond.js"}
+    %script{:src => "/js/spin.js"}
+    %script{:src => "/js/bootstrap.min.js"}
+    %script{:src => "/js/lightbox.min.js"}
+    %script{:src => "/js/bootstrap.min.js"}
+    %script{:src => "/js/responsive-nav.js"}
     / Main js fail.
-    %script{:src => "/assets/js/main.js"}
+    %script{:src => "/js/main.js"}
     / History just for index page
-    %script{:src => "/assets/js/jquery.history.js"}
+    %script{:src => "/js/jquery.history.js"}
     :javascript
       // History, and back button
       
