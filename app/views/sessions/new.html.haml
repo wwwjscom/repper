@@ -10,8 +10,8 @@
         %br/
         = password_field_tag :password, nil, :placeholder => "Password"
         %br/
-        = label_tag :remember_me
-        = check_box_tag :remember_me, 1, params[:remember_me]
+        = label_tag :remember_me, nil, :style => "float: left; width: 140px;"
+        = check_box_tag :remember_me, 1, params[:remember_me], :style => "float: left; width: 50%;"
         %br/
         .offset3.span6
           = submit_tag "Log in", :class => 'btn'
