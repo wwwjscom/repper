@@ -46,7 +46,7 @@
             });
           });
   / activate scrollspy
-  %body#top{:style => "background-color: #000000;", "data-offset" => "50", "data-spy" => "scroll", "data-target" => ".navbar"}
+  %body#top{"data-offset" => "50", "data-spy" => "scroll", "data-target" => ".navbar"}
     = render :partial => "/layouts/google_analytics"
     / Nav button
     %a#toggle.closed

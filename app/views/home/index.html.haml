@@ -11,57 +11,92 @@
           %i.icon-ok
           Simple workouts
         %li
+          %i.icon-calendar
+          Track progress
+        %li
           %i.icon-tablet
-          Mobile
+          Mobile friendly
         %li
-          %i.icon-cloud
-          Cloud storage
-        %li
-          %i.icon-cog
-          Data driven
+          %i.icon-road
+          Motivating
       %br/
-      %a.scroll.btn.btn-centered{:href => "#features", :title => "Check out more freatures!"}
+      %a.scroll.btn.btn-centered{:href => "#desc", :title => "Check out more freatures!"}
         %i.icon-caret-down
         Scroll Down
 / Sign up
-/.sign-up.color-2.visible-desktop
-/  .row-fluid.inner-page
-/    .span12
-/      %h4.pull-left 
-/        Try it out free for 14 days. 
-/        %strong No credit card  
-/        or commitment.
-/      %a.scroll.btn.pull-right{:href => "#features", :title => "Check out more freatures!"}
-/        %i.icon-caret-down
-/        Scroll down
-        
+#about.sign-up.color-4.visible-desktop
+  .row-fluid.inner-page
+    .span12
+      %h2.page-headline Slim down or bulk up with Repper
+      /%a.scroll.btn.pull-right{:href => "#features", :title => "Check out more freatures!"}
+      /  %i.icon-caret-down
+      /  Scroll down
+      %br/
+      .row
+      .offset1.span5
+        %p.lead 
+          The beginning
+        %p Head to your gym and do your first workout.  Repper provides exercises and you report how well you did.
+      .offset0.span6
+        %img.img-polaroid{:src => "assets/design/1rm.png"}/
+      .row
+      %br/
+      %br/
+      .offset1.span5
+        %p.lead The journey
+        %p Now Repper gives customized workouts: weight, reps, and rest.  Finish a workout and tell Repper how you did.
+      .offset0.span6
+        %img.img-polaroid{:src => "assets/design/workouts.png"}/
+      .row
+      %br/
+      %br/
+      .offset1.span5
+        %p.lead The transformation
+        %p Repper learns to create perfect workouts for you,  and gives you immediate feedback  showing your strength and health over time!
+      .offset0.span6
+        %img.img-polaroid{:src => "assets/design/chart.png"}/
+
+.clients.color-1
+  .inner-page
+    %h2.page-headline Who's using Repper
+  .inner-page.row-fluid
+    %ul.clients.list-inline
+      %li
+        %i.icon-heart &nbsp;Parents
+      %li
+        %i.icon-star &nbsp;Athletes
+      %li
+        %i.icon-book &nbsp;Students
+      %li
+        %i.icon-briefcase &nbsp;Employees
+            
 / Features
 #features.page.color-3
   .inner-page
-    %h2.page-headline Take the guesswork out of exercising
+    %h2.page-headline Take the guessing out of exercising
   .inner-page.row-fluid
     %ul.features.list-inline
       %li
         %h3
-          %i.icon-heart
+          %i.icon-user
           Personalized
-        %p Repper is personalized to maxmize your workout.  The more you workout, the more accurate and effective it becomes.
+        %p Repper is personalized to maxmize your workout.  The more you workout, the more accurate and effective he becomes.
+      %li
+        %h3
+          %i.icon-tasks
+          Detailed
+        %p Repper tells you exactly what to do, removing all the guesswork from going to the gym.
       %li
         %h3
           %i.icon-ok
           For everyone
         %p Whether you want to tone up or bulk up, Repper understands and designs the perfect workout.
-      %li
-        %h3
-          %i.icon-tablet
-          For every device.
-        %p Repper is compatible with any Internet enabled phone, tablet, or computer.  Use it anywhere, anytime.
   .row-fluid.inner-page
     .span6
-      %img.figurette{:alt => "Zombie ipsum", :src => "assets/design/ball.png"}/
+      %img.figurette{:class => "img-polaroid", :src => "assets/design/ball.png"}/
     .span6
-      %h3 Why we're different
-      %p.lead Other apps only give you generic workouts. Repper is 100% personalized, meaning we:
+      %h3 Why Repper's different
+      %p.lead Other apps only give you generic workouts. Repper is 100% personalized, meaning he'll:
       %ul.list-wide
         %li
           %i.icon-check
@@ -74,18 +109,17 @@
           Adjust workouts as you get stronger
         %li
           %i.icon-check
-          Don't let your muscles catch on
+          Wont let your muscles catch on
 / /Features
+
 / Assets page
-#price.page.color-3
-  %hr/
+#price.page.color-4
   .inner-page
     %h2.page-headline One simple price, no contract
   / Vectors
   .row-fluid.inner-page
     .span6
-      /%h3 $7.99 per month
-      %p.lead For $7.99 a month, you'll get
+      %p.lead For $7.99 a month, Repper will be your friend.  And friendship with him has its perks:
       %ul
         %li
           %i.icon-play &nbsp; Unlimited workouts
@@ -98,15 +132,52 @@
         %li
           %i.icon-play &nbsp; Access from anywhere
         %li
-          %li.icon-play &nbsp; We'll treat you like a customer, not a Stormtrooper
-      %p 
-        Cancel anymore, no penalty or contracts.  
-
+          %li.icon-play &nbsp; Helping Repper defeat the evil Stormtrooper army
+    .span6
+      %img.figurette{:alt => "Original vectors", :src => "assets/design/laptop-legos.png"}/
+    .row
+    .span7
       %a.scroll.btn.btn-centered{:href => "/signup"}
         %i.icon-plus
         Ready?
+      %br/
+      %p.center
+        Cancel anymore, no penalty, no contracts.
+
+
+/ How it works
+#details.page.color-1
+  .inner-page
+    %h2.page-headline So how does it work
+    %h3.center It's quite detailed, but here's a summary
+  / Vectors
+  .row-fluid.inner-page
     .span6
-      %img.figurette{:alt => "Original vectors", :src => "assets/design/laptop-legos.png"}/
+      %p.lead 
+        %i.icon-search &nbsp;It's all in the details
+      %p Tell Repper some basic details so he can do some complicated math and give you a basic workouts he believes you can do.
+      %p Repper continues to monitor your performance, providing more customized, accurate, and difficult workouts the more you use it.
+      %p.lead 
+        %i.icon-eye-open &nbsp;Be a mad scientist
+      %p Repper loves test tubes and is always experimenting.  He divides the population and test his theories, evaluating which works.  Repper always wondered
+      %ul
+        %li 
+          %i.icon-minus &nbsp; Should you do 8 reps or 12?  
+        %li 
+          %i.icon-minus &nbsp; Should you rest for one minute or two?  
+        %li 
+          %i.icon-minus &nbsp; If you want to lose weight, should you bench press?
+      %p Repper continually experiments, and then deploys the answers to everyone.
+    .span6
+      %img.img-polaroid{:src => "assets/design/whiteboard.png", :style => "display: inline;"}/
+    .row
+    .span8
+      %p.lead 
+        %i.icon-thumbs-up &nbsp;You're a superhero
+        
+      %p The more you workout with Repper, the smarter he becomes.  So really when you workout, you're helping strangers.  That makes you a super hero!
+      
+
   / /vectors
   %hr/
   / Big laptop

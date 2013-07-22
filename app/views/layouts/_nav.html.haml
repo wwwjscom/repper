@@ -8,20 +8,28 @@
   / not logged in and on homepage
   - if request.path == root_path
     %li.active
-      %a.scroll.brand-1{:href => "#home", :title => "Check out our awesome services"} Home
+      %a.scroll.brand-1{:href => "#home"} Home
     %li
-      %a.scroll.brand-4{:href => "#features", :title => "Check out our awesome services"} Features
+      %a.scroll.brand-4{:href => "#about"} About
     %li
-      %a.scroll.brand-4{:href => "#price", :title => "Price"} Price
+      %a.scroll.brand-3{:href => "#features"} Features
     %li
+      %a.scroll.brand-4{:href => "#price"} Price
+    %li
+      %a.scroll.brand-1{:href => "#details"} Details
   - else
     / not logged in and not on homepage
     %li
       = link_to "Home", root_path, :class => "brand-1"
     %li
+      %a.scroll.brand-4{:href => "/#about"} About
+    %li
       %a.scroll.brand-4{:href => "/#features"} Features
     %li
       %a.scroll.brand-2{:href => "/#price"} Price      
+    %li
+      %a.scroll.brand-1{:href => "/#details"} Details
+
   %li{:class => ((request.path == signup_path) ? "active" : nil)}
     = link_to "Sign up", signup_path, :class => "brand-4"             
   %li{:class => ((request.path == login_path) ? "active" : nil)}
