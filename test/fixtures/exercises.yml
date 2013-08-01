@@ -1,3 +1,222 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one: {}
+
+row_machine:
+    id: 22
+    name: row machine
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.796954000 Z
+    updated_at: 2013-07-18 04:44:08.040237000 Z
+    muscle_group_id: 1
+    weight_interval: 10
+
+v-bar_push_down:
+    id: 23
+    name: v-bar push down
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.805192000 Z
+    updated_at: 2013-07-18 04:44:08.048151000 Z
+    muscle_group_id: 5
+    weight_interval: 5
+
+over_head_pull_down:
+    id: 24
+    name: over head pull down
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.806953000 Z
+    updated_at: 2013-07-18 04:44:08.049653000 Z
+    muscle_group_id: 1
+    weight_interval: 10
+
+rope_push_down:
+    id: 25
+    name: rope push down
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.808571000 Z
+    updated_at: 2013-07-18 04:44:08.050871000 Z
+    muscle_group_id: 5
+    weight_interval: 5
+
+two_arm_seated_dumbbell_extension:
+    id: 26
+    name: two arm seated dumbbell extension
+    machine: false
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.810187000 Z
+    updated_at: 2013-07-18 04:44:08.052109000 Z
+    muscle_group_id: 5
+    weight_interval: 5
+
+dumbell_shoulder_press:
+    id: 27
+    name: dumbbell shoulder press
+    machine: false
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.811860000 Z
+    updated_at: 2013-07-18 04:44:08.053332000 Z
+    muscle_group_id: 3
+    weight_interval: 10
+
+dumbbell_curls:
+    id: 28
+    name: dumbbell curls
+    machine: false
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.813483000 Z
+    updated_at: 2013-07-18 04:44:08.054525000 Z
+    muscle_group_id: 4
+    weight_interval: 10
+
+reverse_crunch_w_weight:
+    id: 29
+    name: reverse crunch w/weight
+    machine: false
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.815116000 Z
+    updated_at: 2013-07-18 04:44:08.055715000 Z
+    muscle_group_id: 7
+    weight_interval: 5
+
+pector_pulldown:
+    id: 30
+    name: pector pulldown
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.816750000 Z
+    updated_at: 2013-07-18 04:44:08.056926000 Z
+    muscle_group_id: 4
+    weight_interval: 10
+
+bench_knee_arm_lifts:
+    id: 31
+    name: bench knee arm lifts
+    machine: false
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.818373000 Z
+    updated_at: 2013-07-18 04:44:08.058732000 Z
+    muscle_group_id: 1
+    weight_interval: 10
+
+straight_bar_curl:
+    id: 33
+    name: straight bar curl
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.821638000 Z
+    updated_at: 2013-07-18 04:44:08.060699000 Z
+    muscle_group_id: 4
+    weight_interval: 10
+
+standing_dumbell_upright_row:
+    id: 34
+    name: standing dumbbell upright row
+    machine: false
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.823248000 Z
+    updated_at: 2013-07-18 04:44:08.062806000 Z
+    muscle_group_id: 3
+    weight_interval: 10
+
+incline_bench:
+    id: 35
+    name: incline bench
+    machine: false
+    weights_required: true
+    weight_adjustment: 0.55
+    created_at: 2013-07-18 04:00:57.824836000 Z
+    updated_at: 2013-07-18 04:29:00.707977000 Z
+    muscle_group_id: 2
+    weight_interval: 10
+
+dumbbell_shoulder_shrugs:
+    id: 36
+    name: dumbbell shoulder shrugs
+    machine: false
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.826421000 Z
+    updated_at: 2013-07-18 04:44:08.065104000 Z
+    muscle_group_id: 3
+    weight_interval: 10
+
+sitting_bench_machine:
+    id: 37
+    name: sitting bench machine
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.828011000 Z
+    updated_at: 2013-07-18 04:44:08.067158000 Z
+    muscle_group_id: 2
+    weight_interval: 10
+
+standing_pully_straight_arm_lift:
+    id: 38
+    name: standing pully straight arm lift
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.829634000 Z
+    updated_at: 2013-07-18 04:44:08.068864000 Z
+    muscle_group_id: 3
+    weight_interval: 10
+
+heurclies:
+    id: 39
+    name: heurclies
+    machine: true
+    weights_required: true
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.831272000 Z
+    updated_at: 2013-07-18 04:44:08.070274000 Z
+    muscle_group_id: 2
+    weight_interval: 10
+
+90_deg_crunch:
+    id: 40
+    name: 90 deg crunch
+    machine: false
+    weights_required: false
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.832892000 Z
+    updated_at: 2013-07-18 04:29:00.699584000 Z
+    muscle_group_id: 8
+    weight_interval: 
+
+crunch:
+    id: 41
+    name: crunch
+    machine: false
+    weights_required: false
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.834517000 Z
+    updated_at: 2013-07-18 04:29:00.700321000 Z
+    muscle_group_id: 8
+    weight_interval: 
+
+reverse_crunch:
+    id: 42
+    name: reverse crunch
+    machine: false
+    weights_required: false
+    weight_adjustment: 1.0
+    created_at: 2013-07-18 04:00:57.836102000 Z
+    updated_at: 2013-07-18 04:29:00.701053000 Z
+    muscle_group_id: 8
+    weight_interval: 
