@@ -1,3 +1,48 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+  # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+back:
+  id: 1
+  name: back
+  created_at: 2013-07-18 04:00:52.558778000 Z
+  updated_at: 2013-07-18 04:00:52.558778000 Z
 
-one: {}
+chest:
+  id: 2
+  name: chest
+  created_at: 2013-07-18 04:00:52.561359000 Z
+  updated_at: 2013-07-18 04:00:52.561359000 Z
+
+shoulder:
+  id: 3
+  name: shoulder
+  created_at: 2013-07-18 04:00:52.562346000 Z
+  updated_at: 2013-07-18 04:00:52.562346000 Z
+
+bicep:
+  id: 4
+  name: bicep
+  created_at: 2013-07-18 04:00:52.563201000 Z
+  updated_at: 2013-07-18 04:00:52.563201000 Z
+
+tricep:
+  id: 5
+  name: tricep
+  created_at: 2013-07-18 04:00:52.564049000 Z
+  updated_at: 2013-07-18 04:00:52.564049000 Z
+
+leg:
+  id: 6
+  name: legs
+  created_at: 2013-07-18 04:00:52.564892000 Z
+  updated_at: 2013-07-18 04:00:52.564892000 Z
+
+lower_back:
+  id: 7
+  name: lower back
+  created_at: 2013-07-18 04:00:52.565737000 Z
+  updated_at: 2013-07-18 04:00:52.565737000 Z
+
+ab:
+  id: 8
+  name: abs
+  created_at: 2013-07-18 04:00:52.566576000 Z
+  updated_at: 2013-07-18 04:00:52.566576000 Z

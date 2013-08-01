@@ -1,0 +1,29 @@
+one: 
+  id: 1
+  muscle_group_id: 2
+  user_id: 1
+  phase_attempt_counter: 1
+  
+two:
+  id: 2
+  muscle_group_id: 3
+  user_id: 1
+  phase_attempt_counter: 1
+
+three:
+  id: 3
+  muscle_group_id: 4
+  user_id: 1
+  phase_attempt_counter: 1
+
+four:
+  id: 4
+  muscle_group_id: 5
+  user_id: 1
+  phase_attempt_counter: 1
+
+five:
+  id: 5
+  muscle_group_id: 6
+  user_id: 1
+  phase_attempt_counter: 1
