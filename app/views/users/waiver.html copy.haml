@@ -1,0 +1,184 @@
+/ Page
+#waiver.page.color-4
+  /#sample-page.page.color-4
+  .inner-page
+    %h2.page-headline Example of external page
+  .row-fluid.inner-page
+    .span7.lazy-container.btn-container
+      %img.figurette.lazy{"data-original" => " assets/img/laptop@2x.png", :src => "assets/img/pixel.png"}/
+      %a.lightbox.btn-play{:href => "assets/img/spiderman.jpg", :target => "_blank"}
+        %i.icon-zoom-in
+    .span5
+      %h3 No need to stick with one page, create as many as you need
+      %p * Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Zonbi tattered for solum oculi eorum defunctis go lum cereb. Zonbi tattered for solum oculi eorum defunctis go lum cereb
+      %a.btn.btn-centered{:href => "#", :title => "Check out more features"}
+        %i.icon-github
+        View on GitHub
+  %hr/
+  .row-fluid.inner-page
+    .offset1.span10
+      %h2.page-headline All modern browsers supported
+      %p
+        %img.centered{:alt => "Browsers supported", :src => "assets/img/browser-logos@2x.png", :title => "All browsers supported"}/
+  %hr/
+  / Tabs
+  .row-fluid.inner-page
+    .span6
+      %h4 Summus brains sit​​, morbo.
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#tab1"}
+            %i.icon-tablet
+            Tablet
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab2"}
+            %i.icon-mobile-phone
+            Mobile
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab3"}
+            %i.icon-desktop
+            Desktop
+        %li
+          %a{"data-toggle" => "tab", :href => "#tab4"}
+            %i.icon-phone
+            Phone
+      .tab-content
+        #tab1.tab-pane.fade.active.in
+          %h4 #1 Zombie ipsum tab
+          %p Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero.
+        #tab2.tab-pane.fade
+          %h4 #2 Tab ipsum zombie
+          %p Hi mindless mortuis soulless creaturas, imo evil stalking monstra adventus resi dentevil vultus comedat cerebella viventium. Qui animated corpse, cricket bat max brucks terribilem incessu zomby.
+        #tab3.tab-pane.fade
+          %h4 #3 Ipsum zombie tab
+          %p The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror.
+        #tab4.tab-pane.fade
+          %h4 #4 Ipsum zombie tab
+          %p The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror.
+    .span6.lazy-container
+      %img.figurette.lazy{:alt => "an image", "data-original" => "assets/img/desktop.png", :src => "assets/img/pixel.png"}/
+  %hr/
+  / Typography
+  .row-fluid.inner-page
+    .span6
+      %h1 h1. This is heading
+      %h2 h2. This is heading
+      %h3 h3. This is heading
+      %h4 h4. This is heading
+      %h5 h5. This is heading
+      %h6 h6. This is heading
+    .span6
+      / Accordions
+      #accordion.accordion
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOne"}
+              \#1 zombie impsum accordion
+              %i.icon-plus
+          #collapseOne.accordion-body.collapse.in
+            .accordion-inner
+              %h4 Zombie ipsum reversus inferno
+              %p The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseTwo"}
+              \#2 zombie impsum accordion
+              %i.icon-plus
+          #collapseTwo.accordion-body.collapse
+            .accordion-inner
+              %h4 Headline ipsum zombie
+              %p The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseThree"}
+              \#3 zombie impsum accordion
+              %i.icon-plus
+          #collapseThree.accordion-body.collapse
+            .accordion-inner
+              %h4 Headline ipsum zombie
+              %p The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead
+        .accordion-group
+          .accordion-heading
+            %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseFour"}
+              \#4 zombie impsum accordion
+              %i.icon-plus
+          #collapseFour.accordion-body.collapse
+            .accordion-inner
+              %h4 Headline ipsum zombie
+              %p The voodoo sacerdos flesh eater, suscitat mortuos comedere carnem virus. Zonbi tattered for solum oculi eorum defunctis go lum cerebro. Nescio brains an Undead zombies. Sicut malus putrid voodoo horror. Nigh tofth eliv ingdead
+      / /Accordion
+    %hr/
+    / Video
+    .row-fluid.inner-page
+      .offset1.span10
+        %h2.page-headline Buck the bunny
+        .btn-container.figurette
+          %img{:alt => "Play video", :src => "assets/img/video@2x.png"}/
+          %a.iframe.btn-play{:href => "http://www.youtube.com/embed/YE7VzlLtp-4", :target => "_blank"}
+            %i.icon-play
+/ /sample page
+/ Newsletter
+.newsletter.color-1
+  .inner-page.row-fluid
+    .span4
+      %h4
+        %strong> Be cool
+        , subscribe to get our latest news
+    .span6
+      %input.subscribe{:name => "EMAIL", :placeholder => "your@e-mail.com", :type => "email"}/
+    .span2
+      %button.btn.pull-right.subscribe{:type => "submit"} Subscribe
+/ The footer, social media icons, and copyright
+%footer.page.color-5
+  .inner-page.row-fluid
+    .span6.social
+      %a{:href => "#contact"}
+        %i.icon-twitter
+      %a{:href => "#contact"}
+        %i.icon-github-sign
+      %a{:href => "#contact"}
+        %i.icon-facebook-sign
+      %a{:href => "#contact"}
+        %i.icon-google-plus-sign
+    .span6.text-right.copyright
+      \&copy; 2013
+      %a{:href => "http://prettystrap.com", :title => "twitter bootstrap themes"} prettystrap.com
+      | all rights reserved |
+      %a.scroll{:href => "#top", :title => "Got to top"}
+        To top
+        %i.icon-caret-up
+
+
+
+%h1 Before we get started...
+
+%p.lead There's a few things you should know.
+
+.span4
+  %p.lead Repper is young!
+  %p Repper is in an early stage.  While we grow, the application may be unavailable or you may lose data.
+
+  %p 
+    We also don't make any guarantees as far as security goes.  We advise you to 
+    %strong use a password not used on other websites.
+    
+  %p These are all things that will be fixed as Repper ages.
+
+.span2
+.span4
+  %p.lead Provide lots of feedback
+  %p Tell us everything!  Does the weight feel right?  Does a machine not exist at your gym?  Do you wish we had an exercise?  Drop us a line, we want to hear it!
+  
+.row
+.span4
+  %p.lead We aren't your M.D.
+  %p We are not doctors.  You should always consult your health professional if you have any health concerns, and prior to using Repper.
+
+.span2
+.span4
+  %p.lead Be safe
+  %p If you feel any pain while workout out, stop immediately.  It is possible our algorithm estimated your weight wrong.  Or perhaps you are doing the lift with poor form.  Either way, just stop, and let us know.
+.row
+
+.jumbotron
+  =link_to "I understand.  Let's lift!", signup_path, :class => "btn btn-large btn-success"

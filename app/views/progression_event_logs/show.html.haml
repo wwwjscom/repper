@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Workout unit:
+  = @progression_event_log.workout_unit_id
+%p
+  %b Progression outcome:
+  = @progression_event_log.progression_outcome
+%p
+  %b New 1rm:
+  = @progression_event_log.new_1RM
+%p
+  %b User:
+  = @progression_event_log.user_id
+%p
+  %b Exercise:
+  = @progression_event_log.exercise_id
+
+= link_to 'Edit', edit_progression_event_log_path(@progression_event_log)
+\|
+= link_to 'Back', progression_event_logs_path

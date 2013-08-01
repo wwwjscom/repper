@@ -1,57 +1,75 @@
-!!! 5
-%html(lang="en")
+!!!
+%html{:lang => "en"}
   %head
-    %meta(charset="utf-8")
-    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
-    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title= content_for?(:title) ? yield(:title) : "Repper"
-    = csrf_meta_tags
-    / Le HTML5 shim, for IE6-8 support of HTML elements
+    %meta{:charset => "utf-8"}/
+    %title Repper - Workouts, designed for you.
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "Twitter bootstrap theme", :name => "description"}/
+    %meta{:content => "prettystrap", :name => "author"}/
+    %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans:300,400,600", :rel => "stylesheet", :type => "text/css"}/
+    / Le styles
+    %link{:href => "/assets/application.css", :rel => "stylesheet"}/
+    /%script{:src => "/assets/application.js", :rel => "javascript"}
+
+    / Le HTML5 shim, for IE6-8 support of HTML5 elements
     /[if lt IE 9]
-      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
-    = stylesheet_link_tag "application", :media => "all"
-    %link(href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
-    %link(href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
-    %link(href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
-    %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
-    %link(href="new_favicon.ico" rel="shortcut icon")
-
-
-  %body
-    = render :partial => "/layouts/google_analytics"
-  
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand(href=root_path)
-            /=image_tag("small-logo.png")
-          %a.brand(href=root_path) Repper
-          .container.nav-collapse
-            %ul.nav
-              - if current_user
-                %li= link_to "Workouts", workouts_path
-                %li= link_to "Evaluations", evaluations_path
-                %li= link_to "Account", user_path(current_user)
-                %li= link_to "Log out", logout_path
-              - else
-                %li= link_to "Log in", login_path
-                %li= link_to "Become a beta tester", waiver_path
-
-    .container
-
-      .row
-        .span12
-          = bootstrap_flash
-          = yield
-    
-      %footer
-        %p &copy; Repper, LLC. 2013
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+      </script>
+    / Le fav
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+    %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
+    :javascript
+      if (typeof jQuery == 'undefined') {
+        document.write(unescape("%3Cscript src='assets/js/jquery-1.9.1.min.js' type='text/javascript'%3E%3C/script%3E"));
+      }
     /
-      Javascripts
-      \==================================================
-    / Placed at the end of the document so the pages load faster
-    = javascript_include_tag "application"
+      Has to be in head, to lazy load images.
+      Minimize in production.
+    %script{:src => "/js/lazyload.js"}
+    %script{:src => "/js/jRespond.js"}
+    %script{:src => "/js/spin.js"}
+    %script{:src => "/js/bootstrap.min.js"}
+    %script{:src => "/js/lightbox.min.js"}
+    %script{:src => "/js/bootstrap.min.js"}
+    %script{:src => "/js/responsive-nav.js"}
+    / Main js fail.
+    %script{:src => "/js/main.js"}
+    / History just for index page
+    %script{:src => "/js/jquery.history.js"}
+    :javascript
+      // History, and back button
+      
+          $(function() {
+          jQuery.history.listen()
+            $('#nav .nav .scroll').click(function() {
+            $.history.push('index.html' + $(this).attr('href')); 
+            });
+          });
+  / activate scrollspy
+  %body#top{"data-offset" => "50", "data-spy" => "scroll", "data-target" => ".navbar"}
+    = render :partial => "/layouts/google_analytics"
+    / Nav button
+    %a#toggle.closed
+      %i.icon-reorder
+    / Navigation
+    %header.navbar.navbar-fixed-top
+      .inner-page
+        %h1.logo 
+          Repper 
+          %h1.logo.beta (beta)
+        #nav
+          %ul.nav
+            = render "/layouts/nav"
+    .color-1
+      = bootstrap_flash
+    = yield
+    
+    / The footer, social media icons, and copyright
+    %footer.page.color-5
+      .inner-page.row-fluid
+        .span6.social
+          %a{:href => "http://twitter.com/repperapp"}
+            %i.icon-twitter
+        .span6.text-left.copyright
+          \&copy; 2013
+          repper.com

@@ -35,7 +35,7 @@ class Evaluation < ActiveRecord::Base
     when :abs then calc_one_rep_max(crunch_reps, 10) * rep_percent # FIXME: How do we calc this?
     when :shoulder then calc_one_rep_max(shoulder_reps, shoulder_weight) * rep_percent
     when :back then calc_one_rep_max(back_reps, back_weight) * rep_percent
-    when :lower_back then calc_one_rep_max(lower_back_reps, lower_back_weight) * rep_percent
+    when :"lower back" then calc_one_rep_max(lower_back_reps, lower_back_weight) * rep_percent
     end
   end
 end

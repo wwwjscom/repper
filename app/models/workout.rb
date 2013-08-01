@@ -1,5 +1,5 @@
 class Workout < ActiveRecord::Base
-  attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :perodize_phase, :workout_unit_abs_attributes, :mg1_phase_attempt_counter, :mg2_phase_attempt_counter, :mg1_perodize_phase, :mg2_perodize_phase
+  attr_accessible :user_id, :muscle_group_1_id, :muscle_group_2_id, :workout_units_attributes, :workout_unit_abs_attributes, :mg1_phase_attempt_counter, :mg2_phase_attempt_counter, :submitted
   has_many :workout_units, :dependent    => :delete_all
   has_many :workout_unit_abs, :dependent => :destroy
   accepts_nested_attributes_for :workout_units
@@ -47,77 +47,21 @@ class Workout < ActiveRecord::Base
     _muscle_groups.each do |mg|
       target_groups << {:muscle_group => mg}
     end
-    
+        
     logger.debug "tg: #{target_groups.inspect}"
     
-    # Next we need to get the exercises for that area, and 
-    # the users expereince level
-    
-    # Make sure we never select an exercise that's too hard
-    # or too easy for the user
-    skill_level_range = case user.experience
-                          when 0 then 1
-                          when 1 then 1
-                          when 2 then 1..2
-                          when 3 then 2..3          
-                        end
-                        
+    # Next we need to get the exercises for that area
     target_groups.each do |tg|
-      tg[:exercises] = get_exercises_for_target_group(tg[:muscle_group].id, skill_level_range)
+      tg[:exercises] = get_exercises_for_target_group(tg[:muscle_group].id)
     end
     logger.debug "tg: #{target_groups.inspect}"
     
     
     # Next we determine the weight, reps, sets, rest and velocity.  
-    # This depends on the users exp, goal, exercise, 
+    # This depends on the users goal, exercise, 
+    workout_units = []
     target_groups.each do |tg|
-      # Grab the last perodize phase for this muscle group
-      tg[:last_perodize_phase] = user.muscle_groups_users.where(:muscle_group_id => tg[:muscle_group].id).limit(1).first.perodize_phase
-      tg[:next_perodize_phase] = tg[:last_perodize_phase]
-      
-      # Grab the last workout where this user worked this muscle group
-      workout = user.workouts.where("muscle_group_1_id = ? OR muscle_group_2_id = ?", tg[:muscle_group].id, tg[:muscle_group].id).order("id DESC").limit(1).first
-      # Was the workout goal achieved for this muscle group?
-      if !workout.blank? && workout.goal_achieved?(tg[:muscle_group].id)
-          tg[:next_perodize_phase] += 1
-          
-          if tg[:next_perodize_phase] > Perodization::MAX_PHASE
-            # FIXME: This user needs to graduate to a large weight
-            # since they finished a perodization cycle.  Add that logic!!!
-            # For now, just set them back to phase 1 with no weight increase
-            tg[:next_perodize_phase] = 1
-          end
-          
-          # FIXME: Known bug: If the user generates a workout, then deletes it immediately
-          # and generates another workout with that same muscle group, their perodize phase
-          # will keep incrementing, so long as their last workout for that muscle group had
-          # goals that were achieved.  i.e. the user could keep progressing without ever
-          # doing any work...
-          #
-          # This line is to increment the perodize phase if the previous workout for this
-          # muscle group was successful
-          MuscleGroupsUser.find(user.muscle_groups_users.where(:muscle_group_id => tg[:muscle_group].id).limit(1).first.id).update_attribute(:perodize_phase, tg[:next_perodize_phase])
-          
-          # Since the goal was achieved reset the phase attempt counter to 1
-          user.muscle_groups_users.find_by_muscle_group_id(tg[:muscle_group].id).update_attribute(:phase_attempt_counter, 1)
-          
-        elsif !workout.blank? && !workout.goal_achieved?(tg[:muscle_group].id)
-          # If the workout goal was not achieved, incrememnt the phase attempt counter
-          user.muscle_groups_users.find_by_muscle_group_id(tg[:muscle_group].id).increment!(:phase_attempt_counter)
-      end
-    end
-    
-    perodize_workout = []
-    target_groups.each do |tg|
-      tg[:exercises].each do |e|
-        reps_and_weight, difficulity, target_volume = perodize_exercise_info(e, user, tg[:next_perodize_phase])
-        perodize_workout << { :exercise            => e, 
-                              :reps_and_weight     => reps_and_weight,
-                              :difficulity         => difficulity,
-                              :next_perodize_phase => tg[:next_perodize_phase],
-                              :target_volume       => target_volume
-                            }
-      end    
+      tg[:exercises].each { |e| workout_units << create_workout_unit(e, user) }
     end
     
     # Now create the workout    
@@ -125,30 +69,15 @@ class Workout < ActiveRecord::Base
       :user_id           => user.id, 
       :muscle_group_1_id => target_groups[0][:muscle_group].id, 
       :muscle_group_2_id => target_groups[1][:muscle_group].id,
+      # TODO: Bug 12 - Rename the 'phase_attempt_counter' to 'volume_attempt_counter'
       :mg1_phase_attempt_counter => user.muscle_groups_users.find_by_muscle_group_id(target_groups[0][:muscle_group].id).phase_attempt_counter,
-      :mg2_phase_attempt_counter => user.muscle_groups_users.find_by_muscle_group_id(target_groups[1][:muscle_group].id).phase_attempt_counter,
-      :mg1_perodize_phase => user.muscle_groups_users.find_by_muscle_group_id(target_groups[0][:muscle_group].id).perodize_phase,
-      :mg2_perodize_phase => user.muscle_groups_users.find_by_muscle_group_id(target_groups[1][:muscle_group].id).perodize_phase
+      :mg2_phase_attempt_counter => user.muscle_groups_users.find_by_muscle_group_id(target_groups[1][:muscle_group].id).phase_attempt_counter
     )
 
-    perodize_workout.each do |pw|
-      logger.debug "Creating a new perodize workout: #{pw.inspect}"
-      WorkoutUnit.create(
-      :user_id        => user.id,
-      :workout_id     => w.id, 
-      :perodize_phase => pw[:next_perodize_phase],
-      :exercise_id    => pw[:exercise].id, 
-      :rep_1          => pw[:reps_and_weight][0][:reps],
-      :weight_1       => pw[:reps_and_weight][0][:weight],
-      :diff_1         => pw[:difficulity],
-      :rep_2          => pw[:reps_and_weight][1][:reps],
-      :weight_2       => pw[:reps_and_weight][1][:weight],
-      :diff_2         => pw[:difficulity],
-      :rep_3          => pw[:reps_and_weight][2][:reps],
-      :weight_3       => pw[:reps_and_weight][2][:weight],
-      :diff_3         => pw[:difficulity],
-      :target_volume  => pw[:target_volume]
-      )
+    # Finalize the workout units within the workout
+    workout_units.each do |wu|
+      wu.workout_id = w.id
+      wu.save
     end
     
     # Workout the abs?
@@ -168,58 +97,30 @@ class Workout < ActiveRecord::Base
     return w
   end
   
-  # Check to see if the goal was achieved for this particular
-  # muscle group
-  def goal_achieved?(muscle_group_id)
-    achieved = false
-    if muscle_group_1_id == muscle_group_id
-      achieved = true if muscle_group_1_goal_achieved == 1
-    elsif muscle_group_2_id == muscle_group_id
-      achieved = true if muscle_group_2_goal_achieved == 1      
-    end
-    achieved
-  end
-  
-  # Check that all exercises from each mg had the desired reps  
-  def check_if_goals_achieved
-    # Mark these as true to start.  If we find any reps that were
-    # less than the target, mark it as false.
-    mg1_achieved = 1
-    mg2_achieved = 1
-    
-    workout_units.each do |wu|
-      logger.debug "Checking #{wu.exercise.name}"
-      if wu.exercise.muscle_group.id == muscle_group_1_id && (wu.rep_1.to_i > wu.actual_reps_1.to_i || wu.rep_2.to_i > wu.actual_reps_2.to_i || wu.rep_3.to_i > wu.actual_reps_3.to_i)
-        logger.debug "Failed 1: #{wu.exercise.name}"
-        mg1_achieved = 0
-      elsif wu.exercise.muscle_group.id == muscle_group_2_id && (wu.rep_1.to_i > wu.actual_reps_1.to_i || wu.rep_2.to_i > wu.actual_reps_2.to_i || wu.rep_3.to_i > wu.actual_reps_3.to_i)
-        logger.debug "Failed 2: #{wu.exercise.name}"
-        mg2_achieved = 0
-      end
-    end
-    self.update_attribute(:muscle_group_1_goal_achieved, mg1_achieved)
-    self.update_attribute(:muscle_group_2_goal_achieved, mg2_achieved)
-  end
-  
-  
-  
   private
   
-  def self.calc_volume(reps_and_weights)
+  def self.calc_volume(wu)
     volume = 0
-    3.times do |i|
-      volume += (reps_and_weights[i][:reps] || 0) * (reps_and_weights[i][:weight] || 0)
-    end
+    volume += (wu.max_reps_set_1 || 0) * (wu.weight_1 || 0)
+    volume += (wu.max_reps_set_2 || 0) * (wu.weight_2 || 0)
+    volume += (wu.max_reps_set_3 || 0) * (wu.weight_3 || 0)
     volume
   end
   
-  def self.perodize_exercise_info(exercise, user, next_perodize_phase)
-
+  def self.create_workout_unit(exercise, user)
+    wu                   = WorkoutUnit.new
+    wu.exercise_id       = exercise.id
+    wu.user_id           = user.id
+    wu.progression_phase = (wu.prev || WorkoutUnit.new).progression_phase
+    wu.pass_counter      = (wu.prev || WorkoutUnit.new).pass_counter
+    wu.hold_counter      = (wu.prev || WorkoutUnit.new).hold_counter
+    
     user_experience = user.experience
-    user_past_workout_units = user.workout_units
     user_goal = user.goal
     
     info = {}
+    # TODO: When removing the period, I made this defalt to just use the max load
+    #  all the time.  This should probably be updated in the future. Bug 19
     case user_experience
       when 0 then
         case user_goal.downcase
@@ -243,104 +144,49 @@ class Workout < ActiveRecord::Base
         end
     end
 
+    wu.diff_1  = "heavy"
+    wu.diff_2  = "heavy"
+    wu.diff_3  = "heavy"
 
-    if user_past_workout_units.where(:exercise_id => exercise.id)
+    if user.workout_units.where(:exercise_id => exercise.id).where(:submitted => true).size > 0
       # They've done this before -- no probationary period.
-      # Determine the max rep percent based on their period
-      # phase and their max rep percentages
-      logger.debug "next_perodize_phase: #{next_perodize_phase}"
-      logger.debug "weight_class_for_final_rep: #{Perodization.weight_class_for_final_rep(next_perodize_phase)}"
-      max_rep_percent, difficulity = case Perodization.weight_class_for_final_rep(next_perodize_phase)
-        when :low then [info[:load].min, "light"]
-        when :mean then [(info[:load].min + info[:load].max)/2, "medium"]
-        when :high then [info[:load].max, "heavy"]
-      end
-      all_reps = Perodization.reps(next_perodize_phase)
-    else
-        # New exercise for them...let's break them in easy
-        all_reps = [12, 12, 12]
-        max_rep_percent = info[:load].min - 10 # Take 10% off their min
-    end
-
-    # Convert the percent of the weight they should lift into an actual number
-    logger.debug "difficulity: #{difficulity}"
-    logger.debug "max_rep_percent: #{max_rep_percent}"
-    logger.debug "muscle group: #{exercise.muscle_group.name.to_sym}"
-    
-    weight_max = user.evaluations.last.one_rep_max(exercise.muscle_group.name.to_sym, max_rep_percent)
-    logger.debug "weight_max: #{weight_max}"
-    all_weights = [weight_max-10, weight_max-5, weight_max]
-    
-    # Setup the final array of reps and weight
-    reps_and_weights = []
-    3.times do |i|
-      reps_and_weights << {:reps => all_reps[i], :weight =>  all_weights[i]}
-    end
-    
-    # Adjust the reps and weights so that they are doable for the exercise
-    # For example, you can't bench press 63 pounds.  So what we do instead
-    # is calculate the target volume based on the reps and weight we want
-    # to do.  Then, we find a combination that is close to, but less than,
-    # that volume with a combination of weights and reps such that they are
-    # actually doable on this exercise.  For example, now we'll bench 60
-    # punds, but we'll do it an additional 2 times to make up for the lower
-    # weight.
-    target_volume = calc_volume(reps_and_weights)
-    reps_and_weights = select_doable_reps_and_weight_for_exercise_with_similar_volume(target_volume, exercise, reps_and_weights)
-
-    # And go!
-    return [reps_and_weights, difficulity, target_volume]
-  end
-  
-  def self.select_doable_reps_and_weight_for_exercise_with_similar_volume(target_volume, exercise, reps_and_weights)
-    wi = exercise.weight_interval
-    min_diff = Float::INFINITY
-
-    logger.debug "Original reps and weights: #{reps_and_weights}"
-    logger.debug "Weight Interval for this #{exercise.name} is #{wi}"
-    3.times do |i|
-      weight = reps_and_weights[i][:weight]
-      if weight % wi > 0
-        # Round down the weight to the nearest doable weight
-        reps_and_weights[i][:weight] =  ((weight-(wi/2))/wi.to_f).round*wi
-      end
-    end
-    logger.debug "New reps and weights: #{reps_and_weights.inspect}"
-    logger.debug "Adjusted volume to: #{calc_volume(reps_and_weights)}"     
-    
-    10.times do |i|
-      new_volume = calc_volume(reps_and_weights)  
-      diff = new_volume - target_volume
       
-      if ((1.0-(new_volume/target_volume.to_f))*100).abs <= 2
-        # New volume is within 5% of the original volume, accept this workout
-        logger.debug "Breaking, because percentage diff between new volume and only volume is <= 2%"
-        break
-      end
-      
-      if calc_volume(reps_and_weights) < target_volume
-        # we're doing less work than the original target, so raise the reps
-        logger.info "Raising volume"
-        reps_and_weights.first[:reps] += 1
+      # When they did this workout unit before, was it eligible for evaluate?  I.e., is it useful
+      # to use for calculating the users weights?
+      if wu.prev != nil && wu.prev.eligible_for_evaluation
+        wu.set_weights
       else
-        # We're doing more work than the original target, so lower the reps
-        logger.info "Lowering volume"
-        reps_and_weights.last[:reps] -= 1
+        # This is the first time they're doing this workout unit when it's eligible for eval.
+        # Since we have no prior history on the users ability, use their initial weight eval
+        # to determine how much weight they should lift.
+        wu.set_weights_based_on_evaluation(0.8)
       end
-      logger.debug "Adjusted reps and weights to: #{reps_and_weights.inspect}"   
-      logger.debug "Adjusted volume to: #{calc_volume(reps_and_weights)}"     
-      logger.debug "Target volume: #{target_volume}"
+      
+      # Since we are (by default) lifting a heavy load (we don't lift any other kinds of loads right now...)
+      # go ahead and mark this workout unit as eligble for evluation in the future.
+      wu.eligible_for_evaluation = true
+    else
+      # Since they haven't done this workout before, use their 1RM to determine
+      # how much weight they should be lifting.  Take 10% off their min.
+      max_rep_percent = info[:load].min - 0.1       
+      wu.set_weights_based_on_evaluation(max_rep_percent)
     end
-    logger.debug "Final reps and weights: #{reps_and_weights.inspect}"        
-    logger.debug "Final volume: #{calc_volume(reps_and_weights)}"     
-    logger.debug "Target volume: #{target_volume}"
     
-    reps_and_weights
+    # Setup the reps 
+    wu.min_reps_set_1 = info[:reps].min
+    wu.max_reps_set_1 = info[:reps].max
+    wu.min_reps_set_2 = info[:reps].min
+    wu.max_reps_set_2 = info[:reps].max
+    wu.min_reps_set_3 = info[:reps].min
+    wu.max_reps_set_3 = info[:reps].max    
+
+    wu.target_volume = calc_volume(wu)
+
+    return wu
   end
   
-  
-  def self.get_exercises_for_target_group(muscle_group_id, skill_level_range, num_from_each_group = 3)
-    Exercise.where(:muscle_group_id => muscle_group_id).where(:skill_level => skill_level_range).limit(num_from_each_group)
+  def self.get_exercises_for_target_group(muscle_group_id, num_from_each_group = 3)
+    Exercise.where(:muscle_group_id => muscle_group_id).limit(num_from_each_group)
   end
 
   # Determines which muscle groups should be worked out

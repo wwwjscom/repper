@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
   has_many :workouts, :dependent => :destroy
   has_many :workout_units, :dependent => :destroy
   has_many :workout_unit_abs, :dependent => :destroy
+  has_many :progression_event_logs, :dependent => :destroy
 
   has_many :muscle_groups_users
   has_many :muscle_groups, :through => :muscle_groups_users

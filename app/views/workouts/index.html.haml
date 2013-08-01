@@ -1,27 +1,28 @@
-- model_class = Workout
+#workouts.page.color-3
+  .inner-page
 
-- if current_user.evaluations.blank?
-  .jumbotron
-    %p.lead.text-error You need to do an evaluation before you can workout!
-    =link_to "I long to be judged", new_evaluation_path, :class => "btn btn-large btn-success"
+    - model_class = Workout
+
+    - if current_user.evaluations.blank?
+      .jumbotron
+        %p.lead.text-error You need to do an evaluation before you can workout!
+        =link_to "I long to be judged", new_evaluation_path, :class => "btn btn-large btn-success"
     
 
 
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
-
-  = link_to "Generate New Workout", new_workout_path, :class => 'btn btn-primary'
-  
-%table.table.table-striped
-  %thead
-    %tr
-      %th= "Workout"
-      %th= "Muscle Group 1"
-      %th= "Muscle Group 2"
-      
-  %tbody
-    - @workouts.each do |workout|
-      %tr
-        %td= link_to "Workout from #{workout.created_at.strftime('%A %b %d')}", workout_path(workout)
-        %td= "#{MuscleGroup.find(workout.muscle_group_1_id).name.titleize} (#{workout.mg1_perodize_phase}/#{workout.mg1_phase_attempt_counter})"
-        %td= "#{MuscleGroup.find(workout.muscle_group_2_id).name.titleize} (#{workout.mg2_perodize_phase}/#{workout.mg2_phase_attempt_counter})"
+    .h2.page-headline 
+      Workouts
+    .row-fluid.inner-page
+      .span12
+        .span4
+          = link_to "New Workout", new_workout_path, :class => 'btn btn-centered'
+        .span8
+          %table.table.table-striped
+            %thead
+              %tr
+            %tbody
+              - @workouts.each do |workout|
+                %tr
+                  %td= link_to "Workout from #{workout.created_at.strftime('%A %b %d')}", workout_path(workout)
+                  %td= "#{MuscleGroup.find(workout.muscle_group_1_id).name.titleize} (#{workout.mg1_phase_attempt_counter})"
+                  %td= "#{MuscleGroup.find(workout.muscle_group_2_id).name.titleize} (#{workout.mg2_phase_attempt_counter})"

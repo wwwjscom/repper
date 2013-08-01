@@ -9,6 +9,7 @@ capybara-*.html
 /tmp/*
 /db/*.sqlite3
 /public/system/*
+/doc/*
 /coverage/
 /spec/tmp/*
 **.orig
