@@ -4,7 +4,22 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+jason:
+  id: 1 
+  email: wwwjscom@gmail.com
+#  crypted_password: $2a$10$xTPRYS01yofW.3pHLDVFtuUPllYjLkJ1gJllOAedleZT9eLNGVeI2
+#  salt: 8dYTkRAsizLixvx99qo6
+#  created_at: 2013-07-18 04:30:40.117876000 Z
+#  updated_at: 2013-07-18 04:30:40.117876000 Z
+#  remember_me_token: 
+#  remember_me_token_expires_at: 
+#  last_login_at: 2013-07-20 08:55:13.323834000 Z
+#  last_logout_at: 2013-07-20 08:54:51.285171000 Z
+#  last_activity_at: 2013-07-20 09:03:03.193043000 Z
+  goal: Strength Gain
+  age: 26
+  experience: 1
+  sex: Male
 # column: value
 #
 two: {}
