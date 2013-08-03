@@ -152,23 +152,27 @@ class WorkoutUnit < ActiveRecord::Base
     self.weight_3     = doable_max_weight
   end
   
-  # Contains the logic to decide whether to advance, reduce, or hold a
-  # users weight.  Automatically sets the weights accordingly on the
-  # WorkoutUnit object.  Also resets relevant counters.
+  # This method is used when creating a new workout.  It helps determine
+  # how to set the weights for the user.  These determinations are made
+  # based on the user's past performance.
+  # 
+  # The suggested weight is automatically set on the WorkoutUnit object.  
   #
-  # @param use_evaluation [Boolean] If true, weights are set based on 
-  # the user's evaluation, and not based on their lifting history.
   # @return [WorkoutUnit] with weights set
-  def set_weights(use_evaluation = false)
+  def set_weights
     weight_intervals = Exercise.weight_interval(exercise_id)
     direction        = HOLD_WORD
-    prev_weights     = prev.weights
-    
+    prev_weights     = prev.weights 
     
     if should_advance?
+      # If they have completed at least x of these exercises, and
+      # they have maxed out REQUIRE_NUM_OF_PASSES_TO_ADVANCE, then
+      # allow their weight to increase.
       direction = ADVANCE_WORD
       reset_counters
     elsif should_reduce?
+      # If their previous workout recomended they decrease their
+      # weight, then decrease it.
       direction = REDUCE_WORD
       reset_counters
     end
@@ -198,6 +202,11 @@ class WorkoutUnit < ActiveRecord::Base
   
   # This is where the weights are adjusted for a workout.  The weights
   # are adjusted on the WorkoutUnit itself, thus nothing is returned.
+  #
+  # FIXME: It'd be best if these weights were set based on the users
+  # historical 1RM rather than just adjusting the weights by a fixed
+  # value each time.  Bug #44.
+  #
   # @return [nil]
   def adjust_weight_by_phase(weights, weight_intervals, phase, direction)
     if direction == ADVANCE_WORD

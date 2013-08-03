@@ -1,4 +1,5 @@
 class ProgressionEventLog < ActiveRecord::Base
+  # new_1RM is calculated using, at most, the 3 most recent results for this exercise.
   attr_accessible :exercise_id, :new_1RM, :progression_outcome, :user_id, :workout_unit_id
   
   belongs_to :exercise
@@ -10,7 +11,7 @@ class ProgressionEventLog < ActiveRecord::Base
   def self.passed(wu, new_1RM)
     pel = ProgressionEventLog.create(
       :workout_unit_id     => wu.id,
-      :progression_outcome => "advance",
+      :progression_outcome => WorkoutUnit::PASS_WORD,
       :user_id             => wu.user_id,
       :exercise_id         => wu.exercise_id,
       :new_1RM             => new_1RM
@@ -22,7 +23,7 @@ class ProgressionEventLog < ActiveRecord::Base
   def self.failed(wu, new_1RM)
     pel = ProgressionEventLog.create(
       :workout_unit_id     => wu.id,
-      :progression_outcome => "reduce",
+      :progression_outcome => WorkoutUnit::FAILURE_WORD,
       :user_id             => wu.user_id,
       :exercise_id         => wu.exercise_id,
       :new_1RM             => new_1RM
