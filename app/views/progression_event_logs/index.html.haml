@@ -1,29 +1,9 @@
-%h1 Listing progression_event_logs
-
-%table
-  %tr
-    %th Workout unit
-    %th Progression outcome
-    %th New 1rm
-    %th User
-    %th Exercise
-    %th Timestamp
-    %th
-    %th
-    %th
-
-  - @progression_event_logs.each do |progression_event_log|
-    %tr
-      %td= progression_event_log.workout_unit_id
-      %td= progression_event_log.progression_outcome
-      %td= progression_event_log.new_1RM
-      %td= progression_event_log.user_id
-      %td= progression_event_log.exercise_id
-      %td= progression_event_log.created_at
-      %td= link_to 'Show', progression_event_log
-      %td= link_to 'Edit', edit_progression_event_log_path(progression_event_log)
-      %td= link_to 'Destroy', progression_event_log, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Progression event log', new_progression_event_log_path
+#progression.page.color-2
+  .inner-page
+    .h1.page-headline
+      %h1 Coming Soon: You, graphed.
+  .row-fluid.inner-page
+    .span2
+    .span8
+      %img{ :src => "assets/design/home.png"}
+    .span2
