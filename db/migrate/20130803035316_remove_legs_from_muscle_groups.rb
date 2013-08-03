@@ -4,6 +4,6 @@ class RemoveLegsFromMuscleGroups < ActiveRecord::Migration
   end
 
   def down
-    MuscleGroup.new(:name => "legs")
+    MuscleGroup.create(:name => "legs")
   end
 end

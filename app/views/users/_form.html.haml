@@ -12,13 +12,15 @@
         = f.email_field :email, :class => 'text_field', :placeholder => "your@email.com"
         = f.password_field :password, { :placeholder => "password", :class => 'password_field' }
         = f.password_field :password_confirmation, { :placeholder => "confirm password", :class => 'password_field' }
-        = f.text_field :age, { :pattern => "[0-9]*", :class => 'number_field', :style => "width: 60px;", :placeholder => "age"}
         %br/
         = f.select(:sex, ["Sex", "Male", "Female"])
         %br/
         = f.select(:experience, [["Experience", -1],["Novice",1], ["Intermediate",2], ["Advanced",3]])
         %br/
         = f.select(:goal, ["Goal", "Strength Gain", "Muscle Gain"])
+        %hr/
+        %p Date of birth
+        = f.date_select(:dob)
         %hr/
         %p What muscle groups do you want to focus on?
         = f.fields_for :user_muscle_groups do |builder|
@@ -29,5 +31,8 @@
               .row
         %hr/
         %p By proceeding you acknowledge and accept the risks both stated above, and those implicitly associated with exercising.  Repper is not responsible for accidents that occur.  Please, always be safe.
-        = f.submit "Register", :class => 'btn'
+        - if current_user
+          = f.submit "Update", :class => 'btn'
+        - else 
+          = f.submit "Register", :class => 'btn'
   .row

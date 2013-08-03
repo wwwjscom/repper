@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718051830) do
+ActiveRecord::Schema.define(:version => 20130803231817) do
 
   create_table "evaluations", :force => true do |t|
     t.integer  "user_id"
@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(:version => 20130718051830) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "goal"
-    t.integer  "age"
     t.integer  "experience"
     t.string   "sex"
+    t.date     "dob"
   end
 
   add_index "users", ["last_logout_at", "last_activity_at"], :name => "index_users_on_last_logout_at_and_last_activity_at"
