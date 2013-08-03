@@ -1,3 +1,100 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+<% n = 0 %>
 
-one: {}
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-18 04:44:11.627142000 Z
+  updated_at: 2013-07-18 04:46:10.239282000 Z
+  muscle_group_1_id: 2
+  muscle_group_2_id: 3
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: true
+
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-18 04:59:22.468487000 Z
+  updated_at: 2013-07-18 04:59:22.468487000 Z
+  muscle_group_1_id: 4
+  muscle_group_2_id: 5
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: false
+
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-18 04:59:28.519941000 Z
+  updated_at: 2013-07-18 04:59:57.745272000 Z
+  muscle_group_1_id: 6
+  muscle_group_2_id: 2
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: true
+
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-18 05:00:19.375808000 Z
+  updated_at: 2013-07-18 05:10:41.692328000 Z
+  muscle_group_1_id: 3
+  muscle_group_2_id: 4
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: true
+
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-18 05:00:23.515830000 Z
+  updated_at: 2013-07-18 05:17:21.065486000 Z
+  muscle_group_1_id: 5
+  muscle_group_2_id: 6
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: true
+
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-18 05:11:09.349030000 Z
+  updated_at: 2013-07-18 05:11:20.651245000 Z
+  muscle_group_1_id: 2
+  muscle_group_2_id: 3
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: true
+
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-18 05:17:28.826247000 Z
+  updated_at: 2013-07-18 05:17:46.661658000 Z
+  muscle_group_1_id: 4
+  muscle_group_2_id: 5
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: true
+
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-19 05:17:28.826247000 Z
+  updated_at: 2013-07-19 05:17:46.661658000 Z
+  muscle_group_1_id: 4
+  muscle_group_2_id: 5
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: true
+
+workout_<%= (n += 1) %>:
+  id: <%= n %>
+  user_id: 1
+  created_at: 2013-07-20 05:17:28.826247000 Z
+  updated_at: 2013-07-20 05:17:46.661658000 Z
+  muscle_group_1_id: 4
+  muscle_group_2_id: 5
+  mg1_phase_attempt_counter: 1
+  mg2_phase_attempt_counter: 1
+  submitted: true

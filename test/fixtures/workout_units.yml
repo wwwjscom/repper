@@ -1,3 +1,1376 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one: {}
+
+
+<% n = 0 %>
+
+workout_unit_<%= (n += 1) %>:
+  id: 1
+  workout_id: 1
+  exercise_id: 35
+  weight_1: 30
+  weight_2: 40
+  weight_3: 50
+  created_at: 2013-07-18 04:44:11.636485000 Z
+  updated_at: 2013-07-18 04:46:10.264009000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1440
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 2
+  workout_id: 1
+  exercise_id: 37
+  weight_1: 60
+  weight_2: 70
+  weight_3: 80
+  created_at: 2013-07-18 04:44:11.641711000 Z
+  updated_at: 2013-07-18 04:46:10.256208000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 2520
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 3
+  workout_id: 1
+  exercise_id: 39
+  weight_1: 60
+  weight_2: 70
+  weight_3: 80
+  created_at: 2013-07-18 04:44:11.646698000 Z
+  updated_at: 2013-07-18 04:46:10.248701000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 2520
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 4
+  workout_id: 1
+  exercise_id: 27
+  weight_1: 10
+  weight_2: 20
+  weight_3: 30
+  created_at: 2013-07-18 04:44:11.651319000 Z
+  updated_at: 2013-07-18 04:46:10.267068000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 1
+  actual_reps_set_2: 1
+  actual_reps_set_3: 1
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 5
+  workout_id: 1
+  exercise_id: 34
+  weight_1: 10
+  weight_2: 20
+  weight_3: 30
+  created_at: 2013-07-18 04:44:11.656562000 Z
+  updated_at: 2013-07-18 04:46:10.260090000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 40
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 6
+  workout_id: 1
+  exercise_id: 36
+  weight_1: 10
+  weight_2: 20
+  weight_3: 30
+  created_at: 2013-07-18 04:44:11.660797000 Z
+  updated_at: 2013-07-18 04:46:10.252029000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 2
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 7
+  workout_id: 2
+  exercise_id: 28
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 04:59:22.477949000 Z
+  updated_at: 2013-07-18 04:59:22.477949000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 
+  actual_reps_set_2: 
+  actual_reps_set_3: 
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: false
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 8
+  workout_id: 2
+  exercise_id: 30
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 04:59:22.483746000 Z
+  updated_at: 2013-07-18 04:59:22.483746000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 
+  actual_reps_set_2: 
+  actual_reps_set_3: 
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: false
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 9
+  workout_id: 2
+  exercise_id: 33
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 04:59:22.488366000 Z
+  updated_at: 2013-07-18 04:59:22.488366000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 
+  actual_reps_set_2: 
+  actual_reps_set_3: 
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: false
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 10
+  workout_id: 2
+  exercise_id: 23
+  weight_1: 15
+  weight_2: 20
+  weight_3: 25
+  created_at: 2013-07-18 04:59:22.492613000 Z
+  updated_at: 2013-07-18 04:59:22.492613000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 
+  actual_reps_set_2: 
+  actual_reps_set_3: 
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: false
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 11
+  workout_id: 2
+  exercise_id: 25
+  weight_1: 15
+  weight_2: 20
+  weight_3: 25
+  created_at: 2013-07-18 04:59:22.496876000 Z
+  updated_at: 2013-07-18 04:59:22.496876000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 
+  actual_reps_set_2: 
+  actual_reps_set_3: 
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: false
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 12
+  workout_id: 2
+  exercise_id: 26
+  weight_1: 15
+  weight_2: 20
+  weight_3: 25
+  created_at: 2013-07-18 04:59:22.501500000 Z
+  updated_at: 2013-07-18 04:59:22.501500000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 
+  actual_reps_set_2: 
+  actual_reps_set_3: 
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: false
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 13
+  workout_id: 3
+  exercise_id: 35
+  weight_1: 50
+  weight_2: 60
+  weight_3: 70
+  created_at: 2013-07-18 04:59:28.524900000 Z
+  updated_at: 2013-07-18 04:59:57.760266000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 2160
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 14
+  workout_id: 3
+  exercise_id: 37
+  weight_1: 110
+  weight_2: 120
+  weight_3: 130
+  created_at: 2013-07-18 04:59:28.529889000 Z
+  updated_at: 2013-07-18 04:59:57.757293000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 4320
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 15
+  workout_id: 3
+  exercise_id: 39
+  weight_1: 110
+  weight_2: 120
+  weight_3: 130
+  created_at: 2013-07-18 04:59:28.534414000 Z
+  updated_at: 2013-07-18 04:59:57.753033000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 4320
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 16
+  workout_id: 4
+  exercise_id: 27
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:00:19.380191000 Z
+  updated_at: 2013-07-18 05:10:41.717309000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 17
+  workout_id: 4
+  exercise_id: 34
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:00:19.385756000 Z
+  updated_at: 2013-07-18 05:10:41.709335000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 18
+  workout_id: 4
+  exercise_id: 36
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:00:19.390462000 Z
+  updated_at: 2013-07-18 05:10:41.701990000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 19
+  workout_id: 4
+  exercise_id: 28
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:00:19.395362000 Z
+  updated_at: 2013-07-18 05:10:41.720697000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 20
+  workout_id: 4
+  exercise_id: 30
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:00:19.400557000 Z
+  updated_at: 2013-07-18 05:10:41.714218000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 21
+  workout_id: 4
+  exercise_id: 33
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:00:19.405271000 Z
+  updated_at: 2013-07-18 05:10:41.705872000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 22
+  workout_id: 5
+  exercise_id: 23
+  weight_1: 15
+  weight_2: 20
+  weight_3: 25
+  created_at: 2013-07-18 05:00:23.519797000 Z
+  updated_at: 2013-07-18 05:17:21.081314000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 23
+  workout_id: 5
+  exercise_id: 25
+  weight_1: 15
+  weight_2: 20
+  weight_3: 25
+  created_at: 2013-07-18 05:00:23.524534000 Z
+  updated_at: 2013-07-18 05:17:21.077957000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 24
+  workout_id: 5
+  exercise_id: 26
+  weight_1: 15
+  weight_2: 20
+  weight_3: 25
+  created_at: 2013-07-18 05:00:23.529236000 Z
+  updated_at: 2013-07-18 05:17:21.073676000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 2
+  actual_reps_set_2: 4
+  actual_reps_set_3: 5
+  user_id: 1
+  target_volume: 720
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: 
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: false
+
+workout_unit_<%= (n += 1) %>:
+  id: 31
+  workout_id: 7
+  exercise_id: 35
+  weight_1: 50
+  weight_2: 60
+  weight_3: 70
+  created_at: 2013-07-18 05:11:09.357441000 Z
+  updated_at: 2013-07-18 05:11:20.676589000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 2160
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 2
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 32
+  workout_id: 7
+  exercise_id: 37
+  weight_1: 110
+  weight_2: 120
+  weight_3: 130
+  created_at: 2013-07-18 05:11:09.362269000 Z
+  updated_at: 2013-07-18 05:11:20.669242000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 4320
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 2
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 33
+  workout_id: 7
+  exercise_id: 39
+  weight_1: 110
+  weight_2: 120
+  weight_3: 130
+  created_at: 2013-07-18 05:11:09.367727000 Z
+  updated_at: 2013-07-18 05:11:20.662826000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 4320
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 2
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 34
+  workout_id: 7
+  exercise_id: 27
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:11:09.371689000 Z
+  updated_at: 2013-07-18 05:11:20.679921000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 2
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 35
+  workout_id: 7
+  exercise_id: 34
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:11:09.376262000 Z
+  updated_at: 2013-07-18 05:11:20.672434000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 2
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 36
+  workout_id: 7
+  exercise_id: 36
+  weight_1: 20
+  weight_2: 30
+  weight_3: 40
+  created_at: 2013-07-18 05:11:09.380800000 Z
+  updated_at: 2013-07-18 05:11:20.666242000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 2
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 37
+  workout_id: 8
+  exercise_id: 28
+  weight_1: 40
+  weight_2: 50
+  weight_3: 60
+  created_at: 2013-07-18 05:17:28.834628000 Z
+  updated_at: 2013-07-18 05:17:46.689144000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1800
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 38
+  workout_id: 8
+  exercise_id: 30
+  weight_1: 40
+  weight_2: 50
+  weight_3: 60
+  created_at: 2013-07-18 05:17:28.839610000 Z
+  updated_at: 2013-07-18 05:17:46.680715000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 7
+  actual_reps_set_2: 7
+  actual_reps_set_3: 7
+  user_id: 1
+  target_volume: 1800
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: fail
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 39
+  workout_id: 8
+  exercise_id: 33
+  weight_1: 40
+  weight_2: 50
+  weight_3: 60
+  created_at: 2013-07-18 05:17:28.844280000 Z
+  updated_at: 2013-07-18 05:17:46.672572000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 7
+  actual_reps_set_2: 8
+  actual_reps_set_3: 9
+  user_id: 1
+  target_volume: 1800
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: true
+  maxed_out_set_2: false
+  lower_bound_met_set_3: true
+  maxed_out_set_3: false
+  recommendation: fail
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 40
+  workout_id: 8
+  exercise_id: 23
+  weight_1: 25
+  weight_2: 30
+  weight_3: 35
+  created_at: 2013-07-18 05:17:28.848841000 Z
+  updated_at: 2013-07-18 05:17:46.693121000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 41
+  workout_id: 8
+  exercise_id: 25
+  weight_1: 25
+  weight_2: 30
+  weight_3: 35
+  created_at: 2013-07-18 05:17:28.853598000 Z
+  updated_at: 2013-07-18 05:17:46.684989000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 12
+  actual_reps_set_2: 12
+  actual_reps_set_3: 12
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: true
+  maxed_out_set_1: true
+  lower_bound_met_set_2: true
+  maxed_out_set_2: true
+  lower_bound_met_set_3: true
+  maxed_out_set_3: true
+  recommendation: pass
+  progression_phase: 0
+  pass_counter: 1
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+workout_unit_<%= (n += 1) %>:
+  id: 42
+  workout_id: 8
+  exercise_id: 26
+  weight_1: 25
+  weight_2: 30
+  weight_3: 35
+  created_at: 2013-07-18 05:17:28.858388000 Z
+  updated_at: 2013-07-18 05:17:46.677061000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 2
+  actual_reps_set_2: 3
+  actual_reps_set_3: 7
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: fail
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+
+
+workout_unit_<%= (n += 1) %>:
+  id: 43
+  workout_id: 9
+  exercise_id: 26
+  weight_1: 25
+  weight_2: 30
+  weight_3: 35
+  created_at: 2013-07-18 05:17:28.858388000 Z
+  updated_at: 2013-07-18 05:17:46.677061000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 2
+  actual_reps_set_2: 3
+  actual_reps_set_3: 7
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: fail
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true
+  
+
+workout_unit_<%= (n += 1) %>:
+  id: 44
+  workout_id: 10
+  exercise_id: 26
+  weight_1: 25
+  weight_2: 30
+  weight_3: 35
+  created_at: 2013-07-18 05:17:28.858388000 Z
+  updated_at: 2013-07-18 05:17:46.677061000 Z
+  diff_1: heavy
+  diff_2: heavy
+  diff_3: heavy
+  actual_reps_set_1: 2
+  actual_reps_set_2: 3
+  actual_reps_set_3: 7
+  user_id: 1
+  target_volume: 1080
+  lower_bound_met_set_1: false
+  maxed_out_set_1: false
+  lower_bound_met_set_2: false
+  maxed_out_set_2: false
+  lower_bound_met_set_3: false
+  maxed_out_set_3: false
+  recommendation: fail
+  progression_phase: 0
+  pass_counter: 0
+  hold_counter: 0
+  min_reps_set_1: 8
+  min_reps_set_2: 8
+  min_reps_set_3: 8
+  max_reps_set_1: 12
+  max_reps_set_2: 12
+  max_reps_set_3: 12
+  submitted: true
+  eligible_for_evaluation: true

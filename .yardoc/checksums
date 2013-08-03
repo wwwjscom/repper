@@ -1,6 +1,6 @@
 app/models/user.rb 312b50a3b9e41959bf5c02f8365fa06c210aaaf2
 app/models/workout.rb 94349c5c7a6d3c84a539a5dcecd6faebea2dfdf7
-app/models/exercise.rb 7c170857e56778f22f0e333841e74dcf61a4b988
+app/models/exercise.rb 7ff4e5074b6223da1b7fb9240fdb9fd1ce08f9d5
 app/models/evaluation.rb 555789fb855a88965ba17d4c888afcaedd339a48
 app/models/workout_unit.rb 7b16105451aaa9e0378ec1a4f5ff98bebd3ede8e
 app/models/muscle_group.rb 3bced99de081a9854cc9f26bcc5f2cadc9ff8a8a

@@ -21,28 +21,16 @@ class Exercise < ActiveRecord::Base
   # is used for the progression event logs to calculate and
   # store the users recent efforts.
   #
-  # The 1RM is calculated by assuimg that the weight being lifted by
-  # the user is 80% of their 1RM.  If that isn't true, this wont be
-  # giving accurate numbers, and will need to be updated to be dynamic.
-  #
   # @param recent_workout_units [Array<WorkoutUnit>] Typically the 3 most
   #  recent workout units for an exercise
   # @return [Integer] calculated 1RM from the given workout unts.
   def self.new_1RM(recent_workout_units)
     one_rep_maxs = []
     recent_workout_units.each do |wu|
-      eighty_percent = ((wu.actual_reps_set_1 * wu.weight_1) / 30.0) + wu.weight_1
-      one_rep_maxs << eighty_percent * 0.2 + eighty_percent
-      
-      eighty_percent = ((wu.actual_reps_set_2 * wu.weight_2) / 30.0) + wu.weight_2
-      one_rep_maxs << eighty_percent * 0.2 + eighty_percent
-      
-      eighty_percent = ((wu.actual_reps_set_3 * wu.weight_3) / 30.0) + wu.weight_3
-      one_rep_maxs << eighty_percent * 0.2 + eighty_percent
+      one_rep_maxs << (((wu.actual_reps_set_1.to_f/30.0)+1.0) * wu.weight_1)
+      one_rep_maxs << (((wu.actual_reps_set_2.to_f/30.0)+1.0) * wu.weight_2)
+      one_rep_maxs << (((wu.actual_reps_set_3.to_f/30.0)+1.0) * wu.weight_3)
     end
-    
-    logger.debug "1RMs: #{one_rep_maxs.inspect}"
-    logger.debug "New 1RM: #{one_rep_maxs.inject(:+).to_f / one_rep_maxs.size}"
     
     # Get the average, and let that be our new 1RM.
     one_rep_maxs.inject(:+).to_f / one_rep_maxs.size
