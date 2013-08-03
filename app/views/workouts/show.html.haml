@@ -45,22 +45,22 @@
                   = " - #{u.object.recommendation}"
               %td
                 = "%s-%s" % [u.object.min_reps_set_1, u.object.max_reps_set_1]
-                %br
-                = u.object.diff_1
+                /%br
+                /= u.object.diff_1
               %td
                 = u.number_field :actual_reps_set_1, :class => 'number_field'
               %td= u.object.weight_1
               %td
                 = "%s-%s" % [u.object.min_reps_set_2, u.object.max_reps_set_2]
-                %br
-                = u.object.diff_2
+                /%br
+                /= u.object.diff_2
                 %td
                   = u.number_field :actual_reps_set_2, :class => 'number_field'          
               %td= u.object.weight_2
               %td
                 = "%s-%s" % [u.object.min_reps_set_3, u.object.max_reps_set_3]
-                %br
-                = u.object.diff_3
+                /%br
+                /= u.object.diff_3
                 %td
                   = u.number_field :actual_reps_set_3, :class => 'number_field'
               %td= u.object.weight_3
