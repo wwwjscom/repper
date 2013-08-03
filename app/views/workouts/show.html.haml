@@ -85,6 +85,5 @@
                   = u.number_field :actual_reps, :class => 'number_field'
 
       .form-actions
-        = f.submit nil, :class => 'btn btn-primary'
-        = link_to t('.cancel', :default => t("helpers.links.cancel")), exercises_path, :class => 'btn'
+        = f.submit nil, :class => 'btn btn-success'
         = link_to t('.destroy', :default => t("helpers.links.destroy")), workout_path(@workout), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
