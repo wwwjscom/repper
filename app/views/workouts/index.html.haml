@@ -1,28 +1,23 @@
 #workouts.page.color-3
   .inner-page
-
-    - model_class = Workout
-
-    - if current_user.evaluations.blank?
-      .jumbotron
-        %p.lead.text-error You need to do an evaluation before you can workout!
-        =link_to "I long to be judged", new_evaluation_path, :class => "btn btn-large btn-success"
-    
-
-
     .h2.page-headline 
       Workouts
     .row-fluid.inner-page
-      .span12
-        .span4
+      .span4
+        - unless current_user.evaluations.blank?
           = link_to "New Workout", new_workout_path, :class => 'btn btn-centered'
-        .span8
-          %table.table.table-striped
-            %thead
+      .span8
+        %table.table.table-striped
+          %thead
+            %tr
+          %tbody
+            - @workouts.each do |workout|
               %tr
-            %tbody
-              - @workouts.each do |workout|
-                %tr
-                  %td= link_to "Workout from #{workout.created_at.strftime('%A %b %d')}", workout_path(workout)
-                  %td= "#{MuscleGroup.find(workout.muscle_group_1_id).name.titleize} (#{workout.mg1_phase_attempt_counter})"
-                  %td= "#{MuscleGroup.find(workout.muscle_group_2_id).name.titleize} (#{workout.mg2_phase_attempt_counter})"
+                %td= link_to "Workout from #{workout.created_at.strftime('%A %b %d')}", workout_path(workout)
+                %td= "#{MuscleGroup.find(workout.muscle_group_1_id).name.titleize} (#{workout.mg1_phase_attempt_counter})"
+                %td= "#{MuscleGroup.find(workout.muscle_group_2_id).name.titleize} (#{workout.mg2_phase_attempt_counter})"
+
+      - if current_user.evaluations.blank?
+        .jumbotron
+          %p.lead.text-error You need to do an evaluation to get your customized workouts.
+          =link_to "I long to be judged", new_evaluation_path, :class => "btn btn-large btn-success"

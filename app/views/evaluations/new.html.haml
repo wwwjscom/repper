@@ -1,17 +1,14 @@
-- model_class = Evaluation
-.page-header
-  %h1=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}")
-
-.span6
-  %p.text-info 
-    %b If this is your first time here
-    let's chat.  The way this works is simple.  
-    %ol
-      %li Do each exercise with the weight of your choice.  
-      %li Do as many reps as you can with that weight.  
-      %li Record your information in the form.  
-    Once you're done, we'll be able to customize your workouts.
-.row
-
-
-= render :partial => "form"
+#workouts.page.color-3
+  .row-fluid.inner-page
+    .span12
+      %p.text-info 
+        %b If this is your first time here
+        let's chat.  The way this works is simple.  
+        %ol
+          %li Do each exercise with the weight of your choice.  Try to pick a weight you think you can do at least 10 times.
+          %li Do as many reps as you can with that weight.
+          %li Record your information in the form.  
+        Once you're done, we'll be able to customize your workouts.
+  .row-fluid.inner-page
+    .span12
+      = render :partial => "form"
