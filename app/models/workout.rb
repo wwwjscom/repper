@@ -118,8 +118,6 @@ class Workout < ActiveRecord::Base
     user_experience = user.experience
     user_goal = user.goal
     
-    logger.debug "User Exp: #{user_experience.class}"
-    logger.debug "User goal: #{user_goal.class}"
     info = {}
     # user_goal: 1 => Strength Gain (toaning up); 2 => Muscle Gain (getting HUGE)
     # TODO: When removing the period, I made this defalt to just use the max load
