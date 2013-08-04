@@ -96,6 +96,7 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     multipart-post (1.1.5)
+    newrelic_rpm (3.6.6.147)
     oauth (0.4.7)
     oauth2 (0.8.0)
       faraday (~> 0.8)
@@ -194,6 +195,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   less-rails
+  newrelic_rpm
   pg
   rails (= 3.2.11)
   redcarpet

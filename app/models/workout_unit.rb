@@ -152,9 +152,8 @@ class WorkoutUnit < ActiveRecord::Base
     self.weight_3     = doable_max_weight
   end
   
-  # This method is used when creating a new workout.  It helps determine
-  # how to set the weights for the user.  These determinations are made
-  # based on the user's past performance.
+  # This method is used when creating a new workout.  It sets the weights
+  # to be used for the workout unit based on the user's past performance.
   # 
   # The suggested weight is automatically set on the WorkoutUnit object.  
   #
