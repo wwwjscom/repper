@@ -1,6 +1,7 @@
 class UserMailer < ActionMailer::Base
-  default from: "myrepper@gmail.com"
-  default bcc: "myrepper@gmail.com"
+  default from: "repperapp@gmail.com"
+  default bcc: "repperapp@gmail.com"
+  default reply_to: 'support@repper.zendesk.com'
   
   def welcome_email(user)
     @user = user

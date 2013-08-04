@@ -19,8 +19,8 @@ Repper::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'myrepper.com',
-    :user_name            => 'myrepper@gmail.com',
+    :domain               => 'repperapp.com',
+    :user_name            => 'repperapp@gmail.com',
     :password             => 'FivAd0ej*',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
