@@ -73,3 +73,19 @@
         .span6.text-left.copyright
           \&copy; 2013
           repper.com
+    
+    
+    %script{:src => "//assets.zendesk.com/external/zenbox/v2.6/zenbox.js", :type => "text/javascript"}
+    %style{:media => "screen, projection", :type => "text/css"}
+      @import url(//assets.zendesk.com/external/zenbox/v2.6/zenbox.css);
+    :javascript
+      if (typeof(Zenbox) !== "undefined") {
+        Zenbox.init({
+          dropboxID:   "20200442",
+          url:         "https://repper.zendesk.com",
+          tabTooltip:  "Support",
+          tabImageURL: "https://assets.zendesk.com/external/zenbox/images/tab_support.png",
+          tabColor:    "black",
+          tabPosition: "Left"
+        });
+      }
