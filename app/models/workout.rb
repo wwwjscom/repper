@@ -118,48 +118,41 @@ class Workout < ActiveRecord::Base
     user_experience = user.experience
     user_goal = user.goal
     
+    logger.debug "User Exp: #{user_experience.class}"
+    logger.debug "User goal: #{user_goal.class}"
     info = {}
+    # user_goal: 1 => Strength Gain (toaning up); 2 => Muscle Gain (getting HUGE)
     # TODO: When removing the period, I made this defalt to just use the max load
     #  all the time.  This should probably be updated in the future. Bug 19
-    case user_experience
-      when 0 then
-        case user_goal.downcase
-          when "muscle gain" then info   = { :reps => 8..12, :load => 0.50..0.60, :sets => 1..3, :rest => 2..3, :velocity => "slow" }
-          when "strength gain" then info = { :reps => 8..12, :load => 0.50..0.60, :sets => 1..3, :rest => 2..3, :velocity => "slow" }
-        end
-      when 1 then
-        case user_goal.downcase
-          when "muscle gain" then info   = { :reps => 8..12, :load => 0.65..0.75, :sets => 1..3, :rest => 1..2, :velocity => "slow and moderate" }
-          when "strength gain" then info = { :reps => 8..12, :load => 0.60..0.70, :sets => 1..3, :rest => 2..3, :velocity => "slow" }
-        end
-      when 2 then
-        case user_goal.downcase
-          when "muscle gain" then info   = { :reps => 8..12, :load => 0.70..0.85, :sets => 1..3, :rest => 2..3, :velocity => "slow and moderate" }
-          when "strength gain" then info = { :reps => 1..12, :load => 0.70..0.85, :sets => 1..3, :rest => 2..3, :velocity => "slow and moderate" }
-        end
-      when 3 then
-        case user_goal.downcase
-          when "muscle gain" then info   = { :reps => 8..12, :load => 0.70..0.100, :sets => 3..6, :rest => 2..3, :velocity => "all varying" }
-          when "strength gain" then info = { :reps => 8..12, :load => 0.70..0.100, :sets => 3..6, :rest => 2..3, :velocity => "slow" }
-        end
+    if user_experience == 1 # Beginner
+      case user_goal
+        when 2 then info = { :reps => 8..12, :load => 0.65..0.75, :sets => 1..3, :rest => 1..2, :velocity => "slow and moderate" }
+        when 1 then info = { :reps => 8..12, :load => 0.60..0.70, :sets => 1..3, :rest => 2..3, :velocity => "slow" }
+      end
+    elsif user_experience == 2 # Experienced
+      case user_goal
+        when 2 then info = { :reps => 8..12, :load => 0.70..0.85, :sets => 1..3, :rest => 2..3, :velocity => "slow and moderate" }
+        when 1 then info = { :reps => 8..12, :load => 0.60..0.70, :sets => 1..3, :rest => 2..3, :velocity => "slow and moderate" }
+      end
     end
 
     wu.diff_1  = "heavy"
     wu.diff_2  = "heavy"
     wu.diff_3  = "heavy"
 
-    if user.workout_units.where(:exercise_id => exercise.id).where(:submitted => true).size > 0
+    if user.has_done_exercise?(exercise.id)
       # They've done this before -- no probationary period.
       
-      # When they did this workout unit before, was it eligible for evaluate?  I.e., is it useful
-      # to use for calculating the users weights?
+      # When they did this workout unit before, was it eligible for evaluate?  
+      # I.e., is it useful to use for calculating the users weights?
       if wu.prev != nil && wu.prev.eligible_for_evaluation
         wu.set_weights
       else
         # This is the first time they're doing this workout unit when it's eligible for eval.
         # Since we have no prior history on the users ability, use their initial weight eval
         # to determine how much weight they should lift.
-        wu.set_weights_based_on_evaluation(0.8)
+        
+        wu.set_weights_based_on_evaluation(info[:load].max)
       end
       
       # Since we are (by default) lifting a heavy load (we don't lift any other kinds of loads right now...)

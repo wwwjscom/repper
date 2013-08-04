@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
   has_many :muscle_groups_users
   has_many :muscle_groups, :through => :muscle_groups_users
   
+  # Checks to see if a user has done a particular exercise before
+  #
+  # @param exercise_id [Integer] id of the exercise to check for
+  # @return [Boolean] True if the user has done this exercise before
+  def has_done_exercise?(exercise_id)
+    self.workout_units.where(:exercise_id => exercise_id).where(:submitted => true).size > 0
+  end
+  
   def user_muscle_groups=(attributes)
     self.muscle_groups = []
     attributes.each do |mg_id, checked|

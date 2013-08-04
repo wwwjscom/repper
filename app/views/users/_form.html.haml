@@ -15,9 +15,9 @@
         %br/
         = f.select(:sex, ["Sex", "Male", "Female"])
         %br/
-        = f.select(:experience, [["Experience", -1],["Novice",1], ["Intermediate",2], ["Advanced",3]])
+        = f.select(:experience, [["Experience", -1],["Beginner",1], ["Experienced",2]])
         %br/
-        = f.select(:goal, ["Goal", "Strength Gain", "Muscle Gain"])
+        = f.select(:goal, ["Goal", ["Tone up", 1], ["Bulk Up", 2]])
         %hr/
         %p Date of birth
         = f.date_select(:dob)
