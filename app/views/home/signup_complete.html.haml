@@ -1,0 +1,24 @@
+#signup_complete.page.color-4
+  .inner-page
+    %h2.page-headline Thanks for signing up
+  .row-fluid.inner-page
+    %p.center
+      Head to your
+      = link_to "workouts", workouts_path
+      page to get started.
+
+- if Rails.env.production? 
+  / Google Code for Signup Conversion Page
+  :javascript
+    /*  */
+    var google_conversion_id = 1044133673;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "1MTsCL_wzAcQqe7w8QM";
+    var google_conversion_value = 0;
+    /*  */
+  %script{:src => "//www.googleadservices.com/pagead/conversion.js", :type => "text/javascript"}
+  %noscript
+    %div{:style => "display:inline;"}
+      %img{:alt => "", :height => "1", :src => "//www.googleadservices.com/pagead/conversion/1044133673/?value=0&label=1MTsCL_wzAcQqe7w8QM&guid=ON&script=0", :style => "border-style:none;", :width => "1"}/

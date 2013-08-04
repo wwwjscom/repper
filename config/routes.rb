@@ -21,6 +21,7 @@ Repper::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "waiver" => "users#waiver", :as => "waiver"
   get "signup" => "users#new", :as => "signup"
+  get "signup_complete" => "home#signup_complete", :as => "signup_complete"
   resources :users
   resources :sessions
 
