@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class BetaCode < ActiveRecord::Base
   attr_accessible :assigned_to_email, :code, :used
   
@@ -7,5 +9,9 @@ class BetaCode < ActiveRecord::Base
   
   def self.used(code)
     self.where(:code => code).first.update_attribute(:used, true)
+  end
+  
+  def self.generate_code
+    SecureRandom.hex
   end
 end

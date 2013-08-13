@@ -1,0 +1,7 @@
+#admin.page.color-2
+  .row-fluid.inner-page
+    .span12.center
+      = form_tag('/admin/login', method: "post") do
+        = text_field_tag "password"
+        %br/
+        = submit_tag("Login")

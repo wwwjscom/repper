@@ -5,13 +5,9 @@
       %ul
         - @beta_code.errors.full_messages.each do |msg|
           %li= msg
-
+          
   .field
-    = f.label :code
-    = f.text_field :code
-  .field
-    = f.label :used
-    = f.check_box :used
+    = f.hidden_field :code, :value => @beta_code.code
   .field
     = f.label :assigned_to_email
     = f.text_field :assigned_to_email

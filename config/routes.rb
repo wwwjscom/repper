@@ -19,6 +19,14 @@ Repper::Application.routes.draw do
 
 
   resources :workouts
+  
+  resources :admin do
+    collection do
+      post 'login'
+      get 'login'
+      get 'logout'
+    end
+  end
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

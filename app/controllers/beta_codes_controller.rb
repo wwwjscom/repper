@@ -28,6 +28,7 @@ class BetaCodesController < ApplicationController
   # GET /beta_codes/new.json
   def new
     @beta_code = BetaCode.new
+    @beta_code.code = BetaCode.generate_code
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,7 +48,7 @@ class BetaCodesController < ApplicationController
 
     respond_to do |format|
       if @beta_code.save
-        format.html { redirect_to @beta_code, notice: 'Beta code was successfully created.' }
+        format.html { redirect_to beta_codes_path, notice: 'Beta code was successfully created.' }
         format.json { render json: @beta_code, status: :created, location: @beta_code }
       else
         format.html { render action: "new" }

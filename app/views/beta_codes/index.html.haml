@@ -1,23 +1,26 @@
-%h1 Listing beta_codes
+#betacodes.page.color-2
+  .row-fluid.inner-page
+    .span12
+      %h1 Listing beta_codes
 
-%table
-  %tr
-    %th Code
-    %th Used
-    %th Assigned to email
-    %th
-    %th
-    %th
+      %table
+        %tr
+          %th Code
+          %th Used
+          %th Assigned to email
+          %th
+          %th
+          %th
 
-  - @beta_codes.each do |beta_code|
-    %tr
-      %td= beta_code.code
-      %td= beta_code.used
-      %td= beta_code.assigned_to_email
-      %td= link_to 'Show', beta_code
-      %td= link_to 'Edit', edit_beta_code_path(beta_code)
-      %td= link_to 'Destroy', beta_code, method: :delete, data: { confirm: 'Are you sure?' }
+        - @beta_codes.each do |beta_code|
+          %tr
+            %td= beta_code.code
+            %td= beta_code.used
+            %td= beta_code.assigned_to_email
+            %td= link_to 'Show', beta_code
+            %td= link_to 'Edit', edit_beta_code_path(beta_code)
+            %td= link_to 'Destroy', beta_code, method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
+      %br
 
-= link_to 'New Beta code', new_beta_code_path
+      = link_to 'New Beta code', new_beta_code_path
