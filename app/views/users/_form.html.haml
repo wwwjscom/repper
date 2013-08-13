@@ -9,6 +9,7 @@
 
     .row-fluid.inner-page.contact
       .offset3.span6
+        = f.text_field :beta_code, :class => 'text_field', :placeholder => "beta code"
         = f.email_field :email, :class => 'text_field', :placeholder => "your@email.com"
         = f.password_field :password, { :placeholder => "password", :class => 'password_field' }
         = f.password_field :password_confirmation, { :placeholder => "confirm password", :class => 'password_field' }

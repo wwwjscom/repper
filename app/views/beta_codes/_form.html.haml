@@ -1,0 +1,19 @@
+= form_for @beta_code do |f|
+  - if @beta_code.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@beta_code.errors.count, "error")} prohibited this beta_code from being saved:"
+      %ul
+        - @beta_code.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :used
+    = f.check_box :used
+  .field
+    = f.label :assigned_to_email
+    = f.text_field :assigned_to_email
+  .actions
+    = f.submit 'Save'

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Code:
+  = @beta_code.code
+%p
+  %b Used:
+  = @beta_code.used
+%p
+  %b Assigned to email:
+  = @beta_code.assigned_to_email
+
+= link_to 'Edit', edit_beta_code_path(@beta_code)
+\|
+= link_to 'Back', beta_codes_path

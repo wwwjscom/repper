@@ -6,6 +6,9 @@ class UserMailer < ActionMailer::Base
   def welcome_email(user)
     @user = user
     @login_url = login_url
-    mail(:to => user.email, :subject => "Welcome to Repper")
+    if Rails.env.production?
+      # Only send emails in production
+      mail(:to => user.email, :subject => "Welcome to Repper")
+    end
   end
 end

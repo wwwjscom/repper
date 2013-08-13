@@ -1,7 +1,26 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   attr_accessible :email, :password, :password_confirmation, :user_muscle_groups, :goal, :sex, :experience, :dob
-
+  
+  ###################
+  # beta code stuff
+  attr_accessible :beta_code
+  attr_accessor :beta_code
+  validates_presence_of :beta_code, :on => :create
+  validate :check_beta_code, :on => :create
+  after_save :mark_beta_code, :on => :create
+  
+  def check_beta_code
+    unless BetaCode.valid?(self.beta_code)
+      errors.add(:beta_code, "is not valid or was already used")
+    end
+  end
+  
+  def mark_beta_code
+    BetaCode.used(self.beta_code)
+  end
+  ###################
+  
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   

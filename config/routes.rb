@@ -1,5 +1,8 @@
 Repper::Application.routes.draw do
 
+  resources :beta_codes
+
+
   resources :progression_event_logs
 
 
